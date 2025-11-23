@@ -1,0 +1,43 @@
+[gd_resource type="Resource" script_class="WeaponBelt" load_steps=8 format=3 uid="uid://s2i3cyd4ucg5"]
+
+[ext_resource type="Script" uid="uid://cn4l2rnjadcn8" path="res://blisscode/item/weapon_belt.gd" id="1_vqo77"]
+[ext_resource type="Script" uid="uid://dps8sxdkteuwk" path="res://blisscode/item/weapon.gd" id="2_kwmym"]
+[ext_resource type="Script" uid="uid://dx15io88tra7t" path="res://blisscode/item/ranged_weapon.gd" id="3_vilcd"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_6ns4p"]
+load_path = "res://.godot/imported/guns.png-6c95b17a690d1ee855c6d87770ac8e84.ctex"
+
+[sub_resource type="Resource" id="Resource_b34d4"]
+script = ExtResource("3_vilcd")
+projectile = "projectile"
+max_ammo = 10
+unlimited_ammo = true
+attack_rate = 0.1
+slot = 9
+package = "guns"
+name = "black pistol"
+texture = SubResource("CompressedTexture2D_6ns4p")
+hframes = 3
+metadata/_custom_type_script = "uid://dx15io88tra7t"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_8f48f"]
+load_path = "res://.godot/imported/guns.png-6c95b17a690d1ee855c6d87770ac8e84.ctex"
+
+[sub_resource type="Resource" id="Resource_2ukt0"]
+script = ExtResource("3_vilcd")
+projectile = "projectile_missle"
+max_ammo = 10
+unlimited_ammo = true
+attack_rate = 1.0
+slot = 9
+package = "guns"
+name = "black missle"
+texture = SubResource("CompressedTexture2D_8f48f")
+frame = 2
+hframes = 3
+metadata/_custom_type_script = "uid://dx15io88tra7t"
+
+[resource]
+script = ExtResource("1_vqo77")
+weapons = Array[ExtResource("2_kwmym")]([SubResource("Resource_b34d4"), SubResource("Resource_2ukt0"), null, null, null, null, null, null, null, null])
+metadata/_custom_type_script = "uid://cn4l2rnjadcn8"

@@ -1,0 +1,39 @@
+[gd_scene load_steps=9 format=3 uid="uid://cq5ine8ml6lip"]
+
+[ext_resource type="Script" uid="uid://c0td21d344mt5" path="res://blisscode/quest/quest_manager.gd" id="1_o6dqq"]
+[ext_resource type="Script" uid="uid://b8oyeublhqtkp" path="res://blisscode/quest/quest.gd" id="2_isup6"]
+[ext_resource type="Script" uid="uid://csqjldirqwio0" path="res://blisscode/quest/quest_checkpoint.gd" id="3_xfeps"]
+
+[sub_resource type="Resource" id="Resource_isup6"]
+script = ExtResource("3_xfeps")
+quest_checkpoint_id = "talk_with_man"
+quest_checkpoint_name = "Talk with man"
+
+[sub_resource type="Resource" id="Resource_xfeps"]
+script = ExtResource("3_xfeps")
+quest_checkpoint_id = "go_to_area"
+quest_checkpoint_name = "Go to area with shotgun"
+
+[sub_resource type="Resource" id="Resource_mugfe"]
+script = ExtResource("3_xfeps")
+quest_checkpoint_id = "kill_enemies"
+quest_checkpoint_name = "Kill enemies"
+
+[sub_resource type="Resource" id="Resource_8amey"]
+script = ExtResource("3_xfeps")
+quest_checkpoint_id = "get_shotgun"
+quest_checkpoint_name = "Get shotgun"
+
+[sub_resource type="Resource" id="Resource_3d4v1"]
+script = ExtResource("2_isup6")
+quest_group = "introduction"
+quest_id = "get_shotgun"
+quest_name = "Get Shotgun"
+quest_description = "Get a shotgun"
+quest_checkpoints = Array[ExtResource("3_xfeps")]([SubResource("Resource_isup6"), SubResource("Resource_xfeps"), SubResource("Resource_mugfe"), SubResource("Resource_8amey")])
+
+[node name="QuestManager" type="Node"]
+script = ExtResource("1_o6dqq")
+quests = {
+"introduction": [SubResource("Resource_3d4v1")]
+}

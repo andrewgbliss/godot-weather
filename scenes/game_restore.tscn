@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://cuhjer08erv16"]
+
+[ext_resource type="Script" uid="uid://b7vs1nafkufn2" path="res://scenes/game_restore.gd" id="1_5lkar"]
+[ext_resource type="PackedScene" uid="uid://540dg0yffixx" path="res://scenes/cutscenes/cutscene_moon_sword.tscn" id="2_r8hf3"]
+
+[node name="GameRestore" type="Node2D"]
+script = ExtResource("1_5lkar")
+cutscene = ExtResource("2_r8hf3")

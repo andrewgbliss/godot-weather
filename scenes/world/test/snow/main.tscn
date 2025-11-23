@@ -1,0 +1,75 @@
+[gd_scene load_steps=11 format=3 uid="uid://bijrycrlmtgv2"]
+
+[ext_resource type="Texture2D" uid="uid://hsldbcdnya1k" path="res://assets/images/Bg.png" id="1_6xkc2"]
+[ext_resource type="Texture2D" uid="uid://bkrnqlnbbn8fp" path="res://assets/images/Mountains.png" id="2_xspk0"]
+[ext_resource type="Texture2D" uid="uid://dtxjuvsfcd2ra" path="res://assets/images/Hills.png" id="4_xhtq7"]
+[ext_resource type="PackedScene" uid="uid://dhpirajy5once" path="res://scenes/clouds.tscn" id="5_6ai8o"]
+[ext_resource type="Texture2D" uid="uid://bh7gm8kwy6eq0" path="res://assets/images/Ground.png" id="5_ww2t4"]
+[ext_resource type="Texture2D" uid="uid://b4twfm5sswts5" path="res://assets/images/Tree.png" id="6_ar4yt"]
+[ext_resource type="Texture2D" uid="uid://0yvwevdly4sm" path="res://assets/images/Snowflakes.png" id="8_armno"]
+[ext_resource type="PackedScene" uid="uid://cghodmutwyuvv" path="res://scenes/deer.tscn" id="8_si8d0"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_pxf7d"]
+particles_animation = true
+particles_anim_h_frames = 16
+particles_anim_v_frames = 4
+particles_anim_loop = false
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_0yw77"]
+lifetime_randomness = 0.1
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(200, 50, 1)
+gravity = Vector3(-10, 60, 0)
+scale_min = 0.5
+color = Color(1, 1, 1, 0.513726)
+anim_speed_max = 0.09
+anim_offset_max = 0.0222
+turbulence_enabled = true
+turbulence_noise_strength = 0.67
+turbulence_noise_scale = 4.33
+
+[node name="Main" type="Node2D"]
+
+[node name="Bg" type="Sprite2D" parent="."]
+texture = ExtResource("1_6xkc2")
+centered = false
+
+[node name="Mountains" type="Sprite2D" parent="."]
+position = Vector2(0, 31)
+texture = ExtResource("2_xspk0")
+centered = false
+
+[node name="Hills" type="Sprite2D" parent="."]
+position = Vector2(0, 82)
+texture = ExtResource("4_xhtq7")
+centered = false
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+material = SubResource("CanvasItemMaterial_pxf7d")
+position = Vector2(163, 19)
+amount = 200
+lifetime = 8.0
+explosiveness = 0.12
+randomness = 0.36
+texture = ExtResource("8_armno")
+process_material = SubResource("ParticleProcessMaterial_0yw77")
+
+[node name="Ground" type="Sprite2D" parent="."]
+position = Vector2(0, 103)
+texture = ExtResource("5_ww2t4")
+centered = false
+
+[node name="Clouds" parent="." instance=ExtResource("5_6ai8o")]
+position = Vector2(0, 77)
+movement = Vector2(-0.5, 0)
+speed_variant = 0.378
+chance_variant = 0.477
+
+[node name="Tree" type="Sprite2D" parent="."]
+position = Vector2(141, 67)
+texture = ExtResource("6_ar4yt")
+centered = false
+
+[node name="Deer" parent="." instance=ExtResource("8_si8d0")]
+position = Vector2(80, 105)

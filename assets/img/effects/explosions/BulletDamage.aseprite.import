@@ -1,0 +1,14 @@
+[remap]
+
+importer="aseprite_wizard.plugin.noop"
+type="PackedDataContainer"
+uid="uid://dvmomoe04r85g"
+path="res://.godot/imported/BulletDamage.aseprite-7a65476515c0bfcda06e47642581f1d9.res"
+
+[deps]
+
+source_file="res://assets/img/effects/explosions/BulletDamage.aseprite"
+dest_files=["res://.godot/imported/BulletDamage.aseprite-7a65476515c0bfcda06e47642581f1d9.res"]
+
+[params]
+

@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="PhysicsGroup" load_steps=2 format=3 uid="uid://c21xx81e46mg5"]
+
+[ext_resource type="Script" uid="uid://cwrflo6ic6hr2" path="res://blisscode/physics/physics_group.gd" id="1_8nxy7"]
+
+[resource]
+script = ExtResource("1_8nxy7")
+name = "Ice"
+friction = 1.0
+run_multiplier = 1.5
+jump_force = 300.0
+stop_on_end = true
+slide_stop_on_end = true
+metadata/_custom_type_script = "uid://cwrflo6ic6hr2"

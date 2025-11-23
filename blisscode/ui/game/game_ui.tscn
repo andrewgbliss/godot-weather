@@ -1,0 +1,14 @@
+[gd_scene load_steps=4 format=3 uid="uid://c71k5mlpuqfbf"]
+
+[ext_resource type="PackedScene" uid="uid://dgq6syw2qe32p" path="res://blisscode/ui/menus/game_menus.tscn" id="1_5nb50"]
+[ext_resource type="Script" uid="uid://bxx50eei6qjeo" path="res://blisscode/ui/game/game_ui.gd" id="1_8tkqe"]
+[ext_resource type="PackedScene" uid="uid://8oqnar4uuepm" path="res://blisscode/ui/hud/hud.tscn" id="2_dt0s7"]
+
+[node name="GameUI" type="Node2D" node_paths=PackedStringArray("hud", "game_menus")]
+script = ExtResource("1_8tkqe")
+hud = NodePath("Hud")
+game_menus = NodePath("GameMenus")
+
+[node name="Hud" parent="." instance=ExtResource("2_dt0s7")]
+
+[node name="GameMenus" parent="." instance=ExtResource("1_5nb50")]

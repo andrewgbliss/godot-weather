@@ -1,0 +1,51 @@
+[gd_scene load_steps=10 format=3 uid="uid://d1uon38qbt45i"]
+
+[ext_resource type="Script" uid="uid://bynqbd3uqdtnh" path="res://blisscode/entities/entity.gd" id="1_cfy20"]
+[ext_resource type="Script" uid="uid://chm57l84dp8et" path="res://blisscode/entities/entity_sheet.gd" id="2_nfjot"]
+[ext_resource type="Shader" uid="uid://cfdw1ph808o6k" path="res://blisscode/shaders/damage_mask.gdshader" id="3_mnenj"]
+[ext_resource type="Texture2D" uid="uid://dymkn7r6mahw8" path="res://assets/img/environment/block.png" id="3_nfjot"]
+[ext_resource type="Texture2D" uid="uid://clyrsa3vtcjeo" path="res://assets/img/masks/damage-mask.png" id="4_dkukp"]
+
+[sub_resource type="Resource" id="Resource_eodsa"]
+script = ExtResource("2_nfjot")
+entity_name = "RigidBlock"
+health = 5
+max_health = 5
+metadata/_custom_type_script = "uid://chm57l84dp8et"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jvesp"]
+size = Vector2(16, 16)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_nfjot"]
+resource_local_to_scene = true
+shader = ExtResource("3_mnenj")
+shader_parameter/DamageTexture = ExtResource("4_dkukp")
+shader_parameter/DamageAmount = 0.0
+shader_parameter/TextureSize = Vector2(16, 16)
+shader_parameter/DamageColor = Color(0.20392531, 0.023756374, 0.09292384, 1)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_nfjot"]
+polygon = PackedVector2Array(-8, -8, -8, 8, 8, 8, 8, -8)
+
+[node name="RigidBlockEntity" type="Node2D" node_paths=PackedStringArray("sprite")]
+script = ExtResource("1_cfy20")
+entity_sheet = SubResource("Resource_eodsa")
+garbage = true
+sprite = NodePath("RigidBody2D/Sprite2D")
+metadata/_custom_type_script = "uid://bynqbd3uqdtnh"
+
+[node name="RigidBody2D" type="RigidBody2D" parent="."]
+collision_layer = 4
+collision_mask = 551
+lock_rotation = true
+angular_damp = 0.5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D"]
+shape = SubResource("RectangleShape2D_jvesp")
+
+[node name="Sprite2D" type="Sprite2D" parent="RigidBody2D"]
+material = SubResource("ShaderMaterial_nfjot")
+texture = ExtResource("3_nfjot")
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="RigidBody2D"]
+occluder = SubResource("OccluderPolygon2D_nfjot")

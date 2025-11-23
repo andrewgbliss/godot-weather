@@ -1,0 +1,52 @@
+[gd_scene load_steps=7 format=3 uid="uid://bw2vj62i7bopw"]
+
+[ext_resource type="Script" uid="uid://bm85budamtxnd" path="res://blisscode/core/world/world.gd" id="1_mj4jo"]
+[ext_resource type="PackedScene" uid="uid://cigq725bcki6j" path="res://scenes/world/platformer/basic/platformer_halloween_8_bit_blocks_world.tscn" id="2_m63tg"]
+[ext_resource type="PackedScene" uid="uid://wdj855s3hmgo" path="res://blisscode/environment/gravity_area/gravity_area.tscn" id="2_mj4jo"]
+[ext_resource type="PackedScene" uid="uid://bwn7jupowfim3" path="res://scenes/entities/rigid/pumpken.tscn" id="4_2o4ip"]
+[ext_resource type="Script" uid="uid://baibi6vypqgi8" path="res://blisscode/core/spawning/player_spawner.gd" id="4_qbxts"]
+
+[sub_resource type="Environment" id="Environment_6m72w"]
+background_mode = 3
+glow_enabled = true
+glow_bloom = 0.25
+glow_blend_mode = 1
+
+[node name="World" type="Node2D"]
+script = ExtResource("1_mj4jo")
+world_name = "TopDown"
+
+[node name="WorldAreas" type="Node2D" parent="."]
+z_index = -50
+
+[node name="PlatformerHalloween8BitBlocksWorld" parent="WorldAreas" instance=ExtResource("2_m63tg")]
+
+[node name="PlayerSpawner" type="Node2D" parent="." node_paths=PackedStringArray("entity_container")]
+position = Vector2(368, 392)
+script = ExtResource("4_qbxts")
+player_key = "player_side"
+entity_container = NodePath("../EntityContainer")
+metadata/_custom_type_script = "uid://ddlo01mfc118i"
+
+[node name="EntityContainer" type="Node2D" parent="."]
+top_level = true
+
+[node name="Pumpken" parent="EntityContainer" instance=ExtResource("4_2o4ip")]
+position = Vector2(280, 392)
+
+[node name="Pumpken2" parent="EntityContainer" instance=ExtResource("4_2o4ip")]
+position = Vector2(312, 400)
+physics_material_override = null
+
+[node name="Pumpken3" parent="EntityContainer" instance=ExtResource("4_2o4ip")]
+position = Vector2(240, 400)
+
+[node name="GravityArea" parent="." instance=ExtResource("2_mj4jo")]
+position = Vector2(812, 433)
+gravity = 500.0
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_6m72w")
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+color = Color(0.18113571, 0.4165165, 0.6236161, 1)

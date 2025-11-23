@@ -1,0 +1,52 @@
+[
+  {
+	"name": "Scene 1",
+	"dialogue": [
+	  {
+		"speaker": "Innkeeper",
+		"text": ["Hello, traveler!", "What brings you to these parts?"],
+		"choices": [
+		  { "text": "What is this place?", "next_scene": "Scene 2" },
+		  { "text": "Let me look at your wares.", "next_scene": "Scene 3" },
+		  { "text": "I'm looking for a job.", "next_scene": "Scene 4" }
+		]
+	  }
+	]
+  },
+  {
+	"name": "Scene 2",
+	"dialogue": [
+	  {
+		"speaker": "NPC",
+		"text": [
+		  "This is the town of Riverwood. I'm the blacksmith here.",
+		  "I can help you with anything you need."
+		],
+		"next_scene": "Scene 1"
+	  }
+	]
+  },
+  {
+	"name": "Scene 3",
+	"dialogue": [
+	  {
+		"speaker": "NPC",
+		"text": ["Please feel free to take a look."],
+		"actions": ["open_shop"]
+	  }
+	]
+  },
+  {
+	"name": "Scene 4",
+	"dialogue": [
+	  {
+		"speaker": "NPC",
+		"text": [
+		  "I could use some help around the forge.",
+		  "I'll pay you for your time."
+		],
+		"next_scene": "Scene 1"
+	  }
+	]
+  }
+]

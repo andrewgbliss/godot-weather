@@ -1,0 +1,189 @@
+[gd_scene load_steps=28 format=3 uid="uid://bkie0rjbgvk4u"]
+
+[ext_resource type="Script" uid="uid://cyhaw1qyjtrhn" path="res://blisscode/character/character_controller.gd" id="1_rji51"]
+[ext_resource type="Script" uid="uid://bkcl7yhvmiokh" path="res://blisscode/character/character_sheet.gd" id="2_7bjuq"]
+[ext_resource type="Script" uid="uid://ej3t1d08m43w" path="res://blisscode/item/inventory.gd" id="3_d55bs"]
+[ext_resource type="Script" uid="uid://drotf454prdmb" path="res://blisscode/item/item.gd" id="3_q8wp8"]
+[ext_resource type="Script" uid="uid://cwaaqivnrog6d" path="res://blisscode/item/equipment.gd" id="4_ky1ao"]
+[ext_resource type="Script" uid="uid://brschogihfiwm" path="res://blisscode/character/controls/ai_controls.gd" id="5_ky1ao"]
+[ext_resource type="Script" uid="uid://bnbbi7tcoi6sg" path="res://blisscode/behavior_tree/bt_blackboard.gd" id="9_qhyhi"]
+[ext_resource type="Script" uid="uid://b3mlg2cpf7tdl" path="res://blisscode/behavior_tree/bt_player.gd" id="10_34mig"]
+[ext_resource type="Script" uid="uid://dnm2cmvm2uh0v" path="res://blisscode/behavior_tree/composite/bt_selector_node.gd" id="11_chevg"]
+[ext_resource type="Script" uid="uid://xwbo18yggp15" path="res://blisscode/behavior_tree/composite/bt_sequence_node.gd" id="12_flasd"]
+[ext_resource type="Script" uid="uid://dok7jnwk51yxt" path="res://blisscode/behavior_tree/decorator/bt_inverter.gd" id="13_ochto"]
+[ext_resource type="Script" uid="uid://suq305es6w0d" path="res://blisscode/behavior_tree/condition/bt_has_target.gd" id="14_kqir5"]
+[ext_resource type="PackedScene" uid="uid://qduhqb6f8ovy" path="res://scenes/characters/ui/character_points_bar.tscn" id="18_ylv4n"]
+[ext_resource type="Script" uid="uid://ddbwnppuvd6sh" path="res://blisscode/area/target_area.gd" id="19_5onne"]
+[ext_resource type="Script" uid="uid://vlpod7ytrh8m" path="res://blisscode/behavior_tree/action/bt_choose_random_screen_pos.gd" id="21_34mig"]
+[ext_resource type="Script" uid="uid://cfip3tt42agy6" path="res://blisscode/behavior_tree/action/bt_set_direction_from_move_to.gd" id="22_chevg"]
+[ext_resource type="Script" uid="uid://c4yfy880i0n7v" path="res://blisscode/behavior_tree/action/bt_move_to_target.gd" id="22_s0ioa"]
+[ext_resource type="Script" uid="uid://dqu5jwkma0clh" path="res://blisscode/behavior_tree/action/bt_wait_until_reached_position.gd" id="23_flasd"]
+[ext_resource type="Script" uid="uid://cd4i1bii75shv" path="res://blisscode/behavior_tree/action/bt_remove_var.gd" id="24_ochto"]
+[ext_resource type="Script" uid="uid://d03t847j337hs" path="res://blisscode/behavior_tree/action/bt_set_var.gd" id="27_flasd"]
+
+[sub_resource type="Resource" id="Resource_urpkq"]
+resource_local_to_scene = true
+script = ExtResource("2_7bjuq")
+character_name = "Enemy 1"
+character_controller_type = 1
+race = 3
+class_type = 4
+alignment = 0.0
+level = 0
+health = 10
+max_health = 10
+armor = 0
+max_armor = 0
+mana = 0
+max_mana = 0
+stamina = 0
+max_stamina = 0
+special = 0
+max_special = 0
+xp = 0
+max_xp = 0
+strength = 0
+dexterity = 0
+constitution = 0
+intelligence = 0
+wisdom = 0
+charisma = 0
+attack = 0
+metadata/_custom_type_script = "uid://bkcl7yhvmiokh"
+
+[sub_resource type="Resource" id="Resource_wwum6"]
+resource_local_to_scene = true
+script = ExtResource("3_d55bs")
+gold = 0
+max_gold = 10000
+max_slots = 50
+items = Array[ExtResource("3_q8wp8")]([])
+metadata/_custom_type_script = "uid://ej3t1d08m43w"
+
+[sub_resource type="Resource" id="Resource_lwmd7"]
+resource_local_to_scene = true
+script = ExtResource("4_ky1ao")
+left_hand = "guns_3"
+metadata/_custom_type_script = "uid://cwaaqivnrog6d"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_84hc2"]
+
+[sub_resource type="Gradient" id="Gradient_rp718"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_bgitj"]
+gradient = SubResource("Gradient_rp718")
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_mm6pg"]
+radius = 202.022
+
+[node name="Enemy" type="CharacterBody2D" node_paths=PackedStringArray("controls") groups=["enemy"]]
+collision_layer = 64
+collision_mask = 103
+motion_mode = 1
+script = ExtResource("1_rji51")
+character_sheet = SubResource("Resource_urpkq")
+inventory = SubResource("Resource_wwum6")
+equipment = SubResource("Resource_lwmd7")
+controls = NodePath("AIControls")
+allow_y_controls = true
+garbage = true
+garbage_time = 0.1
+metadata/_custom_type_script = "uid://cyhaw1qyjtrhn"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_84hc2")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-3.8147e-06, 0)
+scale = Vector2(0.078125, 20)
+texture = SubResource("GradientTexture1D_bgitj")
+
+[node name="AIControls" type="Node" parent="." node_paths=PackedStringArray("blackboard")]
+script = ExtResource("5_ky1ao")
+blackboard = NodePath("../BTBlackboard")
+metadata/_custom_type_script = "uid://brschogihfiwm"
+
+[node name="BTBlackboard" type="Node" parent="."]
+script = ExtResource("9_qhyhi")
+metadata/_custom_type_script = "uid://bnbbi7tcoi6sg"
+
+[node name="BTPlayer" type="Node" parent="." node_paths=PackedStringArray("root_node", "blackboard", "agent")]
+script = ExtResource("10_34mig")
+root_node = NodePath("BTSelectorNode")
+blackboard = NodePath("../BTBlackboard")
+agent = NodePath("..")
+is_running = true
+metadata/_custom_type_script = "uid://b3mlg2cpf7tdl"
+
+[node name="BTSelectorNode" type="Node" parent="BTPlayer"]
+script = ExtResource("11_chevg")
+metadata/_custom_type_script = "uid://dnm2cmvm2uh0v"
+
+[node name="Wander" type="Node" parent="BTPlayer/BTSelectorNode"]
+script = ExtResource("12_flasd")
+metadata/_custom_type_script = "uid://xwbo18yggp15"
+
+[node name="BTInverterIfDontHave" type="Node" parent="BTPlayer/BTSelectorNode/Wander"]
+script = ExtResource("13_ochto")
+metadata/_custom_type_script = "uid://dok7jnwk51yxt"
+
+[node name="BTHasTarget" type="Node" parent="BTPlayer/BTSelectorNode/Wander/BTInverterIfDontHave"]
+script = ExtResource("14_kqir5")
+metadata/_custom_type_script = "uid://suq305es6w0d"
+
+[node name="BTRemoveLeftHand" type="Node" parent="BTPlayer/BTSelectorNode/Wander"]
+script = ExtResource("24_ochto")
+var_name = &"left_hand"
+
+[node name="BTChooseRandomScreenPos" type="Node" parent="BTPlayer/BTSelectorNode/Wander"]
+script = ExtResource("21_34mig")
+metadata/_custom_type_script = "uid://vlpod7ytrh8m"
+
+[node name="BTSetDirectionFromMoveTo" type="Node" parent="BTPlayer/BTSelectorNode/Wander"]
+script = ExtResource("22_chevg")
+
+[node name="BTWaitUntilReachedPosition" type="Node" parent="BTPlayer/BTSelectorNode/Wander"]
+script = ExtResource("23_flasd")
+
+[node name="BTRemoveVarMoveTo" type="Node" parent="BTPlayer/BTSelectorNode/Wander"]
+script = ExtResource("24_ochto")
+var_name = &"move_to"
+
+[node name="BTRemoveVarDir" type="Node" parent="BTPlayer/BTSelectorNode/Wander"]
+script = ExtResource("24_ochto")
+var_name = &"movement_direction"
+
+[node name="Attack" type="Node" parent="BTPlayer/BTSelectorNode"]
+script = ExtResource("12_flasd")
+metadata/_custom_type_script = "uid://xwbo18yggp15"
+
+[node name="BTHasTarget" type="Node" parent="BTPlayer/BTSelectorNode/Attack"]
+script = ExtResource("14_kqir5")
+metadata/_custom_type_script = "uid://suq305es6w0d"
+
+[node name="BTMoveToTarget" type="Node" parent="BTPlayer/BTSelectorNode/Attack"]
+script = ExtResource("22_s0ioa")
+metadata/_custom_type_script = "uid://c4yfy880i0n7v"
+
+[node name="BTSetDirectionFromMoveTo" type="Node" parent="BTPlayer/BTSelectorNode/Attack"]
+script = ExtResource("22_chevg")
+
+[node name="BTSetVarLeftHand" type="Node" parent="BTPlayer/BTSelectorNode/Attack"]
+script = ExtResource("27_flasd")
+var_name = &"left_hand"
+value = true
+metadata/_custom_type_script = "uid://d03t847j337hs"
+
+[node name="CharacterPointsBar" parent="." node_paths=PackedStringArray("character") instance=ExtResource("18_ylv4n")]
+character = NodePath("..")
+
+[node name="TargetArea" type="Area2D" parent="." node_paths=PackedStringArray("blackboard")]
+collision_layer = 0
+script = ExtResource("19_5onne")
+group = &"player"
+blackboard = NodePath("../BTBlackboard")
+metadata/_custom_type_script = "uid://ddbwnppuvd6sh"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TargetArea"]
+shape = SubResource("CircleShape2D_mm6pg")

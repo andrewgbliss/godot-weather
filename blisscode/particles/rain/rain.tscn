@@ -1,0 +1,86 @@
+[gd_scene load_steps=11 format=3 uid="uid://b1l65b5ajopcp"]
+
+[ext_resource type="Texture2D" uid="uid://ct6s243s7s3o4" path="res://blisscode/particles/rain/RainDropSingle.png" id="1_lfypx"]
+
+[sub_resource type="Gradient" id="Gradient_pl51t"]
+colors = PackedColorArray(1, 1, 1, 1, 0.466181, 0.466181, 0.466181, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_s158i"]
+gradient = SubResource("Gradient_pl51t")
+
+[sub_resource type="Curve" id="Curve_is34x"]
+_data = [Vector2(0, 0.725275), 0.0, 0.0, 0, 0, Vector2(1, 0.230769), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_1lyjb"]
+curve = SubResource("Curve_is34x")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_o0dwr"]
+particle_flag_disable_z = true
+emission_shape_scale = Vector3(640, 1, 1)
+emission_shape = 3
+emission_box_extents = Vector3(1, 1, 1)
+direction = Vector3(0, 1, 0)
+spread = 0.0
+initial_velocity_min = 100.0
+initial_velocity_max = 100.0
+gravity = Vector3(0, 0, 0)
+scale_min = 0.1
+scale_curve = SubResource("CurveTexture_1lyjb")
+color = Color(1, 1, 1, 0.592157)
+color_ramp = SubResource("GradientTexture1D_s158i")
+turbulence_noise_strength = 0.1
+turbulence_noise_scale = 20.0
+collision_mode = 2
+collision_use_scale = true
+sub_emitter_mode = 3
+sub_emitter_amount_at_collision = 1
+
+[sub_resource type="Gradient" id="Gradient_13x0a"]
+offsets = PackedFloat32Array(0, 0.986175)
+colors = PackedColorArray(1, 1, 1, 1, 0.572988, 0.572988, 0.572988, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_i3vn0"]
+gradient = SubResource("Gradient_13x0a")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_xgb6p"]
+particle_flag_disable_z = true
+direction = Vector3(0, -1, 0)
+spread = 90.0
+initial_velocity_min = 50.0
+initial_velocity_max = 50.0
+gravity = Vector3(0, 50, 0)
+scale_max = 3.0
+color_ramp = SubResource("GradientTexture1D_i3vn0")
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_v78dc"]
+polygon = PackedVector2Array(-108, 251, -108, 407, 125, 407, 125, 251)
+
+[node name="Rain" type="Node2D"]
+
+[node name="Raindrops" type="GPUParticles2D" parent="."]
+amount = 2000
+sub_emitter = NodePath("../RaindropsSubemitter")
+texture = ExtResource("1_lfypx")
+lifetime = 8.0
+preprocess = 8.0
+speed_scale = 2.0
+fixed_fps = 60
+visibility_rect = Rect2(-100, -100, 500, 500)
+local_coords = true
+trail_enabled = true
+trail_lifetime = 0.07
+trail_sections = 7
+trail_section_subdivisions = 1
+process_material = SubResource("ParticleProcessMaterial_o0dwr")
+
+[node name="RaindropsSubemitter" type="GPUParticles2D" parent="."]
+emitting = false
+amount = 200
+one_shot = true
+visibility_rect = Rect2(-100, -100, 500, 500)
+local_coords = true
+process_material = SubResource("ParticleProcessMaterial_xgb6p")
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+occluder = SubResource("OccluderPolygon2D_v78dc")

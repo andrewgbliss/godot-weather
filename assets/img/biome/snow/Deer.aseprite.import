@@ -1,0 +1,14 @@
+[remap]
+
+importer="aseprite_wizard.plugin.noop"
+type="PackedDataContainer"
+uid="uid://g78ddfobmdk1"
+path="res://.godot/imported/Deer.aseprite-23896a09b7a5415a680bd9a89ad08c05.res"
+
+[deps]
+
+source_file="res://assets/img/biome/snow/Deer.aseprite"
+dest_files=["res://.godot/imported/Deer.aseprite-23896a09b7a5415a680bd9a89ad08c05.res"]
+
+[params]
+

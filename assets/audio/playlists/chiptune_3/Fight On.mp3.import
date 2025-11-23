@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://bxuwsj3wvxcwr"
+path="res://.godot/imported/Fight On.mp3-fa36aac5765c035c965b5d551264e2c3.mp3str"
+
+[deps]
+
+source_file="res://assets/audio/playlists/chiptune_3/Fight On.mp3"
+dest_files=["res://.godot/imported/Fight On.mp3-fa36aac5765c035c965b5d551264e2c3.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

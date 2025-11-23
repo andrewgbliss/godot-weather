@@ -1,0 +1,14 @@
+[remap]
+
+importer="aseprite_wizard.plugin.noop"
+type="PackedDataContainer"
+uid="uid://co3ohjbs8dyhc"
+path="res://.godot/imported/Spikes.aseprite-e16e3de15edad9fb2c32eb5874584857.res"
+
+[deps]
+
+source_file="res://assets/img/environment/Spikes.aseprite"
+dest_files=["res://.godot/imported/Spikes.aseprite-e16e3de15edad9fb2c32eb5874584857.res"]
+
+[params]
+

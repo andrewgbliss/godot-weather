@@ -1,0 +1,14 @@
+[remap]
+
+importer="aseprite_wizard.plugin.noop"
+type="PackedDataContainer"
+uid="uid://doajwxe37xldw"
+path="res://.godot/imported/no-belt.aseprite-95ec58005cdfe4c3f05849692d68f1fd.res"
+
+[deps]
+
+source_file="res://assets/img/scene_mocks/no-belt.aseprite"
+dest_files=["res://.godot/imported/no-belt.aseprite-95ec58005cdfe4c3f05849692d68f1fd.res"]
+
+[params]
+

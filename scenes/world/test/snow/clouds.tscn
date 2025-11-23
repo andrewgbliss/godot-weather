@@ -1,0 +1,70 @@
+[gd_scene load_steps=2 format=3 uid="uid://dhpirajy5once"]
+
+[ext_resource type="Texture2D" uid="uid://hkrutibhb36r" path="res://assets/img/biome/snow/Clouds.png" id="1_nurhs"]
+
+[node name="Clouds" type="Node2D"]
+
+[node name="StartPosition" type="Node2D" parent="."]
+position = Vector2(672, 0)
+
+[node name="Clouds" type="Sprite2D" parent="." groups=["clouds"]]
+modulate = Color(1, 1, 1, 0.541176)
+texture = ExtResource("1_nurhs")
+
+[node name="Clouds2" type="Sprite2D" parent="." groups=["clouds"]]
+modulate = Color(1, 1, 1, 0.541176)
+position = Vector2(97, -38)
+texture = ExtResource("1_nurhs")
+
+[node name="Clouds3" type="Sprite2D" parent="." groups=["clouds"]]
+modulate = Color(1, 1, 1, 0.541176)
+position = Vector2(0, -107)
+texture = ExtResource("1_nurhs")
+
+[node name="Clouds4" type="Sprite2D" parent="." groups=["clouds"]]
+modulate = Color(1, 1, 1, 0.541176)
+position = Vector2(97, -145)
+texture = ExtResource("1_nurhs")
+
+[node name="Clouds9" type="Sprite2D" parent="." groups=["clouds"]]
+modulate = Color(1, 1, 1, 0.541176)
+position = Vector2(-350, 0)
+texture = ExtResource("1_nurhs")
+
+[node name="Clouds10" type="Sprite2D" parent="." groups=["clouds"]]
+modulate = Color(1, 1, 1, 0.541176)
+position = Vector2(-253, -38)
+texture = ExtResource("1_nurhs")
+
+[node name="Clouds11" type="Sprite2D" parent="." groups=["clouds"]]
+modulate = Color(1, 1, 1, 0.541176)
+position = Vector2(-350, -107)
+texture = ExtResource("1_nurhs")
+
+[node name="Clouds12" type="Sprite2D" parent="." groups=["clouds"]]
+modulate = Color(1, 1, 1, 0.541176)
+position = Vector2(-253, -145)
+texture = ExtResource("1_nurhs")
+
+[node name="Clouds5" type="Sprite2D" parent="." groups=["clouds"]]
+modulate = Color(1, 1, 1, 0.541176)
+position = Vector2(358, 0)
+texture = ExtResource("1_nurhs")
+
+[node name="Clouds6" type="Sprite2D" parent="." groups=["clouds"]]
+modulate = Color(1, 1, 1, 0.541176)
+position = Vector2(455, -38)
+texture = ExtResource("1_nurhs")
+
+[node name="Clouds7" type="Sprite2D" parent="." groups=["clouds"]]
+modulate = Color(1, 1, 1, 0.541176)
+position = Vector2(358, -107)
+texture = ExtResource("1_nurhs")
+
+[node name="Clouds8" type="Sprite2D" parent="." groups=["clouds"]]
+modulate = Color(1, 1, 1, 0.541176)
+position = Vector2(455, -145)
+texture = ExtResource("1_nurhs")
+
+[node name="EndPosition" type="Node2D" parent="."]
+position = Vector2(-564, 0)

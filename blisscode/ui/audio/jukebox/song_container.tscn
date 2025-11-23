@@ -1,0 +1,24 @@
+[gd_scene load_steps=3 format=3 uid="uid://cyd1wnj2k44f"]
+
+[ext_resource type="Script" uid="uid://ccr0m6myikthw" path="res://blisscode/ui/audio/jukebox/song_container.gd" id="1_gubc3"]
+
+[sub_resource type="FontVariation" id="FontVariation_qnu25"]
+spacing_top = -4
+spacing_bottom = -12
+
+[node name="SongContainer" type="HBoxContainer" node_paths=PackedStringArray("track_name", "audio_stream_player")]
+offset_right = 104.0
+offset_bottom = 18.0
+script = ExtResource("1_gubc3")
+track_name = NodePath("TrackNameLabel")
+audio_stream_player = NodePath("AudioStreamPlayer")
+
+[node name="TrackNameLabel" type="Label" parent="."]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_fonts/font = SubResource("FontVariation_qnu25")
+text = "Song 1"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+bus = &"Music"

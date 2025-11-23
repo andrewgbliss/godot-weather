@@ -1,0 +1,1235 @@
+[gd_scene load_steps=29 format=3 uid="uid://dgq6syw2qe32p"]
+
+[ext_resource type="Script" uid="uid://bxu41q8tb6kv5" path="res://blisscode/ui/menus/game_menus.gd" id="1_od5r7"]
+[ext_resource type="Script" uid="uid://cg8iv8veotlm8" path="res://blisscode/ui/menus/menu/menu_stack.gd" id="3_ljqv8"]
+[ext_resource type="Script" uid="uid://cfidra8l63jcf" path="res://blisscode/ui/menus/menu/menu.gd" id="4_bg78d"]
+[ext_resource type="Script" uid="uid://kfj666n2xifd" path="res://blisscode/ui/menus/menu/buttons/menu_stack_button.gd" id="5_vwoi7"]
+[ext_resource type="Script" uid="uid://jnyn4yy8houc" path="res://blisscode/ui/menus/menu/buttons/menu_back_button.gd" id="6_0bqtc"]
+[ext_resource type="Script" uid="uid://dupq66corv17" path="res://blisscode/ui/menus/menu/buttons/menu_game_start_button.gd" id="6_od5r7"]
+[ext_resource type="Script" uid="uid://dn07iyn4dq4i4" path="res://blisscode/ui/menus/menu/buttons/menu_quit_button.gd" id="7_iwh2y"]
+[ext_resource type="PackedScene" uid="uid://c40xhlbq0xxj2" path="res://blisscode/ui/volume_slider/volume_slider.tscn" id="8_fn1d8"]
+[ext_resource type="Script" uid="uid://dld4x2ypkgy5l" path="res://blisscode/ui/menus/menu/buttons/menu_save_game_button.gd" id="9_062ld"]
+[ext_resource type="PackedScene" uid="uid://crehrk04266wa" path="res://blisscode/ui/menus/menu/controls_menu/controls_menu.tscn" id="9_bg78d"]
+[ext_resource type="AudioStream" uid="uid://da5oygxus6g8a" path="res://assets/audio/effects/click.mp3" id="9_kxayy"]
+[ext_resource type="AudioStream" uid="uid://d024mg5knpil1" path="res://assets/audio/effects/wind-swipe.mp3" id="10_j0ome"]
+[ext_resource type="Script" uid="uid://dmd7m3eghknnn" path="res://blisscode/ui/lists/saved_games_list.gd" id="10_ljqv8"]
+[ext_resource type="AudioStream" uid="uid://bko8nhioem3o2" path="res://assets/audio/effects/wind-swipe-away.mp3" id="11_7tdw4"]
+[ext_resource type="PackedScene" uid="uid://3y04wdx2golm" path="res://blisscode/ui/menus/menu/inventory/inventory_menu.tscn" id="13_0bqtc"]
+[ext_resource type="PackedScene" path="res://blisscode/ui/menus/menu/character_sheet_menu/character_sheet_menu.tscn" id="13_character_sheet"]
+
+[sub_resource type="Animation" id="Animation_hibng"]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Control/Panel:modulate:r")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Control/Panel:modulate:g")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Control/Panel:modulate:b")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Control/Panel:modulate:a")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+
+[sub_resource type="Animation" id="Animation_4xxar"]
+resource_name = "transition_away_in"
+length = 0.5
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Control/Panel:modulate:r")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.5)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Control/Panel:modulate:g")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.5)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Control/Panel:modulate:b")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.5)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Control/Panel:modulate:a")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.5)
+}
+
+[sub_resource type="Animation" id="Animation_dbg70"]
+resource_name = "transition_away_out"
+length = 0.5
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Control/Panel:modulate:r")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.5)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Control/Panel:modulate:g")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.5)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Control/Panel:modulate:b")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.5)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Control/Panel:modulate:a")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.5)
+}
+
+[sub_resource type="Animation" id="Animation_iox1x"]
+resource_name = "transition_in"
+length = 0.5
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Control/Panel:modulate:r")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.5)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Control/Panel:modulate:g")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.5)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Control/Panel:modulate:b")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.5)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Control/Panel:modulate:a")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.5)
+}
+
+[sub_resource type="Animation" id="Animation_nd50l"]
+resource_name = "transition_out"
+length = 0.5
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Control/Panel:modulate:r")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.5)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Control/Panel:modulate:g")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.5)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Control/Panel:modulate:b")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.5)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Control/Panel:modulate:a")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.5)
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_hibng"]
+_data = {
+&"RESET": SubResource("Animation_hibng"),
+&"transition_away_in": SubResource("Animation_4xxar"),
+&"transition_away_out": SubResource("Animation_dbg70"),
+&"transition_in": SubResource("Animation_iox1x"),
+&"transition_out": SubResource("Animation_nd50l")
+}
+
+[sub_resource type="Animation" id="Animation_83v66"]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Control/Panel:modulate:r")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Control/Panel:modulate:g")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Control/Panel:modulate:b")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Control/Panel:modulate:a")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+
+[sub_resource type="Animation" id="Animation_ew8a1"]
+resource_name = "transition_away_in"
+length = 0.5
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Control/Panel:modulate:r")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.5)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Control/Panel:modulate:g")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.5)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Control/Panel:modulate:b")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.5)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Control/Panel:modulate:a")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.5)
+}
+
+[sub_resource type="Animation" id="Animation_nvb2c"]
+resource_name = "transition_away_out"
+length = 0.5
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Control/Panel:modulate:r")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.5)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Control/Panel:modulate:g")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.5)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Control/Panel:modulate:b")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.5)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Control/Panel:modulate:a")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.5)
+}
+
+[sub_resource type="Animation" id="Animation_q5jky"]
+resource_name = "transition_in"
+length = 0.5
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Control/Panel:modulate:r")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.5)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Control/Panel:modulate:g")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.5)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Control/Panel:modulate:b")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.5)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Control/Panel:modulate:a")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.5)
+}
+
+[sub_resource type="Animation" id="Animation_lfual"]
+resource_name = "transition_out"
+length = 0.5
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Control/Panel:modulate:r")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.5)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Control/Panel:modulate:g")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.5)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Control/Panel:modulate:b")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.5)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Control/Panel:modulate:a")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.5)
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_e8wlj"]
+_data = {
+&"RESET": SubResource("Animation_83v66"),
+&"transition_away_in": SubResource("Animation_ew8a1"),
+&"transition_away_out": SubResource("Animation_nvb2c"),
+&"transition_in": SubResource("Animation_q5jky"),
+&"transition_out": SubResource("Animation_lfual")
+}
+
+[node name="GameMenus" type="Node2D" node_paths=PackedStringArray("menu_stack", "audio_click", "zoom_slider")]
+process_mode = 3
+script = ExtResource("1_od5r7")
+menu_stack = NodePath("MenuStack")
+audio_click = NodePath("AudioClick")
+zoom_slider = NodePath("MenuStack/PauseMenu/Control/Panel/MarginContainer/VBoxContainer/HBoxContainer4/ZoomSlider")
+
+[node name="MenuStack" type="Node" parent="." node_paths=PackedStringArray("audio_transition_in", "audio_transition_out")]
+script = ExtResource("3_ljqv8")
+audio_transition_in = NodePath("../AudioSwipe")
+audio_transition_out = NodePath("../AudioSwipeAway")
+metadata/_custom_type_script = "uid://cg8iv8veotlm8"
+
+[node name="MainMenu" type="CanvasLayer" parent="MenuStack"]
+script = ExtResource("4_bg78d")
+metadata/_custom_type_script = "uid://cfidra8l63jcf"
+
+[node name="Control" type="Control" parent="MenuStack/MainMenu"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="MenuStack/MainMenu/Control"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -64.5
+offset_top = -56.0
+offset_right = 64.5
+offset_bottom = 56.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="MenuStack/MainMenu/Control/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MenuStack/MainMenu/Control/Panel/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MenuStack/MainMenu/Control/Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Godot Starter"
+
+[node name="ButtonPlay" type="Button" parent="MenuStack/MainMenu/Control/Panel/MarginContainer/VBoxContainer" node_paths=PackedStringArray("menu_stack", "to_menu")]
+layout_mode = 2
+text = "Play"
+script = ExtResource("5_vwoi7")
+menu_stack = NodePath("../../../../../..")
+to_menu = NodePath("../../../../../../PlayerSelectMenu")
+
+[node name="ButtonLoadGame" type="Button" parent="MenuStack/MainMenu/Control/Panel/MarginContainer/VBoxContainer" node_paths=PackedStringArray("menu_stack", "to_menu")]
+layout_mode = 2
+text = "Load Game"
+script = ExtResource("5_vwoi7")
+menu_stack = NodePath("../../../../../..")
+to_menu = NodePath("../../../../../../LoadGameMenu")
+
+[node name="ButtonSettings" type="Button" parent="MenuStack/MainMenu/Control/Panel/MarginContainer/VBoxContainer" node_paths=PackedStringArray("menu_stack", "to_menu")]
+layout_mode = 2
+text = "Settings"
+script = ExtResource("5_vwoi7")
+menu_stack = NodePath("../../../../../..")
+to_menu = NodePath("../../../../../../SettingsMenu")
+metadata/_custom_type_script = "uid://kfj666n2xifd"
+
+[node name="ButtonQuit" type="Button" parent="MenuStack/MainMenu/Control/Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Quit"
+script = ExtResource("7_iwh2y")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="MenuStack/MainMenu"]
+libraries = {
+&"": SubResource("AnimationLibrary_hibng")
+}
+
+[node name="PlayerSelectMenu" type="CanvasLayer" parent="MenuStack"]
+script = ExtResource("4_bg78d")
+metadata/_custom_type_script = "uid://cfidra8l63jcf"
+
+[node name="Control" type="Control" parent="MenuStack/PlayerSelectMenu"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="MenuStack/PlayerSelectMenu/Control"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -108.0
+offset_top = -86.0
+offset_right = 112.0
+offset_bottom = 88.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="MenuStack/PlayerSelectMenu/Control/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MenuStack/PlayerSelectMenu/Control/Panel/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MenuStack/PlayerSelectMenu/Control/Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Select Player"
+
+[node name="HSeparator" type="HSeparator" parent="MenuStack/PlayerSelectMenu/Control/Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Control" type="Control" parent="MenuStack/PlayerSelectMenu/Control/Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MenuStack/PlayerSelectMenu/Control/Panel/MarginContainer/VBoxContainer/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MenuStack/PlayerSelectMenu/Control/Panel/MarginContainer/VBoxContainer/Control/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MenuStack/PlayerSelectMenu/Control/Panel/MarginContainer/VBoxContainer/Control/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Player 1"
+
+[node name="MenuGameStateButton" type="Button" parent="MenuStack/PlayerSelectMenu/Control/Panel/MarginContainer/VBoxContainer/Control/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Start"
+script = ExtResource("6_od5r7")
+metadata/_custom_type_script = "uid://dyvdlqotxd88t"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="MenuStack/PlayerSelectMenu/Control/Panel/MarginContainer/VBoxContainer/Control/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MenuStack/PlayerSelectMenu/Control/Panel/MarginContainer/VBoxContainer/Control/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Player 2"
+
+[node name="MenuGameStateButton" type="Button" parent="MenuStack/PlayerSelectMenu/Control/Panel/MarginContainer/VBoxContainer/Control/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+text = "Start"
+script = ExtResource("6_od5r7")
+metadata/_custom_type_script = "uid://dyvdlqotxd88t"
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="MenuStack/PlayerSelectMenu/Control/Panel/MarginContainer/VBoxContainer/Control/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MenuStack/PlayerSelectMenu/Control/Panel/MarginContainer/VBoxContainer/Control/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Player 3"
+
+[node name="MenuGameStateButton" type="Button" parent="MenuStack/PlayerSelectMenu/Control/Panel/MarginContainer/VBoxContainer/Control/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+text = "Start"
+script = ExtResource("6_od5r7")
+metadata/_custom_type_script = "uid://dyvdlqotxd88t"
+
+[node name="HBoxContainer4" type="HBoxContainer" parent="MenuStack/PlayerSelectMenu/Control/Panel/MarginContainer/VBoxContainer/Control/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MenuStack/PlayerSelectMenu/Control/Panel/MarginContainer/VBoxContainer/Control/VBoxContainer/HBoxContainer4"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Player 4"
+
+[node name="MenuGameStateButton" type="Button" parent="MenuStack/PlayerSelectMenu/Control/Panel/MarginContainer/VBoxContainer/Control/VBoxContainer/HBoxContainer4"]
+layout_mode = 2
+text = "Start"
+script = ExtResource("6_od5r7")
+metadata/_custom_type_script = "uid://dyvdlqotxd88t"
+
+[node name="ButtonBack" type="Button" parent="MenuStack/PlayerSelectMenu/Control/Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Back"
+script = ExtResource("6_0bqtc")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="MenuStack/PlayerSelectMenu"]
+libraries = {
+&"": SubResource("AnimationLibrary_hibng")
+}
+
+[node name="SettingsMenu" type="CanvasLayer" parent="MenuStack"]
+script = ExtResource("4_bg78d")
+metadata/_custom_type_script = "uid://cfidra8l63jcf"
+
+[node name="Control" type="Control" parent="MenuStack/SettingsMenu"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="MenuStack/SettingsMenu/Control"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -64.5
+offset_top = -43.0
+offset_right = 64.5
+offset_bottom = 43.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="MenuStack/SettingsMenu/Control/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MenuStack/SettingsMenu/Control/Panel/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MenuStack/SettingsMenu/Control/Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Settings"
+
+[node name="ButtonAudio" type="Button" parent="MenuStack/SettingsMenu/Control/Panel/MarginContainer/VBoxContainer" node_paths=PackedStringArray("menu_stack", "to_menu")]
+layout_mode = 2
+text = "Audio Settings"
+script = ExtResource("5_vwoi7")
+menu_stack = NodePath("../../../../../..")
+to_menu = NodePath("../../../../../../AudioMenu")
+
+[node name="ButtonControls" type="Button" parent="MenuStack/SettingsMenu/Control/Panel/MarginContainer/VBoxContainer" node_paths=PackedStringArray("menu_stack")]
+layout_mode = 2
+text = "Controls"
+script = ExtResource("5_vwoi7")
+menu_stack = NodePath("../../../../../..")
+
+[node name="ButtonBack" type="Button" parent="MenuStack/SettingsMenu/Control/Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Back"
+script = ExtResource("6_0bqtc")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="MenuStack/SettingsMenu"]
+libraries = {
+&"": SubResource("AnimationLibrary_hibng")
+}
+
+[node name="PauseMenu" type="CanvasLayer" parent="MenuStack"]
+layer = 50
+script = ExtResource("4_bg78d")
+metadata/_custom_type_script = "uid://cfidra8l63jcf"
+
+[node name="Control" type="Control" parent="MenuStack/PauseMenu"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="MenuStack/PauseMenu/Control"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -153.5
+offset_top = -103.0
+offset_right = 153.5
+offset_bottom = 103.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="MenuStack/PauseMenu/Control/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = -10.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 24
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 24
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MenuStack/PauseMenu/Control/Panel/MarginContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer4" type="HBoxContainer" parent="MenuStack/PauseMenu/Control/Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MenuStack/PauseMenu/Control/Panel/MarginContainer/VBoxContainer/HBoxContainer4"]
+layout_mode = 2
+size_flags_vertical = 1
+text = "Zoom"
+
+[node name="ZoomSlider" type="HSlider" parent="MenuStack/PauseMenu/Control/Panel/MarginContainer/VBoxContainer/HBoxContainer4"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+min_value = 1.0
+max_value = 3.0
+step = 0.25
+value = 1.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MenuStack/PauseMenu/Control/Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="ControlsButton" type="Button" parent="MenuStack/PauseMenu/Control/Panel/MarginContainer/VBoxContainer/HBoxContainer" node_paths=PackedStringArray("menu_stack")]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Controls"
+script = ExtResource("5_vwoi7")
+menu_stack = NodePath("../../../../../../..")
+metadata/_custom_type_script = "uid://kfj666n2xifd"
+
+[node name="AudioButton" type="Button" parent="MenuStack/PauseMenu/Control/Panel/MarginContainer/VBoxContainer/HBoxContainer" node_paths=PackedStringArray("menu_stack", "to_menu")]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Audio"
+script = ExtResource("5_vwoi7")
+menu_stack = NodePath("../../../../../../..")
+to_menu = NodePath("../../../../../../../AudioMenu")
+metadata/_custom_type_script = "uid://kfj666n2xifd"
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="MenuStack/PauseMenu/Control/Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="SaveButton" type="Button" parent="MenuStack/PauseMenu/Control/Panel/MarginContainer/VBoxContainer/HBoxContainer3" node_paths=PackedStringArray("menu_stack", "to_menu")]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Save"
+script = ExtResource("5_vwoi7")
+menu_stack = NodePath("../../../../../../..")
+to_menu = NodePath("../../../../../../../SaveGameMenu")
+metadata/_custom_type_script = "uid://kfj666n2xifd"
+
+[node name="LoadButton" type="Button" parent="MenuStack/PauseMenu/Control/Panel/MarginContainer/VBoxContainer/HBoxContainer3" node_paths=PackedStringArray("menu_stack", "to_menu")]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Load"
+script = ExtResource("5_vwoi7")
+menu_stack = NodePath("../../../../../../..")
+to_menu = NodePath("../../../../../../../LoadGameMenu")
+metadata/_custom_type_script = "uid://kfj666n2xifd"
+
+[node name="HSeparator" type="HSeparator" parent="MenuStack/PauseMenu/Control/Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="MenuStack/PauseMenu/Control/Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="QuitButton" type="Button" parent="MenuStack/PauseMenu/Control/Panel/MarginContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Quit"
+script = ExtResource("7_iwh2y")
+metadata/_custom_type_script = "uid://dn07iyn4dq4i4"
+
+[node name="BackButton" type="Button" parent="MenuStack/PauseMenu/Control/Panel/MarginContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Back"
+script = ExtResource("6_0bqtc")
+unpause_game = true
+metadata/_custom_type_script = "uid://jnyn4yy8houc"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="MenuStack/PauseMenu"]
+libraries = {
+&"": SubResource("AnimationLibrary_e8wlj")
+}
+
+[node name="AudioMenu" type="CanvasLayer" parent="MenuStack"]
+layer = 50
+script = ExtResource("4_bg78d")
+metadata/_custom_type_script = "uid://cfidra8l63jcf"
+
+[node name="Control" type="Control" parent="MenuStack/AudioMenu"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="MenuStack/AudioMenu/Control"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -64.5
+offset_top = -81.0
+offset_right = 64.5
+offset_bottom = 81.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="MenuStack/AudioMenu/Control/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MenuStack/AudioMenu/Control/Panel/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MenuStack/AudioMenu/Control/Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Audio"
+
+[node name="MarginContainer" type="MarginContainer" parent="MenuStack/AudioMenu/Control/Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MenuStack/AudioMenu/Control/Panel/MarginContainer/VBoxContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="VolumeSlider" parent="MenuStack/AudioMenu/Control/Panel/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer" instance=ExtResource("8_fn1d8")]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+bus_idx = 1
+label_text = "Music"
+
+[node name="VolumeSlider2" parent="MenuStack/AudioMenu/Control/Panel/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer" instance=ExtResource("8_fn1d8")]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+bus_idx = 2
+label_text = "Ambience"
+
+[node name="VolumeSlider3" parent="MenuStack/AudioMenu/Control/Panel/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer" instance=ExtResource("8_fn1d8")]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+bus_idx = 3
+label_text = "Effects"
+
+[node name="ButtonBack" type="Button" parent="MenuStack/AudioMenu/Control/Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Back"
+script = ExtResource("6_0bqtc")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="MenuStack/AudioMenu"]
+libraries = {
+&"": SubResource("AnimationLibrary_e8wlj")
+}
+
+[node name="ControlsMenu" parent="MenuStack" instance=ExtResource("9_bg78d")]
+
+[node name="SaveGameMenu" type="CanvasLayer" parent="MenuStack"]
+script = ExtResource("4_bg78d")
+metadata/_custom_type_script = "uid://cfidra8l63jcf"
+
+[node name="Control" type="Control" parent="MenuStack/SaveGameMenu"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="MenuStack/SaveGameMenu/Control"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -144.0
+offset_top = -119.0
+offset_right = 140.0
+offset_bottom = 127.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="MenuStack/SaveGameMenu/Control/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MenuStack/SaveGameMenu/Control/Panel/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MenuStack/SaveGameMenu/Control/Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Save Game"
+horizontal_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="MenuStack/SaveGameMenu/Control/Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="SaveSection" type="VBoxContainer" parent="MenuStack/SaveGameMenu/Control/Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="SaveLabel" type="Label" parent="MenuStack/SaveGameMenu/Control/Panel/MarginContainer/VBoxContainer/SaveSection"]
+layout_mode = 2
+text = "Save Current Game:"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MenuStack/SaveGameMenu/Control/Panel/MarginContainer/VBoxContainer/SaveSection"]
+layout_mode = 2
+
+[node name="SaveNameEdit" type="LineEdit" parent="MenuStack/SaveGameMenu/Control/Panel/MarginContainer/VBoxContainer/SaveSection/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+placeholder_text = "Enter save name..."
+
+[node name="SaveButton" type="Button" parent="MenuStack/SaveGameMenu/Control/Panel/MarginContainer/VBoxContainer/SaveSection/HBoxContainer" node_paths=PackedStringArray("description", "saved_games_list", "load_games_list")]
+layout_mode = 2
+text = "Save"
+script = ExtResource("9_062ld")
+description = NodePath("../SaveNameEdit")
+saved_games_list = NodePath("../../../LoadSection/ScrollContainer/MarginContainer/SavedGamesList")
+load_games_list = NodePath("../../../../../../../../LoadGameMenu/Control/Panel/MarginContainer/VBoxContainer/LoadSection/ScrollContainer/MarginContainer/SavedGamesList")
+
+[node name="HSeparator2" type="HSeparator" parent="MenuStack/SaveGameMenu/Control/Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="LoadSection" type="VBoxContainer" parent="MenuStack/SaveGameMenu/Control/Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="LoadLabel" type="Label" parent="MenuStack/SaveGameMenu/Control/Panel/MarginContainer/VBoxContainer/LoadSection"]
+layout_mode = 2
+text = "Saved Games:"
+
+[node name="ScrollContainer" type="ScrollContainer" parent="MenuStack/SaveGameMenu/Control/Panel/MarginContainer/VBoxContainer/LoadSection"]
+custom_minimum_size = Vector2(0, 80)
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="MenuStack/SaveGameMenu/Control/Panel/MarginContainer/VBoxContainer/LoadSection/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/margin_right = 5
+
+[node name="SavedGamesList" type="VBoxContainer" parent="MenuStack/SaveGameMenu/Control/Panel/MarginContainer/VBoxContainer/LoadSection/ScrollContainer/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+script = ExtResource("10_ljqv8")
+
+[node name="HSeparator3" type="HSeparator" parent="MenuStack/SaveGameMenu/Control/Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="ButtonBack" type="Button" parent="MenuStack/SaveGameMenu/Control/Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Back"
+script = ExtResource("6_0bqtc")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="MenuStack/SaveGameMenu"]
+libraries = {
+&"": SubResource("AnimationLibrary_e8wlj")
+}
+
+[node name="LoadGameMenu" type="CanvasLayer" parent="MenuStack"]
+script = ExtResource("4_bg78d")
+metadata/_custom_type_script = "uid://cfidra8l63jcf"
+
+[node name="Control" type="Control" parent="MenuStack/LoadGameMenu"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="MenuStack/LoadGameMenu/Control"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -144.0
+offset_top = -119.0
+offset_right = 140.0
+offset_bottom = 127.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="MenuStack/LoadGameMenu/Control/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MenuStack/LoadGameMenu/Control/Panel/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MenuStack/LoadGameMenu/Control/Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Load Game"
+horizontal_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="MenuStack/LoadGameMenu/Control/Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="LoadSection" type="VBoxContainer" parent="MenuStack/LoadGameMenu/Control/Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="LoadLabel" type="Label" parent="MenuStack/LoadGameMenu/Control/Panel/MarginContainer/VBoxContainer/LoadSection"]
+layout_mode = 2
+text = "Saved Games:"
+
+[node name="ScrollContainer" type="ScrollContainer" parent="MenuStack/LoadGameMenu/Control/Panel/MarginContainer/VBoxContainer/LoadSection"]
+custom_minimum_size = Vector2(0, 120)
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="MenuStack/LoadGameMenu/Control/Panel/MarginContainer/VBoxContainer/LoadSection/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/margin_right = 5
+
+[node name="SavedGamesList" type="VBoxContainer" parent="MenuStack/LoadGameMenu/Control/Panel/MarginContainer/VBoxContainer/LoadSection/ScrollContainer/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+script = ExtResource("10_ljqv8")
+
+[node name="HSeparator2" type="HSeparator" parent="MenuStack/LoadGameMenu/Control/Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="ButtonBack" type="Button" parent="MenuStack/LoadGameMenu/Control/Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Back"
+script = ExtResource("6_0bqtc")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="MenuStack/LoadGameMenu"]
+libraries = {
+&"": SubResource("AnimationLibrary_e8wlj")
+}
+
+[node name="CharacterSheetMenu" parent="MenuStack" instance=ExtResource("13_character_sheet")]
+
+[node name="InventoryMenu" parent="MenuStack" instance=ExtResource("13_0bqtc")]
+
+[node name="AudioClick" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("9_kxayy")
+bus = &"Effects"
+
+[node name="AudioSwipe" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("10_j0ome")
+bus = &"Effects"
+
+[node name="AudioSwipeAway" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("11_7tdw4")
+bus = &"Effects"

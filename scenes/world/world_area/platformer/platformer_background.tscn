@@ -1,0 +1,64 @@
+[gd_scene load_steps=7 format=3 uid="uid://h7fl106k8gn"]
+
+[ext_resource type="Texture2D" uid="uid://c6uggq6gfwyxb" path="res://assets/img/backgrounds/stone-mountians/Layer 6.png" id="1_gxfb4"]
+[ext_resource type="Texture2D" uid="uid://cr6i3yet74hn7" path="res://assets/img/backgrounds/stone-mountians/Layer 7.png" id="2_6e6bf"]
+[ext_resource type="Texture2D" uid="uid://0xjc5i3i4g7a" path="res://assets/img/backgrounds/stone-mountians/Layer 1.png" id="3_3iik1"]
+[ext_resource type="Texture2D" uid="uid://bbmtwcckoycxd" path="res://assets/img/backgrounds/stone-mountians/Layer 5.png" id="3_5dm1c"]
+[ext_resource type="Texture2D" uid="uid://50vunfil30bp" path="res://assets/img/backgrounds/stone-mountians/Layer 3.png" id="4_3iik1"]
+[ext_resource type="Texture2D" uid="uid://beqrqt30srbfq" path="res://assets/img/backgrounds/stone-mountians/Layer 3 Copy.png" id="5_e8e4d"]
+
+[node name="PlatformerBackground" type="Node2D"]
+
+[node name="Parallax2D" type="Parallax2D" parent="."]
+repeat_size = Vector2(320, 180)
+repeat_times = 10
+
+[node name="Sky" type="Sprite2D" parent="Parallax2D"]
+texture = ExtResource("1_gxfb4")
+
+[node name="Parallax2D5" type="Parallax2D" parent="."]
+repeat_size = Vector2(320, 0)
+repeat_times = 10
+
+[node name="MountainsBg" type="Sprite2D" parent="Parallax2D5"]
+texture = ExtResource("5_e8e4d")
+
+[node name="Parallax2D6" type="Parallax2D" parent="."]
+repeat_size = Vector2(320, 0)
+repeat_times = 10
+
+[node name="Clouds" type="Sprite2D" parent="Parallax2D6"]
+texture = ExtResource("3_3iik1")
+
+[node name="Parallax2D3" type="Parallax2D" parent="."]
+repeat_size = Vector2(320, 0)
+repeat_times = 10
+
+[node name="Sand" type="Sprite2D" parent="Parallax2D3"]
+position = Vector2(-1, -11)
+texture = ExtResource("3_5dm1c")
+
+[node name="Parallax2D4" type="Parallax2D" parent="."]
+repeat_size = Vector2(320, 0)
+repeat_times = 10
+
+[node name="Mountains" type="Sprite2D" parent="Parallax2D4"]
+position = Vector2(0, -6)
+texture = ExtResource("4_3iik1")
+
+[node name="Parallax2D2" type="Parallax2D" parent="."]
+scroll_offset = Vector2(0, 100)
+repeat_size = Vector2(320, 0)
+repeat_times = 10
+
+[node name="Ground" type="Sprite2D" parent="Parallax2D2"]
+position = Vector2(-2, 68)
+texture = ExtResource("2_6e6bf")
+
+[node name="Ground2" type="Sprite2D" parent="Parallax2D2"]
+position = Vector2(-6, 384)
+texture = ExtResource("2_6e6bf")
+
+[node name="Ground3" type="Sprite2D" parent="Parallax2D2"]
+position = Vector2(-3, 212)
+texture = ExtResource("2_6e6bf")

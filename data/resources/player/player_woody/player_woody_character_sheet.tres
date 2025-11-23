@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="CharacterSheet" load_steps=2 format=3 uid="uid://ccxhy3x32ewe6"]
+
+[ext_resource type="Script" uid="uid://bkcl7yhvmiokh" path="res://blisscode/character/character_sheet.gd" id="1_8isbt"]
+
+[resource]
+resource_local_to_scene = true
+script = ExtResource("1_8isbt")
+character_name = "Player"
+alignment = -0.279
+health = 50
+max_health = 100
+armor = 100
+max_armor = 100
+mana = 100
+max_mana = 100
+stamina = 100
+max_stamina = 100
+special = 100
+max_special = 100
+metadata/_custom_type_script = "uid://bkcl7yhvmiokh"

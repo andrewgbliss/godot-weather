@@ -1,0 +1,131 @@
+[gd_scene load_steps=14 format=3 uid="uid://c3dr0kc5tmi6a"]
+
+[ext_resource type="PackedScene" uid="uid://bfsgckpckosf" path="res://scenes/characters/player/player.tscn" id="1_6iamk"]
+[ext_resource type="Script" uid="uid://dny8opyadgvey" path="res://blisscode/room/room.gd" id="1_wodat"]
+[ext_resource type="Script" uid="uid://bkcl7yhvmiokh" path="res://blisscode/character/character_sheet.gd" id="3_wrk0s"]
+[ext_resource type="Script" uid="uid://drotf454prdmb" path="res://blisscode/item/item.gd" id="4_lyd6t"]
+[ext_resource type="Script" uid="uid://ej3t1d08m43w" path="res://blisscode/item/inventory.gd" id="4_rgk8g"]
+[ext_resource type="Script" uid="uid://cwaaqivnrog6d" path="res://blisscode/item/equipment.gd" id="5_whcv4"]
+[ext_resource type="Script" uid="uid://dx15io88tra7t" path="res://blisscode/item/ranged_weapon.gd" id="6_li2v6"]
+[ext_resource type="Texture2D" uid="uid://djiv6d5fhe0c" path="res://assets/img/items/guns.png" id="7_j7np2"]
+
+[sub_resource type="Resource" id="Resource_1rpy6"]
+resource_local_to_scene = true
+script = ExtResource("3_wrk0s")
+character_name = "Player"
+character_controller_type = 0
+race = 3
+class_type = 4
+alignment = 0.0
+level = 0
+health = 50
+max_health = 100
+armor = 100
+max_armor = 100
+mana = 100
+max_mana = 100
+stamina = 100
+max_stamina = 100
+special = 100
+max_special = 100
+xp = 0
+max_xp = 0
+strength = 0
+dexterity = 0
+constitution = 0
+intelligence = 0
+wisdom = 0
+charisma = 0
+attack = 0
+metadata/_custom_type_script = "uid://bkcl7yhvmiokh"
+
+[sub_resource type="Resource" id="Resource_omxow"]
+resource_local_to_scene = true
+script = ExtResource("4_rgk8g")
+gold = 0
+max_gold = 10000
+max_slots = 50
+items = Array[ExtResource("4_lyd6t")]([])
+metadata/_custom_type_script = "uid://ej3t1d08m43w"
+
+[sub_resource type="Resource" id="Resource_o6auj"]
+script = ExtResource("6_li2v6")
+projectile = "res://scenes/weapons/projectiles/projectile.tscn"
+max_ammo = 10
+unlimited_ammo = true
+ammo = 0
+damage_min = 0
+damage_max = 0
+attack_rate = 0.1
+stamina_cost = 0.0
+weight = 0
+durability = 0
+sell_price = 0
+buy_price = 0
+rarity = 0
+level_requirement = 0
+slot = 9
+equip_on_pickup = false
+effect = Array[int]([])
+package = "guns"
+name = "black pistol"
+description = ""
+is_level_unique = false
+is_game_unique = false
+is_stackable = false
+max_stackable_count = 1
+texture = ExtResource("7_j7np2")
+frame = 0
+hframes = 3
+vframes = 1
+metadata/_custom_type_script = "uid://dx15io88tra7t"
+
+[sub_resource type="Resource" id="Resource_wqk1x"]
+script = ExtResource("6_li2v6")
+projectile = "res://scenes/weapons/projectiles/projectile_missle.tscn"
+max_ammo = 10
+unlimited_ammo = true
+ammo = 0
+damage_min = 0
+damage_max = 0
+attack_rate = 1.0
+stamina_cost = 0.0
+weight = 0
+durability = 0
+sell_price = 0
+buy_price = 0
+rarity = 0
+level_requirement = 0
+slot = 9
+equip_on_pickup = false
+effect = Array[int]([])
+package = "guns"
+name = "black missle"
+description = ""
+is_level_unique = false
+is_game_unique = false
+is_stackable = false
+max_stackable_count = 1
+texture = ExtResource("7_j7np2")
+frame = 2
+hframes = 3
+vframes = 1
+metadata/_custom_type_script = "uid://dx15io88tra7t"
+
+[sub_resource type="Resource" id="Resource_40bss"]
+resource_local_to_scene = true
+script = ExtResource("5_whcv4")
+left_hand = SubResource("Resource_o6auj")
+right_hand = SubResource("Resource_wqk1x")
+metadata/_custom_type_script = "uid://cwaaqivnrog6d"
+
+[node name="Room" type="Node2D" node_paths=PackedStringArray("player")]
+script = ExtResource("1_wodat")
+player = NodePath("Player")
+spawn_at_first_door = true
+
+[node name="Player" parent="." instance=ExtResource("1_6iamk")]
+position = Vector2(151, 78)
+character_sheet = SubResource("Resource_1rpy6")
+inventory = SubResource("Resource_omxow")
+equipment = SubResource("Resource_40bss")

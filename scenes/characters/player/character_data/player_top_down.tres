@@ -1,0 +1,70 @@
+[gd_resource type="Resource" script_class="Character" load_steps=16 format=3 uid="uid://c8484mdisoydj"]
+
+[ext_resource type="Script" uid="uid://dm5r6oukwhccm" path="res://blisscode/character/character.gd" id="1_aagfm"]
+[ext_resource type="Script" uid="uid://bkcl7yhvmiokh" path="res://blisscode/character/character_sheet.gd" id="1_q2xgg"]
+[ext_resource type="Script" uid="uid://cwaaqivnrog6d" path="res://blisscode/item/equipment.gd" id="2_nh6kl"]
+[ext_resource type="Script" uid="uid://drotf454prdmb" path="res://blisscode/item/item.gd" id="3_mmce0"]
+[ext_resource type="Script" uid="uid://ej3t1d08m43w" path="res://blisscode/item/inventory.gd" id="4_dt0g0"]
+[ext_resource type="Script" uid="uid://cn4l2rnjadcn8" path="res://blisscode/item/weapon_belt.gd" id="6_dg48u"]
+[ext_resource type="Script" uid="uid://dps8sxdkteuwk" path="res://blisscode/item/weapon.gd" id="7_0kmn0"]
+[ext_resource type="Script" uid="uid://dx15io88tra7t" path="res://blisscode/item/ranged_weapon.gd" id="8_mmce0"]
+[ext_resource type="Texture2D" uid="uid://djiv6d5fhe0c" path="res://assets/img/items/guns.png" id="9_dt0g0"]
+
+[sub_resource type="Resource" id="Resource_87gpj"]
+script = ExtResource("1_q2xgg")
+metadata/_custom_type_script = "uid://bkcl7yhvmiokh"
+
+[sub_resource type="Resource" id="Resource_ig5tk"]
+script = ExtResource("2_nh6kl")
+metadata/_custom_type_script = "uid://cwaaqivnrog6d"
+
+[sub_resource type="Resource" id="Resource_5225y"]
+script = ExtResource("4_dt0g0")
+items = Array[ExtResource("3_mmce0")]([null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null])
+metadata/_custom_type_script = "uid://ej3t1d08m43w"
+
+[sub_resource type="Resource" id="Resource_dg48u"]
+script = ExtResource("8_mmce0")
+projectile = "projectile"
+max_ammo = 10
+unlimited_ammo = true
+spread_angle = 0.0
+damage_min = 1
+damage_max = 1
+attack_rate = 0.1
+slot = 9
+package = "guns"
+name = "black pistol"
+texture = ExtResource("9_dt0g0")
+hframes = 3
+metadata/_custom_type_script = "uid://dx15io88tra7t"
+
+[sub_resource type="Resource" id="Resource_mmce0"]
+script = ExtResource("8_mmce0")
+projectile = "projectile_missle"
+max_ammo = 10
+unlimited_ammo = true
+spread_angle = 0.0
+damage_min = 10
+damage_max = 10
+attack_rate = 1.0
+slot = 9
+package = "guns"
+name = "black missle"
+texture = ExtResource("9_dt0g0")
+frame = 2
+hframes = 3
+metadata/_custom_type_script = "uid://dx15io88tra7t"
+
+[sub_resource type="Resource" id="Resource_fmvi1"]
+script = ExtResource("6_dg48u")
+weapons = Array[ExtResource("7_0kmn0")]([SubResource("Resource_dg48u"), SubResource("Resource_mmce0"), null, null, null, null, null, null, null, null])
+metadata/_custom_type_script = "uid://cn4l2rnjadcn8"
+
+[resource]
+script = ExtResource("1_aagfm")
+character_sheet = SubResource("Resource_87gpj")
+inventory = SubResource("Resource_5225y")
+equipment = SubResource("Resource_ig5tk")
+weapon_belt = SubResource("Resource_fmvi1")
+metadata/_custom_type_script = "uid://dm5r6oukwhccm"

@@ -1,0 +1,14 @@
+[remap]
+
+importer="aseprite_wizard.plugin.noop"
+type="PackedDataContainer"
+uid="uid://bvs6j657mfi44"
+path="res://.godot/imported/nobelt.aseprite-b3b06e251d77859da234de137c84e921.res"
+
+[deps]
+
+source_file="res://assets/img/characters/nobelt/nobelt.aseprite"
+dest_files=["res://.godot/imported/nobelt.aseprite-b3b06e251d77859da234de137c84e921.res"]
+
+[params]
+

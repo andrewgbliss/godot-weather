@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://u1b140drpwtl"]
+
+[ext_resource type="Script" uid="uid://b25rxk7yj16dr" path="res://scenes/game_start.gd" id="1_jahr7"]
+[ext_resource type="PackedScene" uid="uid://540dg0yffixx" path="res://scenes/cutscenes/cutscene_moon_sword.tscn" id="2_cd562"]
+
+[node name="GameStart" type="Node2D"]
+script = ExtResource("1_jahr7")
+cutscene = ExtResource("2_cd562")

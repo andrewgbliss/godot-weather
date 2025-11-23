@@ -1,0 +1,32 @@
+[gd_scene load_steps=6 format=3 uid="uid://bwn7jupowfim3"]
+
+[ext_resource type="Texture2D" uid="uid://g04e6gtas8ej" path="res://assets/img/theme/Halloween-Items.png" id="1_jvam8"]
+[ext_resource type="Texture2D" uid="uid://dl5ed1afrnnhn" path="res://assets/img/masks/LightMask.png" id="2_gk2ox"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_gk2ox"]
+bounce = 0.16
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gk2ox"]
+atlas = ExtResource("1_jvam8")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_fo604"]
+radius = 8.0
+
+[node name="Pumpken" type="RigidBody2D"]
+collision_layer = 4
+collision_mask = 516
+mass = 3.0
+physics_material_override = SubResource("PhysicsMaterial_gk2ox")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = SubResource("AtlasTexture_gk2ox")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_fo604")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+color = Color(1, 0.7294118, 0.21568628, 1)
+shadow_enabled = true
+texture = ExtResource("2_gk2ox")
+texture_scale = 5.0

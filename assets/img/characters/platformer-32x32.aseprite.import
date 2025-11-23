@@ -1,0 +1,14 @@
+[remap]
+
+importer="aseprite_wizard.plugin.noop"
+type="PackedDataContainer"
+uid="uid://ccvsjkoekpbtq"
+path="res://.godot/imported/platformer-32x32.aseprite-38e5a96f24c3e5b6c57b51cdee274677.res"
+
+[deps]
+
+source_file="res://assets/img/characters/platformer-32x32.aseprite"
+dest_files=["res://.godot/imported/platformer-32x32.aseprite-38e5a96f24c3e5b6c57b51cdee274677.res"]
+
+[params]
+

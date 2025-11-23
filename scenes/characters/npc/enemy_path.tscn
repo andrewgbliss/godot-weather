@@ -1,0 +1,295 @@
+[gd_scene load_steps=34 format=3 uid="uid://etx7jlxrpxhj"]
+
+[ext_resource type="Script" uid="uid://cyhaw1qyjtrhn" path="res://blisscode/character/character_controller.gd" id="1_yan2r"]
+[ext_resource type="Script" uid="uid://dm5r6oukwhccm" path="res://blisscode/character/character.gd" id="2_cfvnr"]
+[ext_resource type="Script" uid="uid://bkcl7yhvmiokh" path="res://blisscode/character/character_sheet.gd" id="2_w56a4"]
+[ext_resource type="Texture2D" uid="uid://cx3q7w5dkyvxa" path="res://assets/img/characters/mech/mech-2-export.png" id="4_dskel"]
+[ext_resource type="Script" uid="uid://brschogihfiwm" path="res://blisscode/character/controls/ai_controls.gd" id="5_ananl"]
+[ext_resource type="AnimationNodeStateMachine" uid="uid://bwp3hqywp4err" path="res://scenes/characters/player/animations/player_walk_states.tres" id="7_q5dgt"]
+[ext_resource type="Script" uid="uid://bnbbi7tcoi6sg" path="res://blisscode/behavior_tree/bt_blackboard.gd" id="15_u1qma"]
+[ext_resource type="Script" uid="uid://b3mlg2cpf7tdl" path="res://blisscode/behavior_tree/bt_player.gd" id="16_ci7gw"]
+[ext_resource type="Script" uid="uid://dnm2cmvm2uh0v" path="res://blisscode/behavior_tree/composite/bt_selector_node.gd" id="17_xq11q"]
+[ext_resource type="Script" uid="uid://xwbo18yggp15" path="res://blisscode/behavior_tree/composite/bt_sequence_node.gd" id="18_3tile"]
+[ext_resource type="Script" uid="uid://dok7jnwk51yxt" path="res://blisscode/behavior_tree/decorator/bt_inverter.gd" id="19_p10sc"]
+[ext_resource type="Script" uid="uid://suq305es6w0d" path="res://blisscode/behavior_tree/condition/bt_has_target.gd" id="20_3a3fk"]
+[ext_resource type="Script" uid="uid://cd4i1bii75shv" path="res://blisscode/behavior_tree/action/bt_remove_var.gd" id="21_soyfe"]
+[ext_resource type="Script" uid="uid://b8x28spcn1q3a" path="res://blisscode/behavior_tree/action/bt_follow_path_process.gd" id="22_yan2r"]
+[ext_resource type="Script" uid="uid://c4yfy880i0n7v" path="res://blisscode/behavior_tree/action/bt_move_to_target.gd" id="26_wun4o"]
+[ext_resource type="Script" uid="uid://d03t847j337hs" path="res://blisscode/behavior_tree/action/bt_set_var.gd" id="27_fwo4i"]
+[ext_resource type="PackedScene" uid="uid://qduhqb6f8ovy" path="res://scenes/characters/ui/character_points_bar.tscn" id="28_dqdtj"]
+[ext_resource type="Script" uid="uid://c30av3xht06qh" path="res://blisscode/character/debug_label.gd" id="29_5aaeq"]
+[ext_resource type="Script" uid="uid://ddbwnppuvd6sh" path="res://blisscode/area/target_area.gd" id="30_afq2y"]
+
+[sub_resource type="Resource" id="Resource_m4jla"]
+script = ExtResource("2_w56a4")
+health = 100
+max_health = 100
+metadata/_custom_type_script = "uid://bkcl7yhvmiokh"
+
+[sub_resource type="Resource" id="Resource_dskel"]
+script = ExtResource("2_cfvnr")
+character_sheet = SubResource("Resource_m4jla")
+metadata/_custom_type_script = "uid://dm5r6oukwhccm"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_84hc2"]
+
+[sub_resource type="Animation" id="Animation_vmatd"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+
+[sub_resource type="Animation" id="Animation_apbv3"]
+resource_name = "idle_down"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+
+[sub_resource type="Animation" id="Animation_po7bs"]
+resource_name = "idle_right"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [7]
+}
+
+[sub_resource type="Animation" id="Animation_xokow"]
+resource_name = "idle_up"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [4]
+}
+
+[sub_resource type="Animation" id="Animation_ohvsh"]
+resource_name = "walk_down"
+length = 0.6
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [0, 1, 2]
+}
+
+[sub_resource type="Animation" id="Animation_67j34"]
+resource_name = "walk_right"
+length = 0.6
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.166667, 0.366667),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [6, 7, 8]
+}
+
+[sub_resource type="Animation" id="Animation_5b8nr"]
+resource_name = "walk_up"
+length = 0.6
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [3, 4, 5]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_wudon"]
+_data = {
+&"RESET": SubResource("Animation_vmatd"),
+&"idle_down": SubResource("Animation_apbv3"),
+&"idle_right": SubResource("Animation_po7bs"),
+&"idle_up": SubResource("Animation_xokow"),
+&"walk_down": SubResource("Animation_ohvsh"),
+&"walk_right": SubResource("Animation_67j34"),
+&"walk_up": SubResource("Animation_5b8nr")
+}
+
+[sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_apbv3"]
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_afqrw"]
+graph_offset = Vector2(-326, 15)
+nodes/PlayerStates/node = ExtResource("7_q5dgt")
+nodes/PlayerStates/position = Vector2(-200, 120)
+nodes/TimeScale/node = SubResource("AnimationNodeTimeScale_apbv3")
+nodes/TimeScale/position = Vector2(100, 120)
+node_connections = [&"output", 0, &"TimeScale", &"TimeScale", 0, &"PlayerStates"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_mm6pg"]
+radius = 202.022
+
+[node name="EnemyPath" type="CharacterBody2D" node_paths=PackedStringArray("controls", "behavior_trees") groups=["npc", "persist"]]
+collision_layer = 64
+collision_mask = 103
+motion_mode = 1
+script = ExtResource("1_yan2r")
+character = SubResource("Resource_dskel")
+controls = NodePath("AIControls")
+garbage = true
+garbage_time = 0.1
+behavior_trees = [NodePath("BTPlayer")]
+metadata/_custom_type_script = "uid://cyhaw1qyjtrhn"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_84hc2")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("4_dskel")
+hframes = 3
+vframes = 3
+frame = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_wudon")
+}
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+tree_root = SubResource("AnimationNodeBlendTree_afqrw")
+advance_expression_base_node = NodePath("..")
+anim_player = NodePath("../AnimationPlayer")
+parameters/PlayerStates/Idle/blend_position = Vector2(0, 0)
+parameters/PlayerStates/Walk/blend_position = Vector2(0, 0)
+parameters/TimeScale/scale = 2.0
+
+[node name="AIControls" type="Node" parent="." node_paths=PackedStringArray("blackboard")]
+script = ExtResource("5_ananl")
+blackboard = NodePath("../BTBlackboard")
+metadata/_custom_type_script = "uid://brschogihfiwm"
+
+[node name="BTBlackboard" type="Node" parent="."]
+script = ExtResource("15_u1qma")
+metadata/_custom_type_script = "uid://bnbbi7tcoi6sg"
+
+[node name="BTPlayer" type="Node" parent="." node_paths=PackedStringArray("root_node", "blackboard", "agent")]
+script = ExtResource("16_ci7gw")
+root_node = NodePath("BTSelectorNode")
+blackboard = NodePath("../BTBlackboard")
+agent = NodePath("..")
+is_running = true
+metadata/_custom_type_script = "uid://b3mlg2cpf7tdl"
+
+[node name="BTSelectorNode" type="Node" parent="BTPlayer"]
+script = ExtResource("17_xq11q")
+metadata/_custom_type_script = "uid://dnm2cmvm2uh0v"
+
+[node name="Wander" type="Node" parent="BTPlayer/BTSelectorNode"]
+script = ExtResource("18_3tile")
+metadata/_custom_type_script = "uid://xwbo18yggp15"
+
+[node name="BTInverterIfDontHave" type="Node" parent="BTPlayer/BTSelectorNode/Wander"]
+script = ExtResource("19_p10sc")
+metadata/_custom_type_script = "uid://dok7jnwk51yxt"
+
+[node name="BTHasTarget" type="Node" parent="BTPlayer/BTSelectorNode/Wander/BTInverterIfDontHave"]
+script = ExtResource("20_3a3fk")
+metadata/_custom_type_script = "uid://suq305es6w0d"
+
+[node name="BTRemoveLeftHand" type="Node" parent="BTPlayer/BTSelectorNode/Wander"]
+script = ExtResource("21_soyfe")
+var_name = &"left_hand"
+
+[node name="BTFollowPathProcess" type="Node" parent="BTPlayer/BTSelectorNode/Wander"]
+script = ExtResource("22_yan2r")
+acquire_target = true
+metadata/_custom_type_script = "uid://b8x28spcn1q3a"
+
+[node name="Attack" type="Node" parent="BTPlayer/BTSelectorNode"]
+script = ExtResource("18_3tile")
+metadata/_custom_type_script = "uid://xwbo18yggp15"
+
+[node name="BTHasTarget" type="Node" parent="BTPlayer/BTSelectorNode/Attack"]
+script = ExtResource("20_3a3fk")
+metadata/_custom_type_script = "uid://suq305es6w0d"
+
+[node name="BTMoveToTarget" type="Node" parent="BTPlayer/BTSelectorNode/Attack"]
+script = ExtResource("26_wun4o")
+metadata/_custom_type_script = "uid://c4yfy880i0n7v"
+
+[node name="BTSetVarLeftHand" type="Node" parent="BTPlayer/BTSelectorNode/Attack"]
+script = ExtResource("27_fwo4i")
+var_name = &"left_hand"
+value = true
+metadata/_custom_type_script = "uid://d03t847j337hs"
+
+[node name="BTFollowPathProcess" type="Node" parent="BTPlayer/BTSelectorNode/Attack"]
+script = ExtResource("22_yan2r")
+require_target = true
+metadata/_custom_type_script = "uid://b8x28spcn1q3a"
+
+[node name="CharacterPointsBar" parent="." node_paths=PackedStringArray("character") instance=ExtResource("28_dqdtj")]
+character = NodePath("..")
+
+[node name="DebugLabel" type="Label" parent="." node_paths=PackedStringArray("controls")]
+visible = false
+offset_left = -10.0
+offset_top = -56.0
+offset_right = 30.0
+offset_bottom = -24.0
+theme_override_constants/line_spacing = -9
+theme_override_font_sizes/font_size = 16
+text = "State
+Position"
+script = ExtResource("29_5aaeq")
+controls = NodePath("../AIControls")
+
+[node name="TargetArea" type="Area2D" parent="." node_paths=PackedStringArray("blackboard")]
+collision_layer = 0
+script = ExtResource("30_afq2y")
+group = &"player"
+blackboard = NodePath("../BTBlackboard")
+metadata/_custom_type_script = "uid://ddbwnppuvd6sh"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TargetArea"]
+shape = SubResource("CircleShape2D_mm6pg")

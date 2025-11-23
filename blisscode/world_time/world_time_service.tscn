@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://bftqna87tfwrm"]
+
+[ext_resource type="Script" uid="uid://b33kficinc01x" path="res://blisscode/world_time/world_time_service.gd" id="1_3mndk"]
+
+[node name="WorldTimeService" type="Node"]
+script = ExtResource("1_3mndk")
+INGAME_SPEED = 10.0

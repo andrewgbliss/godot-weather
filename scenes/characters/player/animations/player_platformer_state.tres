@@ -1,0 +1,82 @@
+[gd_resource type="AnimationNodeStateMachine" load_steps=18 format=3 uid="uid://bda35688x8wug"]
+
+[ext_resource type="AnimationNodeBlendSpace2D" uid="uid://c4f1fjupo0cxj" path="res://scenes/characters/player/animations/player_platformer.tres" id="1_bwx7b"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_bwx7b"]
+animation = &"jump"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_thqp2"]
+animation = &"jump"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_bpswk"]
+animation = &"jump"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_w33x3"]
+animation = &"jump"
+
+[sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_wchrf"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_bwx7b")
+blend_point_0/pos = Vector2(0, 1)
+blend_point_1/node = SubResource("AnimationNodeAnimation_thqp2")
+blend_point_1/pos = Vector2(1, 0)
+blend_point_2/node = SubResource("AnimationNodeAnimation_bpswk")
+blend_point_2/pos = Vector2(0, -1)
+blend_point_3/node = SubResource("AnimationNodeAnimation_w33x3")
+blend_point_3/pos = Vector2(-1, 0)
+blend_mode = 1
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ssj4d"]
+animation = &"walk"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_33lvj"]
+animation = &"walk"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_t27sm"]
+animation = &"walk"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_j60rn"]
+animation = &"walk"
+
+[sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_33lvj"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_ssj4d")
+blend_point_0/pos = Vector2(0, 1)
+blend_point_1/node = SubResource("AnimationNodeAnimation_33lvj")
+blend_point_1/pos = Vector2(0, -1)
+blend_point_2/node = SubResource("AnimationNodeAnimation_t27sm")
+blend_point_2/pos = Vector2(1, 0)
+blend_point_3/node = SubResource("AnimationNodeAnimation_j60rn")
+blend_point_3/pos = Vector2(-1, 0)
+blend_mode = 1
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ssj4d"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_33lvj"]
+advance_mode = 2
+advance_expression = "!velocity"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_t27sm"]
+advance_mode = 2
+advance_expression = "velocity"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ebvi6"]
+advance_mode = 2
+advance_expression = "is_jumping"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_4ps6u"]
+advance_mode = 2
+advance_expression = "is_jumping"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_8lnn4"]
+advance_mode = 2
+advance_expression = "!is_jumping"
+
+[resource]
+states/Idle/node = ExtResource("1_bwx7b")
+states/Idle/position = Vector2(550, 92)
+states/Jump/node = SubResource("AnimationNodeBlendSpace2D_wchrf")
+states/Jump/position = Vector2(338, 173)
+states/Walk/node = SubResource("AnimationNodeBlendSpace2D_33lvj")
+states/Walk/position = Vector2(338, 26)
+transitions = ["Start", "Walk", SubResource("AnimationNodeStateMachineTransition_ssj4d"), "Walk", "Idle", SubResource("AnimationNodeStateMachineTransition_33lvj"), "Idle", "Walk", SubResource("AnimationNodeStateMachineTransition_t27sm"), "Idle", "Jump", SubResource("AnimationNodeStateMachineTransition_ebvi6"), "Walk", "Jump", SubResource("AnimationNodeStateMachineTransition_4ps6u"), "Jump", "Idle", SubResource("AnimationNodeStateMachineTransition_8lnn4")]
+graph_offset = Vector2(3, -40)

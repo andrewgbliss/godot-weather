@@ -1,0 +1,637 @@
+[gd_scene load_steps=70 format=3 uid="uid://dla7fdfaurfr4"]
+
+[ext_resource type="Shader" uid="uid://i1wplu28b7c4" path="res://blisscode/shaders/character.gdshader" id="1_mvtgb"]
+[ext_resource type="Script" uid="uid://cyhaw1qyjtrhn" path="res://blisscode/character/character_controller.gd" id="2_bapgv"]
+[ext_resource type="Resource" uid="uid://bpvocg3gjelfh" path="res://scenes/characters/player/character_data/player_platformer.tres" id="3_58jpc"]
+[ext_resource type="Script" uid="uid://d2lsy2pdynjo3" path="res://blisscode/character/controls/player_controls.gd" id="4_kdmgc"]
+[ext_resource type="Script" uid="uid://b0mjv3yqikegv" path="res://blisscode/character/hitbox.gd" id="5_c7y8v"]
+[ext_resource type="PackedScene" uid="uid://m5xmcne3gd3q" path="res://scenes/effects/collisions/particle_damage.tscn" id="6_hphyl"]
+[ext_resource type="Script" uid="uid://bbu01ls8u8fow" path="res://blisscode/effects/collisions/explosion.gd" id="7_8helo"]
+[ext_resource type="SpriteFrames" uid="uid://dmen3oftjqn5t" path="res://assets/img/characters/adventure/adventurer.res" id="8_mvtgb"]
+[ext_resource type="Script" uid="uid://0vge3j1r1s0n" path="res://blisscode/character/animation/animated_sprite_facing_direction.gd" id="9_aoi5s"]
+[ext_resource type="PackedScene" uid="uid://qduhqb6f8ovy" path="res://scenes/characters/ui/character_points_bar.tscn" id="10_r41ka"]
+[ext_resource type="PackedScene" uid="uid://c37f3qdvli5sr" path="res://blisscode/character/alignment/alignment.tscn" id="11_atx0i"]
+[ext_resource type="Script" uid="uid://c30av3xht06qh" path="res://blisscode/character/debug_label.gd" id="12_60qv0"]
+[ext_resource type="Texture2D" uid="uid://yfinwvdrgjhy" path="res://assets/img/ui/icons/red-arrow.png" id="13_su4mb"]
+[ext_resource type="Texture2D" uid="uid://iy021d8gnrks" path="res://assets/img/cursors/crosshairs.png" id="14_01ytq"]
+[ext_resource type="Texture2D" uid="uid://bxqd1qybg36cl" path="res://assets/img/cursors/circle.png" id="15_dt1f7"]
+[ext_resource type="PackedScene" uid="uid://dmr0fcamx7t56" path="res://addons/virtual_joystick/virtual_joystick_scene.tscn" id="16_je12k"]
+[ext_resource type="Script" uid="uid://chigi4pyju8x5" path="res://scenes/characters/player/player_camera.gd" id="17_5bdxb"]
+[ext_resource type="Script" uid="uid://bx4nlc04ew5og" path="res://blisscode/physics/raycast_2d_advanced.gd" id="18_8lulg"]
+[ext_resource type="Script" uid="uid://bti4mwhmm58cm" path="res://blisscode/state_machine/states/platformer_state_machine.gd" id="19_oee2t"]
+[ext_resource type="Script" uid="uid://c3rd0mfca06gc" path="res://blisscode/state_machine/states/spawn_state.gd" id="20_y45s4"]
+[ext_resource type="Script" uid="uid://crvvlkigmoam5" path="res://blisscode/state_machine/states/death_state.gd" id="21_hmtuy"]
+[ext_resource type="Script" uid="uid://dqeisjnkkturo" path="res://blisscode/state_machine/states/idle_state.gd" id="22_76ewq"]
+[ext_resource type="Script" uid="uid://bxxnffmlkej1k" path="res://blisscode/state_machine/states/dangling_state.gd" id="23_ooo6j"]
+[ext_resource type="Script" uid="uid://cutl0tw1jj08w" path="res://blisscode/state_machine/states/walk_state.gd" id="24_6rtc7"]
+[ext_resource type="Script" uid="uid://qa0dobmwpw5o" path="res://blisscode/state_machine/states/run_state.gd" id="25_rvg4s"]
+[ext_resource type="Script" uid="uid://8lo347gc3bwp" path="res://blisscode/state_machine/states/jump_state.gd" id="26_heaqx"]
+[ext_resource type="Script" uid="uid://cv887a08k4env" path="res://blisscode/state_machine/states/jump_flip_state.gd" id="27_3w3bx"]
+[ext_resource type="Script" uid="uid://cjqdbfekfsfa0" path="res://blisscode/state_machine/states/falling_state.gd" id="28_pnitw"]
+[ext_resource type="Script" uid="uid://dbt5kmkhjpnf3" path="res://blisscode/state_machine/states/land_state.gd" id="29_b5ch8"]
+[ext_resource type="Script" uid="uid://bof7671wkkqnu" path="res://blisscode/state_machine/states/wall_cling_state.gd" id="30_1i3gl"]
+[ext_resource type="Script" uid="uid://boa3aj1iefxc0" path="res://blisscode/state_machine/states/wall_jump_state.gd" id="31_0v3hh"]
+[ext_resource type="Script" uid="uid://bnn0ai7ycx13p" path="res://blisscode/state_machine/states/dash_state.gd" id="32_17x2j"]
+[ext_resource type="Script" uid="uid://bu0p0lqos7mk" path="res://blisscode/state_machine/states/attack_state.gd" id="33_u3j4v"]
+[ext_resource type="Script" uid="uid://dqwiv83jman" path="res://blisscode/state_machine/states/down_thrust_state.gd" id="34_plnan"]
+[ext_resource type="Script" uid="uid://lbc7hxobl82o" path="res://blisscode/state_machine/states/up_thrust_state.gd" id="35_jtfgs"]
+[ext_resource type="Script" uid="uid://d23xdwefkddhf" path="res://blisscode/state_machine/states/crouch_idle_state.gd" id="36_xsfhf"]
+[ext_resource type="Script" uid="uid://qfh8rf6645xi" path="res://blisscode/state_machine/states/crouch_walk_state.gd" id="37_3t46n"]
+[ext_resource type="Script" uid="uid://buntc3r35qfyw" path="res://blisscode/state_machine/states/slide_state.gd" id="38_yv3b5"]
+[ext_resource type="Script" uid="uid://cwsrpsim4luso" path="res://blisscode/state_machine/states/push_state.gd" id="39_juaoo"]
+[ext_resource type="Script" uid="uid://cgcehadtgns7q" path="res://blisscode/state_machine/states/push_idle_state.gd" id="40_bt1ol"]
+[ext_resource type="Script" uid="uid://byldeukkv8onr" path="res://blisscode/state_machine/states/damage_state.gd" id="41_vkeo5"]
+[ext_resource type="Script" uid="uid://bgq7bvojk3aav" path="res://blisscode/state_machine/states/ladder_idle_state.gd" id="42_4id1h"]
+[ext_resource type="Resource" uid="uid://dn5hcqjto66jn" path="res://blisscode/character/physics_groups/ladder_physics.tres" id="43_0om5k"]
+[ext_resource type="Script" uid="uid://dymnvmk5ys3e6" path="res://blisscode/state_machine/states/ladder_climb_state.gd" id="44_8ts2i"]
+[ext_resource type="Script" uid="uid://d0fmsyj4x3pii" path="res://blisscode/state_machine/states/swim_state.gd" id="45_cn84g"]
+[ext_resource type="Resource" uid="uid://c7fxl34nddumx" path="res://blisscode/character/physics_groups/water_physics.tres" id="46_tcicc"]
+[ext_resource type="Script" uid="uid://doqs1otgurbf7" path="res://blisscode/state_machine/states/ledge_grab_state.gd" id="47_6xli0"]
+[ext_resource type="Script" uid="uid://brpw06rdkd7fp" path="res://blisscode/state_machine/states/ledge_climb_state.gd" id="48_7v0ai"]
+[ext_resource type="Script" uid="uid://blnadlxb5ld8" path="res://blisscode/state_machine/states/smash_down_state.gd" id="49_rkv4o"]
+[ext_resource type="Resource" uid="uid://b67684th5w7q0" path="res://blisscode/character/physics_groups/smash_down_physics.tres" id="50_277cq"]
+[ext_resource type="Texture2D" uid="uid://dl5ed1afrnnhn" path="res://assets/img/masks/LightMask.png" id="51_kxn0r"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_8kth0"]
+shader = ExtResource("1_mvtgb")
+shader_parameter/teleport_progress = 0.0
+shader_parameter/teleport_noise_density = 200.0
+shader_parameter/teleport_beam_size = 0.0
+shader_parameter/teleport_color = Color(1, 1, 1, 1)
+shader_parameter/pulse_shine_color = Color(1, 0, 0, 1)
+shader_parameter/pulse_alpha_limit = 0.0
+shader_parameter/pulse_cycle_speed = 1.0
+shader_parameter/pulse_cycle = true
+shader_parameter/pulse_mode = 0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wocps"]
+size = Vector2(10, 17)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_s1kwg"]
+size = Vector2(10, 10)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_l1x7x"]
+size = Vector2(9, 9)
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_b0uy1"]
+light_mode = 1
+
+[sub_resource type="Gradient" id="Gradient_4xvvr"]
+offsets = PackedFloat32Array(0, 0.986175)
+colors = PackedColorArray(1, 1, 1, 1, 0.572988, 0.572988, 0.572988, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_hij5e"]
+gradient = SubResource("Gradient_4xvvr")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_tcs0j"]
+particle_flag_disable_z = true
+direction = Vector3(-1, 0, 0)
+spread = 90.0
+initial_velocity_min = 50.0
+initial_velocity_max = 50.0
+gravity = Vector3(0, 50, 0)
+scale_max = 1.5
+color_ramp = SubResource("GradientTexture1D_hij5e")
+
+[sub_resource type="PackedScene" id="PackedScene_bdj30"]
+_bundled = {
+"conn_count": 0,
+"conns": PackedInt32Array(),
+"editable_instances": [],
+"names": PackedStringArray("ParticleDamage", "script", "animation_name", "screen_shake_amount", "emitter", "min_audio_level", "max_audio_level", "Node2D", "HitboxSubEmitter", "material", "emitting", "amount", "lifetime", "one_shot", "visibility_rect", "local_coords", "process_material", "GPUParticles2D"),
+"node_count": 2,
+"node_paths": [],
+"nodes": PackedInt32Array(-1, -1, 7, 0, -1, 6, 1, 0, 2, 1, 3, 2, 1073741828, 3, 5, 4, 6, 4, 0, 0, 0, 17, 8, -1, 8, 9, 5, 10, 6, 11, 7, 12, 8, 13, 9, 14, 10, 15, 9, 16, 11, 0),
+"variants": [ExtResource("7_8helo"), "", 5.0, NodePath("HitboxSubEmitter"), null, SubResource("CanvasItemMaterial_b0uy1"), false, 10, 0.25, true, Rect2(-32, -32, 64, 64), SubResource("ParticleProcessMaterial_tcs0j")],
+"version": 3
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1h4ch"]
+size = Vector2(9, 2.5)
+
+[sub_resource type="PackedScene" id="PackedScene_s1kwg"]
+_bundled = {
+"conn_count": 0,
+"conns": PackedInt32Array(),
+"editable_instances": [],
+"names": PackedStringArray("ParticleDamage", "script", "animation_name", "screen_shake_amount", "emitter", "min_audio_level", "max_audio_level", "Node2D", "HitboxSubEmitter", "material", "emitting", "amount", "lifetime", "one_shot", "visibility_rect", "local_coords", "process_material", "GPUParticles2D"),
+"node_count": 2,
+"node_paths": [],
+"nodes": PackedInt32Array(-1, -1, 7, 0, -1, 6, 1, 0, 2, 1, 3, 2, 1073741828, 3, 5, 4, 6, 4, 0, 0, 0, 17, 8, -1, 8, 9, 5, 10, 6, 11, 7, 12, 8, 13, 9, 14, 10, 15, 9, 16, 11, 0),
+"variants": [ExtResource("7_8helo"), "", 5.0, NodePath("HitboxSubEmitter"), null, SubResource("CanvasItemMaterial_b0uy1"), false, 10, 0.25, true, Rect2(-32, -32, 64, 64), SubResource("ParticleProcessMaterial_tcs0j")],
+"version": 3
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vluxo"]
+size = Vector2(9, 2.5)
+
+[sub_resource type="Animation" id="Animation_bavp1"]
+resource_name = "Death"
+length = 2.0
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:material:shader_parameter/teleport_progress")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 1, -0.16666667, -0.009500001, 0, 0),
+"times": PackedFloat32Array(0, 1)
+}
+
+[sub_resource type="Animation" id="Animation_ngigd"]
+resource_name = "Kick"
+length = 0.3
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [&"Kick", 1.0, false],
+"method": &"play"
+}]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Hitbox/CollisionShape2D:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.13333334, 0.26666668),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [true, false, true]
+}
+
+[sub_resource type="Animation" id="Animation_l1x7x"]
+resource_name = "Punch"
+length = 0.3
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [&"Punch", 1.0, false],
+"method": &"play"
+}]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Hitbox/CollisionShape2D:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.13333334, 0.26666668),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [true, false, true]
+}
+
+[sub_resource type="Animation" id="Animation_wcj4n"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Hitbox/CollisionShape2D:disabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:material:shader_parameter/teleport_progress")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.16666667, -0.009500001, 0, 0),
+"times": PackedFloat32Array(0)
+}
+
+[sub_resource type="Animation" id="Animation_ciexm"]
+resource_name = "Spawn"
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:material:shader_parameter/teleport_progress")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(1, -0.16666667, -0.009500001, 0, 0, 0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 1)
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_i2drd"]
+_data = {
+&"Death": SubResource("Animation_bavp1"),
+&"Kick": SubResource("Animation_ngigd"),
+&"Punch": SubResource("Animation_l1x7x"),
+&"RESET": SubResource("Animation_wcj4n"),
+&"Spawn": SubResource("Animation_ciexm")
+}
+
+[node name="Adventurer" type="CharacterBody2D" node_paths=PackedStringArray("controls", "state_machine", "dangling_raycast", "ladder_raycast", "ledge_grab_raycast") groups=["persist", "player"]]
+material = SubResource("ShaderMaterial_8kth0")
+collision_mask = 260
+script = ExtResource("2_bapgv")
+character = ExtResource("3_58jpc")
+controls = NodePath("PlayerControls")
+state_machine = NodePath("PlatformerStateMachine")
+dangling_raycast = NodePath("DanglingRayCast2D")
+ladder_raycast = NodePath("LadderRayCast2D")
+ledge_grab_raycast = NodePath("LedgeGrabRayCast2D")
+
+[node name="PlayerControls" type="Node" parent="." node_paths=PackedStringArray("state_machine", "aim_sprite", "touch_sprite")]
+script = ExtResource("4_kdmgc")
+state_machine = NodePath("../PlatformerStateMachine")
+aim_sprite = NodePath("../Crosshairs")
+touch_sprite = NodePath("../TouchCircle")
+metadata/_custom_type_script = "uid://d2lsy2pdynjo3"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1, 11.5)
+shape = SubResource("RectangleShape2D_wocps")
+
+[node name="CrouchCollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1, 15)
+shape = SubResource("RectangleShape2D_s1kwg")
+disabled = true
+
+[node name="Hitbox" type="Area2D" parent="." node_paths=PackedStringArray("animated_sprite")]
+collision_layer = 512
+collision_mask = 1028
+script = ExtResource("5_c7y8v")
+facing_left_position = Vector2(-17, 0)
+animated_sprite = NodePath("../AnimatedSprite2D")
+knockback_direction = 3
+collide_effect = ExtResource("6_hphyl")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+position = Vector2(9.5, 5.5)
+shape = SubResource("RectangleShape2D_l1x7x")
+disabled = true
+
+[node name="DownthrustHitbox" type="Area2D" parent="." node_paths=PackedStringArray("animated_sprite")]
+collision_layer = 512
+collision_mask = 1028
+script = ExtResource("5_c7y8v")
+animated_sprite = NodePath("../AnimatedSprite2D")
+knockback_direction = 1
+collide_effect = SubResource("PackedScene_bdj30")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DownthrustHitbox"]
+position = Vector2(1, 20.75)
+shape = SubResource("RectangleShape2D_1h4ch")
+disabled = true
+
+[node name="UpthrustHitbox" type="Area2D" parent="." node_paths=PackedStringArray("animated_sprite")]
+collision_layer = 512
+collision_mask = 1028
+script = ExtResource("5_c7y8v")
+animated_sprite = NodePath("../AnimatedSprite2D")
+knockback_direction = 2
+collide_effect = SubResource("PackedScene_s1kwg")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="UpthrustHitbox"]
+position = Vector2(1, 0)
+shape = SubResource("RectangleShape2D_vluxo")
+disabled = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+use_parent_material = true
+sprite_frames = ExtResource("8_mvtgb")
+animation = &"idle"
+offset = Vector2(1.125, 4.15)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_i2drd")
+}
+
+[node name="AnimatedSpriteFacingDirection" type="Node2D" parent="." node_paths=PackedStringArray("agent", "animated_sprite")]
+script = ExtResource("9_aoi5s")
+agent = NodePath("..")
+animated_sprite = NodePath("../AnimatedSprite2D")
+flip_offset = Vector2(1.125, 8.15)
+metadata/_custom_type_script = "uid://0vge3j1r1s0n"
+
+[node name="CharacterPointsBar" parent="." instance=ExtResource("10_r41ka")]
+offset_top = -10.0
+offset_bottom = 30.0
+
+[node name="Alignment" parent="." instance=ExtResource("11_atx0i")]
+visible = false
+position = Vector2(-10, -23)
+
+[node name="DebugLabel" type="Label" parent="." node_paths=PackedStringArray("controls", "state_machine")]
+offset_left = -10.0
+offset_top = -49.0
+offset_right = 30.0
+offset_bottom = -14.0
+theme_override_constants/line_spacing = -9
+theme_override_font_sizes/font_size = 16
+text = "Position"
+script = ExtResource("12_60qv0")
+controls = NodePath("../PlayerControls")
+state_machine = NodePath("../PlatformerStateMachine")
+
+[node name="DirectionArrow" type="TextureRect" parent="."]
+visible = false
+offset_left = 23.0
+offset_top = -9.0
+offset_right = 39.0
+offset_bottom = 7.0
+texture = ExtResource("13_su4mb")
+
+[node name="Crosshairs" type="Sprite2D" parent="."]
+position = Vector2(61, 0)
+texture = ExtResource("14_01ytq")
+
+[node name="TouchCircle" type="Sprite2D" parent="."]
+visible = false
+texture = ExtResource("15_dt1f7")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+process_mode = 4
+layer = 30
+visible = false
+
+[node name="Move Virtual Joystick" parent="CanvasLayer" instance=ExtResource("16_je12k")]
+offset_left = 25.0
+offset_top = -70.0
+offset_right = 123.0
+offset_bottom = 9.0
+scale = Vector2(0.5, 0.5)
+clampzone_size = 25.0
+action_left = "move_left"
+action_right = "move_right"
+action_up = "move_up"
+action_down = "move_down"
+
+[node name="Aim Virtual Joystick" parent="CanvasLayer" instance=ExtResource("16_je12k")]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -74.0
+offset_top = -71.0
+offset_right = 24.0
+offset_bottom = 8.0
+grow_horizontal = 0
+scale = Vector2(0.5, 0.5)
+clampzone_size = 25.0
+action_left = "aim_left"
+action_right = "aim_right"
+action_up = "aim_up"
+action_down = "aim_down"
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="."]
+remote_path = NodePath("../Camera2D")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+offset = Vector2(0, 15)
+limit_left = 0
+limit_top = 0
+limit_right = 2000
+limit_bottom = 1000
+position_smoothing_enabled = true
+position_smoothing_speed = 25.0
+script = ExtResource("17_5bdxb")
+
+[node name="DanglingRayCast2D" type="RayCast2D" parent="." node_paths=PackedStringArray("agent")]
+position = Vector2(10, 0)
+collision_mask = 4
+script = ExtResource("18_8lulg")
+agent = NodePath("..")
+facing_left_position = Vector2(-10, 0)
+facing_right_position = Vector2(10, 0)
+
+[node name="LadderRayCast2D" type="RayCast2D" parent="." node_paths=PackedStringArray("agent")]
+position = Vector2(0, 20)
+target_position = Vector2(0, -25)
+collision_mask = 2048
+hit_from_inside = true
+script = ExtResource("18_8lulg")
+agent = NodePath("..")
+metadata/_custom_type_script = "uid://bx4nlc04ew5og"
+
+[node name="LedgeGrabRayCast2D" type="RayCast2D" parent="." node_paths=PackedStringArray("agent")]
+target_position = Vector2(15, 0)
+collision_mask = 4
+hit_from_inside = true
+script = ExtResource("18_8lulg")
+agent = NodePath("..")
+metadata/_custom_type_script = "uid://bx4nlc04ew5og"
+
+[node name="PlatformerStateMachine" type="Node" parent="." node_paths=PackedStringArray("character", "initial_state", "idle_state")]
+script = ExtResource("19_oee2t")
+character = NodePath("..")
+initial_state = NodePath("SpawnState")
+idle_state = NodePath("IdleState")
+metadata/_custom_type_script = "uid://bti4mwhmm58cm"
+
+[node name="SpawnState" type="Node" parent="PlatformerStateMachine"]
+script = ExtResource("20_y45s4")
+animation_name = "Spawn"
+wait_for_animation_finished = true
+use_animated_sprite = false
+dispatch_state = "idle"
+metadata/_custom_type_script = "uid://c3rd0mfca06gc"
+
+[node name="DeathState" type="Node" parent="PlatformerStateMachine"]
+script = ExtResource("21_hmtuy")
+animation_name = "Death"
+wait_for_animation_finished = true
+use_animated_sprite = false
+dispatch_state = "spawn"
+metadata/_custom_type_script = "uid://crvvlkigmoam5"
+
+[node name="IdleState" type="Node" parent="PlatformerStateMachine"]
+script = ExtResource("22_76ewq")
+animation_name = "idle"
+metadata/_custom_type_script = "uid://dqeisjnkkturo"
+
+[node name="WalkState" type="Node" parent="PlatformerStateMachine"]
+script = ExtResource("24_6rtc7")
+animation_name = "walk"
+metadata/_custom_type_script = "uid://cutl0tw1jj08w"
+
+[node name="RunState" type="Node" parent="PlatformerStateMachine"]
+script = ExtResource("25_rvg4s")
+animation_name = "run"
+metadata/_custom_type_script = "uid://qa0dobmwpw5o"
+
+[node name="FallingState" type="Node" parent="PlatformerStateMachine"]
+script = ExtResource("28_pnitw")
+animation_name = "fall"
+metadata/_custom_type_script = "uid://cjqdbfekfsfa0"
+
+[node name="JumpState" type="Node" parent="PlatformerStateMachine"]
+script = ExtResource("26_heaqx")
+animation_name = "jump"
+metadata/_custom_type_script = "uid://8lo347gc3bwp"
+
+[node name="JumpFlipState" type="Node" parent="PlatformerStateMachine"]
+script = ExtResource("27_3w3bx")
+animation_name = "smrslt"
+enabled = false
+metadata/_custom_type_script = "uid://cv887a08k4env"
+
+[node name="LandState" type="Node" parent="PlatformerStateMachine"]
+script = ExtResource("29_b5ch8")
+animation_name = "crouch"
+wait_for_animation_finished = true
+dispatch_state = "idle"
+metadata/_custom_type_script = "uid://dbt5kmkhjpnf3"
+
+[node name="DanglingState" type="Node" parent="PlatformerStateMachine"]
+script = ExtResource("23_ooo6j")
+animation_name = "Dangling"
+enabled = false
+
+[node name="WallClingState" type="Node" parent="PlatformerStateMachine"]
+script = ExtResource("30_1i3gl")
+animation_name = "wall-slide"
+metadata/_custom_type_script = "uid://bof7671wkkqnu"
+
+[node name="WallJumpState" type="Node" parent="PlatformerStateMachine"]
+script = ExtResource("31_0v3hh")
+animation_name = "crnr-jmp"
+metadata/_custom_type_script = "uid://boa3aj1iefxc0"
+
+[node name="DashState" type="Node" parent="PlatformerStateMachine"]
+script = ExtResource("32_17x2j")
+animation_name = "Dash"
+enabled = false
+metadata/_custom_type_script = "uid://bnn0ai7ycx13p"
+
+[node name="AttackState" type="Node" parent="PlatformerStateMachine"]
+script = ExtResource("33_u3j4v")
+left_hand_attack_animation = "attack1"
+right_hand_attack_animation = "attack2"
+play_on_enter = false
+metadata/_custom_type_script = "uid://bu0p0lqos7mk"
+
+[node name="DownThrustState" type="Node" parent="PlatformerStateMachine" node_paths=PackedStringArray("hitbox")]
+script = ExtResource("34_plnan")
+hitbox = NodePath("../../DownthrustHitbox")
+animation_name = "air-attack1"
+enabled = false
+metadata/_custom_type_script = "uid://dqwiv83jman"
+
+[node name="UpThrustState" type="Node" parent="PlatformerStateMachine" node_paths=PackedStringArray("hitbox")]
+script = ExtResource("35_jtfgs")
+hitbox = NodePath("../../UpthrustHitbox")
+animation_name = "air-attack2"
+enabled = false
+metadata/_custom_type_script = "uid://lbc7hxobl82o"
+
+[node name="CrouchIdleState" type="Node" parent="PlatformerStateMachine" node_paths=PackedStringArray("collision_shape", "crouch_collision_shape")]
+script = ExtResource("36_xsfhf")
+collision_shape = NodePath("../../CollisionShape2D")
+crouch_collision_shape = NodePath("../../CrouchCollisionShape2D")
+animation_name = "crouch"
+metadata/_custom_type_script = "uid://d23xdwefkddhf"
+
+[node name="CrouchWalkState" type="Node" parent="PlatformerStateMachine" node_paths=PackedStringArray("collision_shape", "crouch_collision_shape")]
+script = ExtResource("37_3t46n")
+collision_shape = NodePath("../../CollisionShape2D")
+crouch_collision_shape = NodePath("../../CrouchCollisionShape2D")
+animation_name = "crouch-walk"
+metadata/_custom_type_script = "uid://qfh8rf6645xi"
+
+[node name="SlideState" type="Node" parent="PlatformerStateMachine" node_paths=PackedStringArray("collision_shape", "crouch_collision_shape")]
+script = ExtResource("38_yv3b5")
+collision_shape = NodePath("../../CollisionShape2D")
+crouch_collision_shape = NodePath("../../CrouchCollisionShape2D")
+animation_name = "slide"
+enabled = false
+
+[node name="PushState" type="Node" parent="PlatformerStateMachine"]
+script = ExtResource("39_juaoo")
+animation_name = "Push"
+enabled = false
+
+[node name="PushIdleState" type="Node" parent="PlatformerStateMachine"]
+script = ExtResource("40_bt1ol")
+animation_name = "Push Idle"
+enabled = false
+metadata/_custom_type_script = "uid://cgcehadtgns7q"
+
+[node name="DamageState" type="Node" parent="PlatformerStateMachine"]
+script = ExtResource("41_vkeo5")
+animation_name = "Damage"
+wait_for_animation_finished = true
+dispatch_state = "idle"
+enabled = false
+
+[node name="LadderIdleState" type="Node" parent="PlatformerStateMachine"]
+script = ExtResource("42_4id1h")
+physics_group = ExtResource("43_0om5k")
+animation_name = "Ladder Idle"
+enabled = false
+
+[node name="LadderClimbState" type="Node" parent="PlatformerStateMachine"]
+script = ExtResource("44_8ts2i")
+physics_group = ExtResource("43_0om5k")
+animation_name = "Ladder Climb"
+enabled = false
+metadata/_custom_type_script = "uid://dymnvmk5ys3e6"
+
+[node name="SwimState" type="Node" parent="PlatformerStateMachine"]
+script = ExtResource("45_cn84g")
+physics_group = ExtResource("46_tcicc")
+animation_name = "Swim"
+freeze_physics = true
+freeze_state = true
+enabled = false
+metadata/_custom_type_script = "uid://d0fmsyj4x3pii"
+
+[node name="LedgeGrabState" type="Node" parent="PlatformerStateMachine"]
+script = ExtResource("47_6xli0")
+hand_offset = Vector2(0, 2)
+animation_name = "crnr-grab"
+enabled = false
+metadata/_custom_type_script = "uid://doqs1otgurbf7"
+
+[node name="LedgeClimbState" type="Node" parent="PlatformerStateMachine"]
+script = ExtResource("48_7v0ai")
+animation_name = "crnr-climb"
+wait_for_animation_finished = true
+enabled = false
+
+[node name="SmashDownState" type="Node" parent="PlatformerStateMachine"]
+script = ExtResource("49_rkv4o")
+physics_group = ExtResource("50_277cq")
+animation_started = "Smash Down Started"
+animation_performed = "Smash Down Performed"
+animation_collided = "Smash Down Collided"
+collide_effect = ExtResource("6_hphyl")
+play_on_enter = false
+wait_for_animation_finished = true
+freeze_state = true
+enabled = false
+metadata/_custom_type_script = "uid://blnadlxb5ld8"
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+energy = 0.0
+shadow_enabled = true
+texture = ExtResource("51_kxn0r")

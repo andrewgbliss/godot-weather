@@ -1,0 +1,34 @@
+[gd_scene load_steps=7 format=3 uid="uid://d1tx2ym7fo337"]
+
+[ext_resource type="Script" uid="uid://bmulr056keaog" path="res://blisscode/physics/rigid_body_2d_advanced.gd" id="1_sjxrt"]
+[ext_resource type="Texture2D" uid="uid://vu6exqo31j1p" path="res://assets/img/environment/Spikes.png" id="2_u22sj"]
+[ext_resource type="Script" uid="uid://b0mjv3yqikegv" path="res://blisscode/character/hitbox.gd" id="3_u22sj"]
+[ext_resource type="PackedScene" uid="uid://m5xmcne3gd3q" path="res://scenes/effects/collisions/particle_damage.tscn" id="4_ew1il"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ew1il"]
+size = Vector2(16, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_eifij"]
+size = Vector2(16, 17)
+
+[node name="RigidBody2DAdvanced" type="RigidBody2D"]
+collision_layer = 4
+collision_mask = 5
+script = ExtResource("1_sjxrt")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_ew1il")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_u22sj")
+
+[node name="Hitbox" type="Area2D" parent="."]
+collision_layer = 4
+script = ExtResource("3_u22sj")
+knockback_direction = 1
+collide_effect = ExtResource("4_ew1il")
+metadata/_custom_type_script = "uid://b0mjv3yqikegv"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+position = Vector2(0, -0.5)
+shape = SubResource("RectangleShape2D_eifij")

@@ -1,0 +1,38 @@
+[gd_resource type="ParticleProcessMaterial" load_steps=7 format=3 uid="uid://c2wyjfa34ui5n"]
+
+[sub_resource type="Gradient" id="Gradient_mu7md"]
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_dxnpj"]
+gradient = SubResource("Gradient_mu7md")
+
+[sub_resource type="Gradient" id="Gradient_qrii3"]
+offsets = PackedFloat32Array(0, 0.5, 0.9916667)
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_8sffi"]
+gradient = SubResource("Gradient_qrii3")
+
+[sub_resource type="Curve" id="Curve_q3tec"]
+_limits = [-200.0, 200.0, 0.0, 1.0]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.09022557, 65.30614), 0.0, 0.0, 0, 0, Vector2(0.18045112, -48.979584), 0.0, 0.0, 0, 0, Vector2(0.29699248, 61.224503), 0.0, 0.0, 0, 0, Vector2(0.38721806, -44.89795), 0.0, 0.0, 0, 0, Vector2(0.48496243, 57.142868), 0.0, 0.0, 0, 0, Vector2(0.60150373, -57.142853), 0.0, 0.0, 0, 0, Vector2(0.7293233, 77.55104), 0.0, 0.0, 0, 0, Vector2(0.81578946, -48.979584), 0.0, 0.0, 0, 0, Vector2(0.9248121, 69.38777), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 11
+
+[sub_resource type="CurveTexture" id="CurveTexture_6jqaw"]
+curve = SubResource("Curve_q3tec")
+
+[resource]
+particle_flag_disable_z = true
+emission_shape_offset = Vector3(800, 0, 0)
+emission_shape_scale = Vector3(800, 1, 1)
+emission_shape = 3
+emission_box_extents = Vector3(1, 1, 1)
+gravity = Vector3(-100, 20, 0)
+tangential_accel_min = -2.2351742e-06
+tangential_accel_max = 5.9999976
+tangential_accel_curve = SubResource("CurveTexture_6jqaw")
+damping_max = 100.00001
+scale_min = 1.5
+scale_max = 1.8
+color_ramp = SubResource("GradientTexture1D_8sffi")
+color_initial_ramp = SubResource("GradientTexture1D_dxnpj")

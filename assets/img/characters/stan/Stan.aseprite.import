@@ -1,0 +1,14 @@
+[remap]
+
+importer="aseprite_wizard.plugin.noop"
+type="PackedDataContainer"
+uid="uid://bg5qskv465xbj"
+path="res://.godot/imported/Stan.aseprite-9bad1181fb77a5fa85f78d03cf433a4c.res"
+
+[deps]
+
+source_file="res://assets/img/characters/stan/Stan.aseprite"
+dest_files=["res://.godot/imported/Stan.aseprite-9bad1181fb77a5fa85f78d03cf433a4c.res"]
+
+[params]
+

@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=3 uid="uid://btuvb7awynuxo"]
+
+[ext_resource type="Script" uid="uid://gxm47gdn6yae" path="res://blisscode/weather/weather.gd" id="1_1jfdf"]
+[ext_resource type="Texture2D" uid="uid://0yvwevdly4sm" path="res://assets/img/biome/snow/Snowflakes.png" id="4_1jfdf"]
+[ext_resource type="Material" uid="uid://3iqc1ahlxoxf" path="res://blisscode/weather/particles_light_snow.tres" id="5_4vtuy"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_4vtuy"]
+light_mode = 1
+particles_animation = true
+particles_anim_h_frames = 16
+particles_anim_v_frames = 4
+particles_anim_loop = false
+
+[node name="Snow" type="Node2D" node_paths=PackedStringArray("particles")]
+script = ExtResource("1_1jfdf")
+particles = NodePath("GPUParticles2D")
+light_material = ExtResource("5_4vtuy")
+heavy_material = ExtResource("5_4vtuy")
+gravity_x = 50.0
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+material = SubResource("CanvasItemMaterial_4vtuy")
+amount = 2000
+texture = ExtResource("4_1jfdf")
+lifetime = 32.0
+preprocess = 16.0
+explosiveness = 0.12
+randomness = 0.36
+visibility_rect = Rect2(0, 0, 1600, 1600)
+local_coords = true
+process_material = ExtResource("5_4vtuy")

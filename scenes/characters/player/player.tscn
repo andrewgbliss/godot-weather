@@ -1,0 +1,262 @@
+[gd_scene load_steps=24 format=3 uid="uid://kkv641v8k1um"]
+
+[ext_resource type="Script" uid="uid://cyhaw1qyjtrhn" path="res://blisscode/character/character_controller.gd" id="1_gskn5"]
+[ext_resource type="Script" uid="uid://d2lsy2pdynjo3" path="res://blisscode/character/controls/player_controls.gd" id="3_u8i4y"]
+[ext_resource type="Texture2D" uid="uid://bxr6clmg5gyo5" path="res://assets/img/characters/woody/Woody-3x3-export.png" id="4_40a7k"]
+[ext_resource type="AnimationNodeStateMachine" uid="uid://bwp3hqywp4err" path="res://scenes/characters/player/animations/player_walk_states.tres" id="5_87p8f"]
+[ext_resource type="PackedScene" uid="uid://qduhqb6f8ovy" path="res://scenes/characters/ui/character_points_bar.tscn" id="6_t0bne"]
+[ext_resource type="PackedScene" uid="uid://c37f3qdvli5sr" path="res://blisscode/character/alignment/alignment.tscn" id="7_drmhd"]
+[ext_resource type="Script" uid="uid://c30av3xht06qh" path="res://blisscode/character/debug_label.gd" id="8_xu12o"]
+[ext_resource type="Texture2D" uid="uid://yfinwvdrgjhy" path="res://assets/img/ui/icons/red-arrow.png" id="9_iwjv8"]
+[ext_resource type="Texture2D" uid="uid://iy021d8gnrks" path="res://assets/img/cursors/crosshairs.png" id="10_k24dq"]
+[ext_resource type="Texture2D" uid="uid://bxqd1qybg36cl" path="res://assets/img/cursors/circle.png" id="11_xx0wh"]
+[ext_resource type="PackedScene" uid="uid://dmr0fcamx7t56" path="res://addons/virtual_joystick/virtual_joystick_scene.tscn" id="12_xu3em"]
+[ext_resource type="Script" uid="uid://chigi4pyju8x5" path="res://scenes/characters/player/player_camera.gd" id="13_ocy68"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wocps"]
+size = Vector2(13, 16)
+
+[sub_resource type="Animation" id="Animation_vmatd"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+
+[sub_resource type="Animation" id="Animation_apbv3"]
+resource_name = "idle_down"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+
+[sub_resource type="Animation" id="Animation_po7bs"]
+resource_name = "idle_right"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [7]
+}
+
+[sub_resource type="Animation" id="Animation_xokow"]
+resource_name = "idle_up"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [4]
+}
+
+[sub_resource type="Animation" id="Animation_ohvsh"]
+resource_name = "walk_down"
+length = 0.6
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [0, 1, 2]
+}
+
+[sub_resource type="Animation" id="Animation_67j34"]
+resource_name = "walk_right"
+length = 0.6
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.166667, 0.366667),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [6, 7, 8]
+}
+
+[sub_resource type="Animation" id="Animation_5b8nr"]
+resource_name = "walk_up"
+length = 0.6
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [3, 4, 5]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_wudon"]
+_data = {
+&"RESET": SubResource("Animation_vmatd"),
+&"idle_down": SubResource("Animation_apbv3"),
+&"idle_right": SubResource("Animation_po7bs"),
+&"idle_up": SubResource("Animation_xokow"),
+&"walk_down": SubResource("Animation_ohvsh"),
+&"walk_right": SubResource("Animation_67j34"),
+&"walk_up": SubResource("Animation_5b8nr")
+}
+
+[sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_apbv3"]
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_xokow"]
+graph_offset = Vector2(-326, 15)
+nodes/PlayerStates/node = ExtResource("5_87p8f")
+nodes/PlayerStates/position = Vector2(-200, 120)
+nodes/TimeScale/node = SubResource("AnimationNodeTimeScale_apbv3")
+nodes/TimeScale/position = Vector2(100, 120)
+node_connections = [&"output", 0, &"TimeScale", &"TimeScale", 0, &"PlayerStates"]
+
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("controls") groups=["persist", "player"]]
+collision_mask = 260
+motion_mode = 1
+script = ExtResource("1_gskn5")
+controls = NodePath("PlayerControls")
+
+[node name="PlayerControls" type="Node" parent="." node_paths=PackedStringArray("aim_sprite", "touch_sprite")]
+script = ExtResource("3_u8i4y")
+aim_sprite = NodePath("../Crosshairs")
+touch_sprite = NodePath("../TouchCircle")
+metadata/_custom_type_script = "uid://d2lsy2pdynjo3"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0.5, 0)
+shape = SubResource("RectangleShape2D_wocps")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("4_40a7k")
+hframes = 3
+vframes = 3
+frame = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_wudon")
+}
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+tree_root = SubResource("AnimationNodeBlendTree_xokow")
+advance_expression_base_node = NodePath("..")
+anim_player = NodePath("../AnimationPlayer")
+parameters/PlayerStates/Idle/blend_position = Vector2(0, 0)
+parameters/PlayerStates/Walk/blend_position = Vector2(0, 0)
+parameters/TimeScale/scale = 2.0
+
+[node name="CharacterPointsBar" parent="." instance=ExtResource("6_t0bne")]
+visible = false
+offset_top = -29.0
+offset_bottom = 11.0
+
+[node name="Alignment" parent="." instance=ExtResource("7_drmhd")]
+visible = false
+position = Vector2(-10, -23)
+
+[node name="DebugLabel" type="Label" parent="." node_paths=PackedStringArray("controls")]
+visible = false
+offset_left = -10.0
+offset_top = -72.0
+offset_right = 30.0
+offset_bottom = -40.0
+theme_override_constants/line_spacing = -9
+theme_override_font_sizes/font_size = 16
+text = "Position"
+script = ExtResource("8_xu12o")
+controls = NodePath("../PlayerControls")
+
+[node name="DirectionArrow" type="TextureRect" parent="."]
+visible = false
+offset_left = 23.0
+offset_top = -9.0
+offset_right = 39.0
+offset_bottom = 7.0
+texture = ExtResource("9_iwjv8")
+
+[node name="Crosshairs" type="Sprite2D" parent="."]
+position = Vector2(61, 0)
+texture = ExtResource("10_k24dq")
+
+[node name="TouchCircle" type="Sprite2D" parent="."]
+visible = false
+texture = ExtResource("11_xx0wh")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+process_mode = 4
+layer = 30
+visible = false
+
+[node name="Move Virtual Joystick" parent="CanvasLayer" instance=ExtResource("12_xu3em")]
+offset_left = 25.0
+offset_top = -70.0
+offset_right = 123.0
+offset_bottom = 9.0
+scale = Vector2(0.5, 0.5)
+clampzone_size = 25.0
+action_left = "move_left"
+action_right = "move_right"
+action_up = "move_up"
+action_down = "move_down"
+
+[node name="Aim Virtual Joystick" parent="CanvasLayer" instance=ExtResource("12_xu3em")]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -74.0
+offset_top = -71.0
+offset_right = 24.0
+offset_bottom = 8.0
+grow_horizontal = 0
+scale = Vector2(0.5, 0.5)
+clampzone_size = 25.0
+action_left = "aim_left"
+action_right = "aim_right"
+action_up = "aim_up"
+action_down = "aim_down"
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="."]
+remote_path = NodePath("../Camera2D")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position_smoothing_enabled = true
+script = ExtResource("13_ocy68")

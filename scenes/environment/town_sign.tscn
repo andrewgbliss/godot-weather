@@ -1,0 +1,51 @@
+[gd_scene load_steps=7 format=3 uid="uid://13555fakiyci"]
+
+[ext_resource type="Script" uid="uid://ucmcws1e11dk" path="res://blisscode/interaction/hotspot/hotspot.gd" id="1_82w1f"]
+[ext_resource type="Texture2D" uid="uid://dtyb38mm0dkpd" path="res://assets/img/environment/town_sign.png" id="1_wo08l"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_xnr0h"]
+load_path = "res://.godot/imported/town_sign.png-3df6d7c6ddad41fec0a1dab403fb35f1.ctex"
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_wo08l"]
+radius = 33.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_v5wgk"]
+radius = 58.00862
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wo08l"]
+size = Vector2(14, 9)
+
+[node name="TownSign" type="Node2D"]
+script = ExtResource("1_82w1f")
+dialog_text = Array[String](["Welcome to the town of Riverwood."])
+dialog_image = SubResource("CompressedTexture2D_xnr0h")
+interaction_offset = Vector2(-32, -32)
+use_input = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_wo08l")
+offset = Vector2(0, -13.085)
+
+[node name="InteractArea2D" type="Area2D" parent="."]
+position = Vector2(0, -12)
+collision_layer = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractArea2D"]
+shape = SubResource("CircleShape2D_wo08l")
+
+[node name="InRangeArea2D" type="Area2D" parent="."]
+position = Vector2(0, -12)
+collision_layer = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InRangeArea2D"]
+shape = SubResource("CircleShape2D_v5wgk")
+
+[node name="CollisionArea2D" type="Area2D" parent="."]
+collision_layer = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CollisionArea2D"]
+position = Vector2(0, 1.5)
+shape = SubResource("RectangleShape2D_wo08l")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+bus = &"Effects"

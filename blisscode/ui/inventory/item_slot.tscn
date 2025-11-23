@@ -1,0 +1,22 @@
+[gd_scene load_steps=2 format=3 uid="uid://dw4lv5giixk0c"]
+
+[ext_resource type="Script" uid="uid://cbqv03xadaan5" path="res://blisscode/ui/inventory/item_slot.gd" id="1_yo2vj"]
+
+[node name="ItemSlot" type="Panel"]
+custom_minimum_size = Vector2(16, 16)
+offset_right = 16.0
+offset_bottom = 16.0
+theme_type_variation = &"SlotPanel"
+script = ExtResource("1_yo2vj")
+item_slot_type = null
+can_drop_slot_type = null
+equipment_slot = null
+index = null
+
+[node name="Icon" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2

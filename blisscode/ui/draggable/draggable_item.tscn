@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://c7x3udkbl8yvm"]
+
+[ext_resource type="Script" uid="uid://ciyd6mb74esl4" path="res://blisscode/ui/draggable/draggable_item.gd" id="1_3miwi"]
+[ext_resource type="Texture2D" uid="uid://d4grlow1yk6tl" path="res://assets/img/ui/inventory/InventorySlot.png" id="2_7jton"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5htf5"]
+size = Vector2(16, 16)
+
+[node name="DraggableItem" type="Area2D" groups=["draggable_item"]]
+z_index = 5
+collision_layer = 128
+collision_mask = 128
+script = ExtResource("1_3miwi")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_7jton")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_5htf5")

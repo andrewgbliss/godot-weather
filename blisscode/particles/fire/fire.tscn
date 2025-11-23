@@ -1,0 +1,227 @@
+[gd_scene load_steps=11 format=3 uid="uid://cni8h8afk2jht"]
+
+[ext_resource type="Texture2D" uid="uid://d11t5esfpvuv2" path="res://scenes/fire/drop.png" id="2_13rx6"]
+[ext_resource type="Texture2D" uid="uid://d3qdmmnmvxdto" path="res://scenes/fire/smoke.png" id="3_exjls"]
+
+[sub_resource type="Curve" id="Curve_05klb"]
+min_value = -360.0
+max_value = 360.0
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.235088, 259.857), 0.0, 0.0, 0, 0, Vector2(0.501754, -13.8659), 0.0, 0.0, 0, 0, Vector2(0.768421, 226.476), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 5
+
+[sub_resource type="Curve" id="Curve_elem1"]
+_data = [Vector2(0.0421053, 0.490014), 0.0, -1.32133, 0, 0, Vector2(0.498246, 0.545649), -1.99985, -1.99985, 0, 0, Vector2(0.940351, 0.100571), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="Gradient" id="Gradient_yaun6"]
+offsets = PackedFloat32Array(0, 0.14786, 0.338521, 0.712062, 1)
+colors = PackedColorArray(5.525, 5.525, 5.525, 1, 8.287, 6.63, 0, 1, 1, 0.431373, 0.0784314, 1, 1, 0.113725, 0.227451, 1, 1, 1, 1, 0)
+
+[sub_resource type="Curve" id="Curve_5cggv"]
+_data = [Vector2(0.00701755, 0.119116), 0.0, 0.0, 0, 0, Vector2(1, 0.870185), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_euocl"]
+
+[sub_resource type="Gradient" id="Gradient_x2ksa"]
+offsets = PackedFloat32Array(0, 0.198444, 0.416342, 0.712062, 1)
+colors = PackedColorArray(5.525, 5.525, 5.525, 1, 1, 0.983333, 0, 1, 0.08, 1, 0.126, 1, 0, 0.5, 0.025, 1, 1, 1, 1, 0)
+
+[sub_resource type="Gradient" id="Gradient_s6d5l"]
+offsets = PackedFloat32Array(0, 0.11284, 0.225681, 0.439689, 0.642023, 0.859922, 1)
+colors = PackedColorArray(5.525, 5.525, 5.525, 1, 2.73399, 2.16667, 2.77451, 1, 0.933333, 0, 1, 1, 0.417333, 0.08, 1, 1, 0.0729999, 0, 0.73, 1, 0.112352, 0.00914285, 0.760857, 1, 1, 1, 1, 0)
+
+[sub_resource type="Gradient" id="Gradient_4xstp"]
+offsets = PackedFloat32Array(0, 0.11284, 0.225681, 0.439689, 0.642023, 0.859922, 1)
+colors = PackedColorArray(5.525, 5.525, 5.525, 1, 2.73399, 2.16667, 2.77451, 1, 0, 0.566667, 1, 1, 0.08, 0.816, 1, 1, 0, 0.73, 0.4015, 1, 0.00759999, 0.76, 0.1957, 1, 1, 1, 1, 0)
+
+[node name="Fire" type="Node2D"]
+
+[node name="Fire" type="CPUParticles2D" parent="."]
+modulate = Color(1, 1, 1, 0.258824)
+amount = 1000
+lifetime = 0.4
+preprocess = 1.0
+speed_scale = 0.4
+randomness = 1.0
+draw_order = 1
+texture = ExtResource("2_13rx6")
+emission_shape = 1
+emission_sphere_radius = 32.0
+direction = Vector2(0, -1)
+spread = 0.0
+gravity = Vector2(0, -980)
+initial_velocity_max = 290.0
+angular_velocity_min = -45.0
+angular_velocity_max = 45.0
+angular_velocity_curve = SubResource("Curve_05klb")
+scale_amount_min = 0.0
+scale_amount_max = 0.2
+scale_amount_curve = SubResource("Curve_elem1")
+color_ramp = SubResource("Gradient_yaun6")
+
+[node name="Smoke" type="CPUParticles2D" parent="."]
+modulate = Color(1, 1, 1, 0.0235294)
+position = Vector2(-1, -80)
+amount = 500
+speed_scale = 0.3
+lifetime_randomness = 1.0
+texture = ExtResource("3_exjls")
+emission_shape = 2
+emission_sphere_radius = 23.0
+gravity = Vector2(0, -980)
+scale_amount_min = 0.0
+scale_amount_max = 0.3
+scale_amount_curve = SubResource("Curve_5cggv")
+
+[node name="Fire2" type="CPUParticles2D" parent="."]
+modulate = Color(1, 1, 1, 0.184314)
+position = Vector2(-227, 1)
+amount = 1000
+lifetime = 0.4
+preprocess = 1.0
+speed_scale = 0.4
+randomness = 1.0
+draw_order = 1
+texture = ExtResource("2_13rx6")
+emission_shape = 1
+emission_sphere_radius = 32.0
+direction = Vector2(0, -1)
+spread = 0.0
+gravity = Vector2(0, -980)
+initial_velocity_max = 290.0
+angular_velocity_min = -45.0
+angular_velocity_max = 45.0
+angular_velocity_curve = SubResource("Curve_05klb")
+scale_amount_min = 0.0
+scale_amount_max = 0.2
+scale_amount_curve = SubResource("Curve_elem1")
+color_ramp = SubResource("Gradient_euocl")
+
+[node name="Smoke2" type="CPUParticles2D" parent="."]
+modulate = Color(1, 1, 1, 0.0235294)
+position = Vector2(-228, -79)
+amount = 500
+speed_scale = 0.3
+lifetime_randomness = 1.0
+texture = ExtResource("3_exjls")
+emission_shape = 2
+emission_sphere_radius = 23.0
+gravity = Vector2(0, -980)
+scale_amount_min = 0.0
+scale_amount_max = 0.3
+scale_amount_curve = SubResource("Curve_5cggv")
+
+[node name="Fire3" type="CPUParticles2D" parent="."]
+modulate = Color(1, 1, 1, 0.184314)
+position = Vector2(477, 9)
+amount = 1000
+lifetime = 0.4
+preprocess = 1.0
+speed_scale = 0.4
+randomness = 1.0
+draw_order = 1
+texture = ExtResource("2_13rx6")
+emission_shape = 1
+emission_sphere_radius = 32.0
+direction = Vector2(0, -1)
+spread = 0.0
+gravity = Vector2(0, -980)
+initial_velocity_max = 290.0
+angular_velocity_min = -45.0
+angular_velocity_max = 45.0
+angular_velocity_curve = SubResource("Curve_05klb")
+scale_amount_min = 0.0
+scale_amount_max = 0.2
+scale_amount_curve = SubResource("Curve_elem1")
+color_ramp = SubResource("Gradient_x2ksa")
+
+[node name="Smoke3" type="CPUParticles2D" parent="."]
+modulate = Color(1, 1, 1, 0.0235294)
+position = Vector2(476, -71)
+amount = 500
+speed_scale = 0.3
+lifetime_randomness = 1.0
+texture = ExtResource("3_exjls")
+emission_shape = 2
+emission_sphere_radius = 23.0
+gravity = Vector2(0, -980)
+scale_amount_min = 0.0
+scale_amount_max = 0.3
+scale_amount_curve = SubResource("Curve_5cggv")
+
+[node name="Fire4" type="CPUParticles2D" parent="."]
+modulate = Color(1, 1, 1, 0.184314)
+position = Vector2(247, 7)
+amount = 1000
+lifetime = 0.4
+preprocess = 1.0
+speed_scale = 0.4
+randomness = 1.0
+draw_order = 1
+texture = ExtResource("2_13rx6")
+emission_shape = 1
+emission_sphere_radius = 32.0
+direction = Vector2(0, -1)
+spread = 0.0
+gravity = Vector2(0, -980)
+initial_velocity_max = 290.0
+angular_velocity_min = -45.0
+angular_velocity_max = 45.0
+angular_velocity_curve = SubResource("Curve_05klb")
+scale_amount_min = 0.0
+scale_amount_max = 0.2
+scale_amount_curve = SubResource("Curve_elem1")
+color_ramp = SubResource("Gradient_s6d5l")
+
+[node name="Smoke4" type="CPUParticles2D" parent="."]
+modulate = Color(1, 1, 1, 0.0235294)
+position = Vector2(249, -70)
+amount = 500
+speed_scale = 0.3
+lifetime_randomness = 1.0
+texture = ExtResource("3_exjls")
+emission_shape = 2
+emission_sphere_radius = 23.0
+gravity = Vector2(0, -980)
+scale_amount_min = 0.0
+scale_amount_max = 0.3
+scale_amount_curve = SubResource("Curve_5cggv")
+
+[node name="Fire5" type="CPUParticles2D" parent="."]
+modulate = Color(1, 1, 1, 0.184314)
+position = Vector2(-434, -4)
+amount = 1000
+lifetime = 0.4
+preprocess = 1.0
+speed_scale = 0.4
+randomness = 1.0
+draw_order = 1
+texture = ExtResource("2_13rx6")
+emission_shape = 1
+emission_sphere_radius = 32.0
+direction = Vector2(0, -1)
+spread = 0.0
+gravity = Vector2(0, -980)
+initial_velocity_max = 290.0
+angular_velocity_min = -45.0
+angular_velocity_max = 45.0
+angular_velocity_curve = SubResource("Curve_05klb")
+scale_amount_min = 0.0
+scale_amount_max = 0.2
+scale_amount_curve = SubResource("Curve_elem1")
+color_ramp = SubResource("Gradient_4xstp")
+
+[node name="Smoke5" type="CPUParticles2D" parent="."]
+modulate = Color(1, 1, 1, 0.0235294)
+position = Vector2(-432, -81)
+amount = 500
+speed_scale = 0.3
+lifetime_randomness = 1.0
+texture = ExtResource("3_exjls")
+emission_shape = 2
+emission_sphere_radius = 23.0
+gravity = Vector2(0, -980)
+scale_amount_min = 0.0
+scale_amount_max = 0.3
+scale_amount_curve = SubResource("Curve_5cggv")

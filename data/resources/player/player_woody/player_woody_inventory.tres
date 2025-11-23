@@ -1,0 +1,48 @@
+[gd_resource type="Resource" script_class="Inventory" load_steps=9 format=3 uid="uid://t5sqoo0ew1xl"]
+
+[ext_resource type="Script" uid="uid://drotf454prdmb" path="res://blisscode/item/item.gd" id="1_7y8wn"]
+[ext_resource type="Script" uid="uid://dx15io88tra7t" path="res://blisscode/item/ranged_weapon.gd" id="2_sqhuw"]
+[ext_resource type="Texture2D" uid="uid://djiv6d5fhe0c" path="res://assets/img/items/guns.png" id="3_o7qsa"]
+[ext_resource type="Script" uid="uid://dfarl1fr76j2f" path="res://blisscode/item/consumable.gd" id="4_cer6u"]
+[ext_resource type="Texture2D" uid="uid://f8srq64xkcq4" path="res://assets/img/items/potions.png" id="5_pmmbe"]
+[ext_resource type="Script" uid="uid://ej3t1d08m43w" path="res://blisscode/item/inventory.gd" id="6_1uepx"]
+
+[sub_resource type="Resource" id="Resource_po7bs"]
+script = ExtResource("2_sqhuw")
+projectile = "projectile"
+max_ammo = 10
+unlimited_ammo = true
+spread = 10
+spread_angle = 0.05
+screen_shake_amount = 2.0
+damage_min = 10
+damage_max = 10
+attack_rate = 0.5
+slot = 9
+equip_on_pickup = true
+package = "guns"
+name = "black shotgun"
+texture = ExtResource("3_o7qsa")
+frame = 1
+hframes = 3
+metadata/_custom_type_script = "uid://dx15io88tra7t"
+
+[sub_resource type="Resource" id="Resource_6ns4p"]
+script = ExtResource("4_cer6u")
+health = 50
+consume_on_pickup = true
+package = "potions"
+name = "red medium health potion"
+texture = ExtResource("5_pmmbe")
+frame = 1
+hframes = 3
+vframes = 2
+metadata/_custom_type_script = "uid://dfarl1fr76j2f"
+
+[resource]
+resource_local_to_scene = true
+script = ExtResource("6_1uepx")
+gold = 50
+max_slots = 25
+items = Array[ExtResource("1_7y8wn")]([SubResource("Resource_po7bs"), SubResource("Resource_6ns4p"), null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null])
+metadata/_custom_type_script = "uid://ej3t1d08m43w"

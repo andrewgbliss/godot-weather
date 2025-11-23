@@ -1,0 +1,44 @@
+[gd_scene load_steps=8 format=3 uid="uid://dgojcs1je7kgq"]
+
+[ext_resource type="Script" uid="uid://bm85budamtxnd" path="res://blisscode/core/world/world.gd" id="1_87v33"]
+[ext_resource type="Script" uid="uid://baibi6vypqgi8" path="res://blisscode/core/spawning/player_spawner.gd" id="4_1yugm"]
+[ext_resource type="Script" uid="uid://bhon2xgpy7g5i" path="res://blisscode/world_time/day_night_cycle_canvas_modulate.gd" id="5_x3lyy"]
+[ext_resource type="Texture2D" uid="uid://d77kytle7yu5" path="res://blisscode/world_time/day_night_cycle_gradient.tres" id="6_3o8ce"]
+[ext_resource type="PackedScene" uid="uid://h7fl106k8gn" path="res://scenes/world/world_area/platformer/platformer_background.tscn" id="6_bj4mo"]
+[ext_resource type="PackedScene" uid="uid://dnvd2gc01tein" path="res://scenes/environment/nes_bricks_1.tscn" id="14_87v33"]
+
+[sub_resource type="Environment" id="Environment_6m72w"]
+background_mode = 3
+glow_bloom = 0.15
+glow_blend_mode = 1
+
+[node name="World" type="Node2D"]
+script = ExtResource("1_87v33")
+world_name = "TopDown"
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_6m72w")
+
+[node name="WorldAreas" type="Node2D" parent="."]
+z_index = -50
+
+[node name="PlatformerBackground" parent="WorldAreas" instance=ExtResource("6_bj4mo")]
+position = Vector2(25, 135)
+
+[node name="NesBricks1" parent="." instance=ExtResource("14_87v33")]
+
+[node name="PlayerSpawner" type="Node2D" parent="." node_paths=PackedStringArray("entity_container")]
+position = Vector2(112, -14)
+script = ExtResource("4_1yugm")
+player_key = "player_side"
+entity_container = NodePath("../EntityContainer")
+metadata/_custom_type_script = "uid://ddlo01mfc118i"
+
+[node name="EntityContainer" type="Node2D" parent="."]
+top_level = true
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+script = ExtResource("5_x3lyy")
+gradient = ExtResource("6_3o8ce")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]

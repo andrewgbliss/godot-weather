@@ -1,0 +1,166 @@
+[gd_scene load_steps=24 format=3 uid="uid://c7vk5ufpp0ijb"]
+
+[ext_resource type="Script" uid="uid://cyhaw1qyjtrhn" path="res://blisscode/character/character_controller.gd" id="1_ceaqc"]
+[ext_resource type="Script" uid="uid://bkcl7yhvmiokh" path="res://blisscode/character/character_sheet.gd" id="2_bgitj"]
+[ext_resource type="Script" uid="uid://ej3t1d08m43w" path="res://blisscode/item/inventory.gd" id="3_37v42"]
+[ext_resource type="Script" uid="uid://drotf454prdmb" path="res://blisscode/item/item.gd" id="3_giyar"]
+[ext_resource type="Script" uid="uid://cwaaqivnrog6d" path="res://blisscode/item/equipment.gd" id="4_y5h15"]
+[ext_resource type="Script" uid="uid://brschogihfiwm" path="res://blisscode/character/controls/ai_controls.gd" id="5_y5h15"]
+[ext_resource type="Script" uid="uid://b3mlg2cpf7tdl" path="res://blisscode/behavior_tree/bt_player.gd" id="6_thqvo"]
+[ext_resource type="Script" uid="uid://dnm2cmvm2uh0v" path="res://blisscode/behavior_tree/composite/bt_selector_node.gd" id="7_brs55"]
+[ext_resource type="Script" uid="uid://xwbo18yggp15" path="res://blisscode/behavior_tree/composite/bt_sequence_node.gd" id="8_cr2nu"]
+[ext_resource type="PackedScene" uid="uid://qduhqb6f8ovy" path="res://scenes/characters/ui/character_points_bar.tscn" id="9_8t0fs"]
+[ext_resource type="Script" uid="uid://dok7jnwk51yxt" path="res://blisscode/behavior_tree/decorator/bt_inverter.gd" id="17_mm6pg"]
+[ext_resource type="Script" uid="uid://dqq73rp3ncsa4" path="res://blisscode/behavior_tree/condition/bt_has_var.gd" id="18_ffg3s"]
+[ext_resource type="Script" uid="uid://vlpod7ytrh8m" path="res://blisscode/behavior_tree/action/bt_choose_random_screen_pos.gd" id="19_ffg3s"]
+[ext_resource type="Script" uid="uid://cfip3tt42agy6" path="res://blisscode/behavior_tree/action/bt_set_direction_from_move_to.gd" id="20_jucf6"]
+[ext_resource type="Script" uid="uid://dqu5jwkma0clh" path="res://blisscode/behavior_tree/action/bt_wait_until_reached_position.gd" id="21_c522h"]
+[ext_resource type="Script" uid="uid://cd4i1bii75shv" path="res://blisscode/behavior_tree/action/bt_remove_var.gd" id="22_sxh5w"]
+
+[sub_resource type="Resource" id="Resource_urpkq"]
+script = ExtResource("2_bgitj")
+character_name = "Npc 1"
+character_controller_type = 1
+race = 3
+class_type = 4
+alignment = 0.0
+level = 0
+health = 10
+max_health = 10
+armor = 0
+max_armor = 0
+mana = 0
+max_mana = 0
+stamina = 0
+max_stamina = 0
+special = 0
+max_special = 0
+xp = 0
+max_xp = 0
+strength = 0
+dexterity = 0
+constitution = 0
+intelligence = 0
+wisdom = 0
+charisma = 0
+attack = 0
+metadata/_custom_type_script = "uid://bkcl7yhvmiokh"
+
+[sub_resource type="Resource" id="Resource_wwum6"]
+script = ExtResource("3_37v42")
+gold = 0
+max_gold = 10000
+max_slots = 50
+items = Array[ExtResource("3_giyar")]([])
+metadata/_custom_type_script = "uid://ej3t1d08m43w"
+
+[sub_resource type="Resource" id="Resource_lwmd7"]
+script = ExtResource("4_y5h15")
+metadata/_custom_type_script = "uid://cwaaqivnrog6d"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_84hc2"]
+
+[sub_resource type="Gradient" id="Gradient_rp718"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_bgitj"]
+gradient = SubResource("Gradient_rp718")
+
+[sub_resource type="GDScript" id="GDScript_84kvi"]
+script/source = "class_name BTBlackboard extends Node
+
+var data: Dictionary = {}
+
+func set_var(key: String, value: Variant):
+	data[key] = value
+
+func get_var(key: String, default_value: Variant = null) -> Variant:
+	return data.get(key, default_value)
+	
+func has_var(key: String) -> bool:
+	return data.has(key)
+
+func remove_var(key: String):
+	data.erase(key)
+
+func get_data():
+	return data
+"
+
+[node name="NPC" type="CharacterBody2D" node_paths=PackedStringArray("controls") groups=["npc"]]
+collision_layer = 2
+collision_mask = 103
+motion_mode = 1
+script = ExtResource("1_ceaqc")
+character_sheet = SubResource("Resource_urpkq")
+inventory = SubResource("Resource_wwum6")
+equipment = SubResource("Resource_lwmd7")
+controls = NodePath("AIControls")
+allow_y_controls = true
+garbage = true
+metadata/_custom_type_script = "uid://cyhaw1qyjtrhn"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_84hc2")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-3.8147e-06, 0)
+scale = Vector2(0.078125, 20)
+texture = SubResource("GradientTexture1D_bgitj")
+
+[node name="AIControls" type="Node" parent="." node_paths=PackedStringArray("blackboard")]
+script = ExtResource("5_y5h15")
+blackboard = NodePath("../BTBlackboard")
+metadata/_custom_type_script = "uid://brschogihfiwm"
+
+[node name="BTBlackboard" type="Node" parent="."]
+script = SubResource("GDScript_84kvi")
+metadata/_custom_type_script = "uid://bnbbi7tcoi6sg"
+
+[node name="BTPlayer" type="Node" parent="." node_paths=PackedStringArray("root_node", "blackboard", "agent")]
+script = ExtResource("6_thqvo")
+root_node = NodePath("BTSelectorNode")
+blackboard = NodePath("../BTBlackboard")
+agent = NodePath("..")
+is_running = true
+metadata/_custom_type_script = "uid://b3mlg2cpf7tdl"
+
+[node name="BTSelectorNode" type="Node" parent="BTPlayer"]
+script = ExtResource("7_brs55")
+metadata/_custom_type_script = "uid://dnm2cmvm2uh0v"
+
+[node name="Wander" type="Node" parent="BTPlayer/BTSelectorNode"]
+script = ExtResource("8_cr2nu")
+metadata/_custom_type_script = "uid://xwbo18yggp15"
+
+[node name="BTInverterIfDontHave" type="Node" parent="BTPlayer/BTSelectorNode/Wander"]
+script = ExtResource("17_mm6pg")
+metadata/_custom_type_script = "uid://dok7jnwk51yxt"
+
+[node name="BTHasVarMoveDir" type="Node" parent="BTPlayer/BTSelectorNode/Wander/BTInverterIfDontHave"]
+script = ExtResource("18_ffg3s")
+var_name = &"movement_direction"
+
+[node name="BTHasVarMoveTo" type="Node" parent="BTPlayer/BTSelectorNode/Wander/BTInverterIfDontHave"]
+script = ExtResource("18_ffg3s")
+var_name = &"move_to"
+
+[node name="BTChooseRandomScreenPos" type="Node" parent="BTPlayer/BTSelectorNode/Wander"]
+script = ExtResource("19_ffg3s")
+metadata/_custom_type_script = "uid://vlpod7ytrh8m"
+
+[node name="BTSetDirectionFromMoveTo" type="Node" parent="BTPlayer/BTSelectorNode/Wander"]
+script = ExtResource("20_jucf6")
+
+[node name="BTWaitUntilReachedPosition" type="Node" parent="BTPlayer/BTSelectorNode/Wander"]
+script = ExtResource("21_c522h")
+
+[node name="BTRemoveVarMoveTo" type="Node" parent="BTPlayer/BTSelectorNode/Wander"]
+script = ExtResource("22_sxh5w")
+var_name = &"move_to"
+
+[node name="BTRemoveVarDir" type="Node" parent="BTPlayer/BTSelectorNode/Wander"]
+script = ExtResource("22_sxh5w")
+var_name = &"movement_direction"
+
+[node name="CharacterPointsBar" parent="." instance=ExtResource("9_8t0fs")]

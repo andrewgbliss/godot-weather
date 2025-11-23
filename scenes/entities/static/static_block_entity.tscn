@@ -1,0 +1,43 @@
+[gd_scene load_steps=9 format=3 uid="uid://dhtvv0vpxt0sy"]
+
+[ext_resource type="Script" uid="uid://bynqbd3uqdtnh" path="res://blisscode/entities/entity.gd" id="1_084w8"]
+[ext_resource type="Script" uid="uid://chm57l84dp8et" path="res://blisscode/entities/entity_sheet.gd" id="2_7scik"]
+[ext_resource type="PackedScene" uid="uid://c3sn1lvnaw1tp" path="res://scenes/items/pickups/pickup.tscn" id="3_7scik"]
+[ext_resource type="Texture2D" uid="uid://dymkn7r6mahw8" path="res://assets/img/environment/block.png" id="4_wxne5"]
+
+[sub_resource type="Resource" id="Resource_wxne5"]
+script = ExtResource("2_7scik")
+entity_name = "StaticBlock"
+health = 5
+max_health = 5
+metadata/_custom_type_script = "uid://chm57l84dp8et"
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_084w8"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7scik"]
+size = Vector2(16, 16)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_wxne5"]
+polygon = PackedVector2Array(-8, -8, -8, 8, 8, 8, 8, -8)
+
+[node name="StaticBlock" type="Node2D"]
+script = ExtResource("1_084w8")
+entity_sheet = SubResource("Resource_wxne5")
+drop_pickup = ExtResource("3_7scik")
+garbage = true
+metadata/_custom_type_script = "uid://bynqbd3uqdtnh"
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+collision_layer = 4
+collision_mask = 39
+physics_material_override = SubResource("PhysicsMaterial_084w8")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+shape = SubResource("RectangleShape2D_7scik")
+
+[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D"]
+modulate = Color(0.96750003, 1, 0.35000002, 1)
+texture = ExtResource("4_wxne5")
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="StaticBody2D"]
+occluder = SubResource("OccluderPolygon2D_wxne5")

@@ -1,0 +1,421 @@
+[gd_scene load_steps=9 format=3]
+
+[ext_resource type="Script" uid="uid://b8k2x7nan4p5q" path="res://blisscode/ui/menus/menu/character_sheet_menu/character_sheet_menu.gd" id="1_character_sheet"]
+[ext_resource type="Script" uid="uid://jnyn4yy8houc" path="res://blisscode/ui/menus/menu/buttons/menu_back_button.gd" id="2_back_button"]
+
+[sub_resource type="Animation" id="Animation_83v66"]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Control/Panel:modulate:r")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Control/Panel:modulate:g")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Control/Panel:modulate:b")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Control/Panel:modulate:a")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+
+[sub_resource type="Animation" id="Animation_ew8a1"]
+resource_name = "transition_away_in"
+length = 0.5
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Control/Panel:modulate:r")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.5)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Control/Panel:modulate:g")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.5)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Control/Panel:modulate:b")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.5)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Control/Panel:modulate:a")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.5)
+}
+
+[sub_resource type="Animation" id="Animation_nvb2c"]
+resource_name = "transition_away_out"
+length = 0.5
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Control/Panel:modulate:r")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.5)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Control/Panel:modulate:g")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.5)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Control/Panel:modulate:b")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.5)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Control/Panel:modulate:a")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.5)
+}
+
+[sub_resource type="Animation" id="Animation_q5jky"]
+resource_name = "transition_in"
+length = 0.5
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Control/Panel:modulate:r")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.5)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Control/Panel:modulate:g")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.5)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Control/Panel:modulate:b")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.5)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Control/Panel:modulate:a")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.5)
+}
+
+[sub_resource type="Animation" id="Animation_lfual"]
+resource_name = "transition_out"
+length = 0.5
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Control/Panel:modulate:r")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.5)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Control/Panel:modulate:g")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.5)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Control/Panel:modulate:b")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.5)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Control/Panel:modulate:a")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.5)
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_e8wlj"]
+_data = {
+&"RESET": SubResource("Animation_83v66"),
+&"transition_away_in": SubResource("Animation_ew8a1"),
+&"transition_away_out": SubResource("Animation_nvb2c"),
+&"transition_in": SubResource("Animation_q5jky"),
+&"transition_out": SubResource("Animation_lfual")
+}
+
+[node name="CharacterSheetMenu" type="CanvasLayer"]
+script = ExtResource("1_character_sheet")
+menu_name = "CharacterSheetMenu"
+input_action = "character_sheet"
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="Control"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -163.5
+offset_top = -145.5
+offset_right = 163.5
+offset_bottom = 145.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Control/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 32
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 32
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/Panel/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Control/Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Character Sheet"
+horizontal_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="Control/Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Control/Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="HBoxContainer" parent="Control/Panel/MarginContainer/VBoxContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="CharacterInfo" type="VBoxContainer" parent="Control/Panel/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="NameLabel" type="Label" parent="Control/Panel/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/CharacterInfo"]
+layout_mode = 2
+text = "Name: Unnamed"
+
+[node name="LevelLabel" type="Label" parent="Control/Panel/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/CharacterInfo"]
+layout_mode = 2
+text = "Level: 0"
+
+[node name="RaceClassLabel" type="Label" parent="Control/Panel/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/CharacterInfo"]
+layout_mode = 2
+text = "Race: Human | Class: Fighter"
+
+[node name="AlignmentLabel" type="Label" parent="Control/Panel/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/CharacterInfo"]
+layout_mode = 2
+text = "Alignment: Neutral (0.0)"
+
+[node name="HSeparator2" type="VSeparator" parent="Control/Panel/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="StatsContainer" type="VBoxContainer" parent="Control/Panel/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label2" type="Label" parent="Control/Panel/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/StatsContainer"]
+layout_mode = 2
+text = "Stats"
+horizontal_alignment = 1
+
+[node name="HealthLabel" type="Label" parent="Control/Panel/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/StatsContainer"]
+layout_mode = 2
+text = "Health: 0/0"
+
+[node name="ArmorLabel" type="Label" parent="Control/Panel/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/StatsContainer"]
+layout_mode = 2
+text = "Armor: 0/0"
+
+[node name="ManaLabel" type="Label" parent="Control/Panel/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/StatsContainer"]
+layout_mode = 2
+text = "Mana: 0/0"
+
+[node name="StaminaLabel" type="Label" parent="Control/Panel/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/StatsContainer"]
+layout_mode = 2
+text = "Stamina: 0/0"
+
+[node name="XPLabel" type="Label" parent="Control/Panel/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/StatsContainer"]
+layout_mode = 2
+text = "XP: 0/0"
+
+[node name="HSeparator3" type="VSeparator" parent="Control/Panel/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="AttributesContainer" type="VBoxContainer" parent="Control/Panel/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label3" type="Label" parent="Control/Panel/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/AttributesContainer"]
+layout_mode = 2
+text = "Attributes"
+horizontal_alignment = 1
+
+[node name="StrengthLabel" type="Label" parent="Control/Panel/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/AttributesContainer"]
+layout_mode = 2
+text = "Strength: 0"
+
+[node name="DexterityLabel" type="Label" parent="Control/Panel/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/AttributesContainer"]
+layout_mode = 2
+text = "Dexterity: 0"
+
+[node name="ConstitutionLabel" type="Label" parent="Control/Panel/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/AttributesContainer"]
+layout_mode = 2
+text = "Constitution: 0"
+
+[node name="IntelligenceLabel" type="Label" parent="Control/Panel/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/AttributesContainer"]
+layout_mode = 2
+text = "Intelligence: 0"
+
+[node name="WisdomLabel" type="Label" parent="Control/Panel/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/AttributesContainer"]
+layout_mode = 2
+text = "Wisdom: 0"
+
+[node name="CharismaLabel" type="Label" parent="Control/Panel/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/AttributesContainer"]
+layout_mode = 2
+text = "Charisma: 0"
+
+[node name="AttackLabel" type="Label" parent="Control/Panel/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/AttributesContainer"]
+layout_mode = 2
+text = "Attack: 0"
+
+[node name="HSeparator4" type="HSeparator" parent="Control/Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control/Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="BackButton" type="Button" parent="Control/Panel/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Back"
+script = ExtResource("2_back_button")
+metadata/_custom_type_script = "uid://jnyn4yy8houc"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_e8wlj")
+}

@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://dluus3vn1d36j"
+path="res://.godot/imported/Full throttle.mp3-2a103815f4451fac0a4ab8389be8920a.mp3str"
+
+[deps]
+
+source_file="res://assets/audio/playlists/chiptune_3/Full throttle.mp3"
+dest_files=["res://.godot/imported/Full throttle.mp3-2a103815f4451fac0a4ab8389be8920a.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

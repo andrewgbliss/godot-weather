@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://dpxjs66px18y3"]
+
+[ext_resource type="Script" uid="uid://dny8opyadgvey" path="res://blisscode/room/room.gd" id="1_0hwry"]
+
+[node name="Room" type="Node2D" node_paths=PackedStringArray("camera", "player")]
+script = ExtResource("1_0hwry")
+camera = NodePath("")
+player = NodePath("")
+spawn_at_first_door = true

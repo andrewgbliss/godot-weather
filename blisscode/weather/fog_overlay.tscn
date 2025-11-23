@@ -1,0 +1,34 @@
+[gd_scene load_steps=6 format=3 uid="uid://ls0vian2ts0"]
+
+[ext_resource type="Script" uid="uid://gxm47gdn6yae" path="res://blisscode/weather/weather.gd" id="1_r5076"]
+[ext_resource type="Shader" uid="uid://d1yq3n75dtnnb" path="res://blisscode/shaders/fog_overlay.gdshader" id="2_t483b"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_po3kj"]
+frequency = 0.0064
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_dng70"]
+noise = SubResource("FastNoiseLite_po3kj")
+seamless = true
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_p8i58"]
+shader = ExtResource("2_t483b")
+shader_parameter/noise_texture = SubResource("NoiseTexture2D_dng70")
+shader_parameter/density = 0.5230000248425
+shader_parameter/speed = Vector2(0.02, 0)
+
+[node name="FogOverlay" type="Node2D" node_paths=PackedStringArray("color_rect_overlay")]
+script = ExtResource("1_r5076")
+weather_type = 5
+color_rect_overlay = NodePath("Parallax2D/FogOverlay")
+speed = Vector2(0.002, 0)
+metadata/_custom_type_script = "uid://gxm47gdn6yae"
+
+[node name="Parallax2D" type="Parallax2D" parent="."]
+repeat_size = Vector2(640, 360)
+repeat_times = 2
+
+[node name="FogOverlay" type="ColorRect" parent="Parallax2D"]
+material = SubResource("ShaderMaterial_p8i58")
+offset_right = 640.0
+offset_bottom = 360.0
+metadata/_edit_use_anchors_ = true

@@ -1,0 +1,14 @@
+[gd_scene load_steps=4 format=3 uid="uid://gfr7x1g3y5nk"]
+
+[ext_resource type="Script" uid="uid://do87twa8jtcyt" path="res://blisscode/dialog/dialog_manager.gd" id="1_h34yo"]
+[ext_resource type="PackedScene" uid="uid://dkr5b11mpccfv" path="res://blisscode/dialog/dialog_bubble.tscn" id="2_3ofdq"]
+[ext_resource type="PackedScene" uid="uid://ihijf7ck6bnh" path="res://blisscode/dialog/dialog_world.tscn" id="3_3ofdq"]
+
+[node name="DialogManager" type="Node2D" node_paths=PackedStringArray("dialog_world", "dialog_bubble")]
+script = ExtResource("1_h34yo")
+dialog_world = NodePath("DialogWorld")
+dialog_bubble = NodePath("DialogBubble")
+
+[node name="DialogBubble" parent="." instance=ExtResource("2_3ofdq")]
+
+[node name="DialogWorld" parent="." instance=ExtResource("3_3ofdq")]

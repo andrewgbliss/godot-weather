@@ -1,0 +1,14 @@
+[remap]
+
+importer="aseprite_wizard.plugin.noop"
+type="PackedDataContainer"
+uid="uid://cw2rnts3dtne8"
+path="res://.godot/imported/Scenery.aseprite-6160c06d08042a7a0a79f46b6c971954.res"
+
+[deps]
+
+source_file="res://assets/img/biome/snow/Scenery.aseprite"
+dest_files=["res://.godot/imported/Scenery.aseprite-6160c06d08042a7a0a79f46b6c971954.res"]
+
+[params]
+

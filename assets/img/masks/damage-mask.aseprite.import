@@ -1,0 +1,14 @@
+[remap]
+
+importer="aseprite_wizard.plugin.noop"
+type="PackedDataContainer"
+uid="uid://drh23xoxmk1rb"
+path="res://.godot/imported/damage-mask.aseprite-add6a96b6863f70df2b68a8d7c3fa22d.res"
+
+[deps]
+
+source_file="res://assets/img/masks/damage-mask.aseprite"
+dest_files=["res://.godot/imported/damage-mask.aseprite-add6a96b6863f70df2b68a8d7c3fa22d.res"]
+
+[params]
+

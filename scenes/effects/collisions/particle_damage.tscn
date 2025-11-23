@@ -1,0 +1,41 @@
+[gd_scene load_steps=6 format=3 uid="uid://m5xmcne3gd3q"]
+
+[ext_resource type="Script" uid="uid://bbu01ls8u8fow" path="res://blisscode/effects/collisions/explosion.gd" id="1_4xvvr"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_b0uy1"]
+light_mode = 1
+
+[sub_resource type="Gradient" id="Gradient_4xvvr"]
+offsets = PackedFloat32Array(0, 0.986175)
+colors = PackedColorArray(1, 1, 1, 1, 0.572988, 0.572988, 0.572988, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_hij5e"]
+gradient = SubResource("Gradient_4xvvr")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_tcs0j"]
+particle_flag_disable_z = true
+direction = Vector3(-1, 0, 0)
+spread = 90.0
+initial_velocity_min = 50.0
+initial_velocity_max = 50.0
+gravity = Vector3(0, 50, 0)
+scale_max = 1.5
+color_ramp = SubResource("GradientTexture1D_hij5e")
+
+[node name="ParticleDamage" type="Node2D" node_paths=PackedStringArray("emitter")]
+script = ExtResource("1_4xvvr")
+animation_name = ""
+screen_shake_amount = 5.0
+emitter = NodePath("HitboxSubEmitter")
+min_audio_level = null
+max_audio_level = null
+
+[node name="HitboxSubEmitter" type="GPUParticles2D" parent="."]
+material = SubResource("CanvasItemMaterial_b0uy1")
+emitting = false
+amount = 10
+lifetime = 0.25
+one_shot = true
+visibility_rect = Rect2(-32, -32, 64, 64)
+local_coords = true
+process_material = SubResource("ParticleProcessMaterial_tcs0j")

@@ -1,0 +1,73 @@
+[gd_scene load_steps=19 format=3 uid="uid://vhowcttm2258"]
+
+[ext_resource type="Script" uid="uid://mx13c1n8ycr4" path="res://blisscode/core/spawning/spawn_manager.gd" id="1_u3vh4"]
+[ext_resource type="Script" uid="uid://dtdigtlcrcduf" path="res://blisscode/core/spawning/spawn_data.gd" id="2_6mht0"]
+[ext_resource type="PackedScene" uid="uid://etx7jlxrpxhj" path="res://scenes/characters/npc/enemy_path.tscn" id="3_6mht0"]
+[ext_resource type="PackedScene" uid="uid://dns54yr7n7ixb" path="res://scenes/weapons/projectiles/projectile.tscn" id="5_h6fh4"]
+[ext_resource type="PackedScene" uid="uid://dik1803o7impn" path="res://scenes/weapons/projectiles/projectile_missle.tscn" id="6_h6fh4"]
+[ext_resource type="PackedScene" uid="uid://d2cian18j7oal" path="res://scenes/characters/player/player_topdown.tscn" id="7_hqhdk"]
+[ext_resource type="PackedScene" uid="uid://ed1j3lahcl7q" path="res://scenes/weapons/projectiles/enemy_projectile.tscn" id="7_uqibb"]
+[ext_resource type="PackedScene" uid="uid://fw6y1aaluwpv" path="res://scenes/characters/player/player_side.tscn" id="8_5qtey"]
+[ext_resource type="PackedScene" uid="uid://dabgp8qon8cl6" path="res://scenes/characters/player/tom_gobler.tscn" id="9_hqhdk"]
+[ext_resource type="PackedScene" uid="uid://dla7fdfaurfr4" path="res://scenes/characters/player/adventurer.tscn" id="10_5qtey"]
+
+[sub_resource type="Resource" id="Resource_hqhdk"]
+script = ExtResource("2_6mht0")
+packed_scene = ExtResource("3_6mht0")
+spawn_limit = 5
+metadata/_custom_type_script = "uid://dtdigtlcrcduf"
+
+[sub_resource type="Resource" id="Resource_gsolc"]
+script = ExtResource("2_6mht0")
+packed_scene = ExtResource("7_uqibb")
+spawn_limit = 5
+metadata/_custom_type_script = "uid://dtdigtlcrcduf"
+
+[sub_resource type="Resource" id="Resource_sni0s"]
+script = ExtResource("2_6mht0")
+packed_scene = ExtResource("8_5qtey")
+spawn_limit = 1
+metadata/_custom_type_script = "uid://dtdigtlcrcduf"
+
+[sub_resource type="Resource" id="Resource_kca82"]
+script = ExtResource("2_6mht0")
+packed_scene = ExtResource("7_hqhdk")
+spawn_limit = 1
+metadata/_custom_type_script = "uid://dtdigtlcrcduf"
+
+[sub_resource type="Resource" id="Resource_5qtey"]
+script = ExtResource("2_6mht0")
+packed_scene = ExtResource("5_h6fh4")
+spawn_limit = 2
+metadata/_custom_type_script = "uid://dtdigtlcrcduf"
+
+[sub_resource type="Resource" id="Resource_omaoi"]
+script = ExtResource("2_6mht0")
+packed_scene = ExtResource("6_h6fh4")
+spawn_limit = 5
+metadata/_custom_type_script = "uid://dtdigtlcrcduf"
+
+[sub_resource type="Resource" id="Resource_vf88x"]
+script = ExtResource("2_6mht0")
+packed_scene = ExtResource("9_hqhdk")
+spawn_limit = 1
+metadata/_custom_type_script = "uid://dtdigtlcrcduf"
+
+[sub_resource type="Resource" id="Resource_hdlrn"]
+script = ExtResource("2_6mht0")
+packed_scene = ExtResource("10_5qtey")
+spawn_limit = 1
+metadata/_custom_type_script = "uid://dtdigtlcrcduf"
+
+[node name="SpawnManager" type="Node2D"]
+script = ExtResource("1_u3vh4")
+entities = Dictionary[String, ExtResource("2_6mht0")]({
+"adv": SubResource("Resource_hdlrn"),
+"enemy_path": SubResource("Resource_hqhdk"),
+"enemy_projectile": SubResource("Resource_gsolc"),
+"player_side": SubResource("Resource_sni0s"),
+"player_topdown": SubResource("Resource_kca82"),
+"projectile": SubResource("Resource_5qtey"),
+"projectile_missle": SubResource("Resource_omaoi"),
+"tom": SubResource("Resource_vf88x")
+})

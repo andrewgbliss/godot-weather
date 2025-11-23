@@ -1,0 +1,14 @@
+[remap]
+
+importer="aseprite_wizard.plugin.noop"
+type="PackedDataContainer"
+uid="uid://b2r787d524pbq"
+path="res://.godot/imported/background-stone-mountains.aseprite-8ae44050f091d120ece41f5fb164b3b9.res"
+
+[deps]
+
+source_file="res://assets/img/backgrounds/stone-mountians/background-stone-mountains.aseprite"
+dest_files=["res://.godot/imported/background-stone-mountains.aseprite-8ae44050f091d120ece41f5fb164b3b9.res"]
+
+[params]
+

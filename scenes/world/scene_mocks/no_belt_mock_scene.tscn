@@ -1,0 +1,37 @@
+[gd_scene load_steps=8 format=3 uid="uid://b0nxgbaeryhml"]
+
+[ext_resource type="Texture2D" uid="uid://dcchp3v16x7rq" path="res://assets/img/scene_mocks/UI.png" id="1_53uyx"]
+[ext_resource type="Texture2D" uid="uid://xusbbkjkwjm0" path="res://assets/img/scene_mocks/Street.png" id="2_gdc6y"]
+[ext_resource type="Texture2D" uid="uid://rbixxhcc1vs5" path="res://assets/img/scene_mocks/Sidewalk.png" id="3_hxq1h"]
+[ext_resource type="Texture2D" uid="uid://dtprkfvpchtkn" path="res://assets/img/scene_mocks/Building.png" id="4_q023f"]
+[ext_resource type="Texture2D" uid="uid://blfnp3ucthy13" path="res://assets/img/characters/nobelt/nobelt.png" id="5_gdc6y"]
+[ext_resource type="Script" uid="uid://7w1lcqj1duf8" path="res://blisscode/character/simple_character_controller.gd" id="5_hxq1h"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gdc6y"]
+
+[node name="NoBeltMockScene" type="Node2D"]
+
+[node name="Ui" type="Sprite2D" parent="."]
+texture = ExtResource("1_53uyx")
+
+[node name="Street" type="Sprite2D" parent="."]
+texture = ExtResource("2_gdc6y")
+
+[node name="Sidewalk" type="Sprite2D" parent="."]
+texture = ExtResource("3_hxq1h")
+
+[node name="Building" type="Sprite2D" parent="."]
+texture = ExtResource("4_q023f")
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+position = Vector2(-92, 3)
+script = ExtResource("5_hxq1h")
+
+[node name="Nobelt" type="Sprite2D" parent="CharacterBody2D"]
+texture = ExtResource("5_gdc6y")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
+shape = SubResource("RectangleShape2D_gdc6y")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(2, 2)

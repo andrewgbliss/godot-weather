@@ -1,0 +1,43 @@
+[gd_scene load_steps=7 format=3 uid="uid://vxcwho7jr11g"]
+
+[ext_resource type="Script" uid="uid://gxm47gdn6yae" path="res://blisscode/weather/weather.gd" id="1_oxbpt"]
+[ext_resource type="Material" uid="uid://c2wyjfa34ui5n" path="res://blisscode/weather/particles_light_wind_trails.tres" id="2_6wox2"]
+[ext_resource type="AudioStream" uid="uid://b8uhh5kytndni" path="res://assets/audio/weather/wind.wav" id="3_2wts0"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_6wox2"]
+light_mode = 1
+
+[sub_resource type="Gradient" id="Gradient_2wts0"]
+offsets = PackedFloat32Array(0, 0.5105634, 1)
+colors = PackedColorArray(0.21960784, 0.98039216, 0.90588236, 0, 0.7498022, 0.9973621, 0.96001524, 0.4117647, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_oxbpt"]
+gradient = SubResource("Gradient_2wts0")
+width = 1
+height = 32
+fill_to = Vector2(0, 1)
+
+[node name="WindTrails" type="Node2D" node_paths=PackedStringArray("particles", "audio_player")]
+script = ExtResource("1_oxbpt")
+particles = NodePath("GPUParticles2D")
+light_material = ExtResource("2_6wox2")
+heavy_material = ExtResource("2_6wox2")
+gravity_x = 100.0
+audio_player = NodePath("AudioStreamPlayer")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+material = SubResource("CanvasItemMaterial_6wox2")
+amount = 100
+texture = SubResource("GradientTexture2D_oxbpt")
+lifetime = 5.0
+preprocess = 2.0
+randomness = 1.0
+visibility_rect = Rect2(0, 0, 1600, 1600)
+trail_enabled = true
+trail_lifetime = 0.6
+process_material = ExtResource("2_6wox2")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_2wts0")
+volume_db = -52.59
+bus = &"Ambience"

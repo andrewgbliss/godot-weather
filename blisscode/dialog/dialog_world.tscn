@@ -1,0 +1,98 @@
+[gd_scene load_steps=5 format=3 uid="uid://ihijf7ck6bnh"]
+
+[ext_resource type="Script" uid="uid://c78o2bc3r6lv2" path="res://blisscode/dialog/dialog_world.gd" id="1_7e1h4"]
+
+[sub_resource type="Animation" id="Animation_7e1h4"]
+resource_name = "show_dialog"
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MarginContainer/DialogText:visible_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 2),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 1, -0.16666667, -0.16666667, 0, 0),
+"times": PackedFloat32Array(0, 1)
+}
+
+[sub_resource type="Animation" id="Animation_hxus1"]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MarginContainer/DialogText:visible_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_3ayv7"]
+_data = {
+&"RESET": SubResource("Animation_hxus1"),
+&"show_dialog": SubResource("Animation_7e1h4")
+}
+
+[node name="DialogWorld" type="CanvasLayer" node_paths=PackedStringArray("dialogue_text", "animation_player")]
+script = ExtResource("1_7e1h4")
+dialogue_text = NodePath("Control/MarginContainer/DialogText")
+animation_player = NodePath("Control/AnimationPlayer")
+
+[node name="Control" type="Control" parent="."]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 3
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 16
+
+[node name="DialogText" type="Label" parent="Control/MarginContainer"]
+layout_mode = 2
+theme_override_constants/line_spacing = -5
+text = "Well you go it now dont ya?"
+visible_characters = 0
+visible_ratio = 0.0
+
+[node name="Panel" type="Panel" parent="Control/MarginContainer/DialogText"]
+z_index = -5
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -25.0
+offset_top = -10.0
+offset_right = 14.0
+offset_bottom = 6.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_type_variation = &"NormalPanel"
+
+[node name="DialogImage" type="TextureRect" parent="Control/MarginContainer/DialogText/Panel"]
+layout_mode = 0
+offset_left = 6.0
+offset_top = 5.5
+offset_right = 22.0
+offset_bottom = 24.5
+expand_mode = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Control"]
+libraries = {
+&"": SubResource("AnimationLibrary_3ayv7")
+}

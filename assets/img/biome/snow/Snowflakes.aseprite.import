@@ -1,0 +1,14 @@
+[remap]
+
+importer="aseprite_wizard.plugin.noop"
+type="PackedDataContainer"
+uid="uid://b1r0oh2ad0deu"
+path="res://.godot/imported/Snowflakes.aseprite-d76912ca8a913d5c36ca514a17d8f1f9.res"
+
+[deps]
+
+source_file="res://assets/img/biome/snow/Snowflakes.aseprite"
+dest_files=["res://.godot/imported/Snowflakes.aseprite-d76912ca8a913d5c36ca514a17d8f1f9.res"]
+
+[params]
+

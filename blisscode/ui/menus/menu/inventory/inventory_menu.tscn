@@ -1,0 +1,708 @@
+[gd_scene load_steps=13 format=3 uid="uid://3y04wdx2golm"]
+
+[ext_resource type="Script" uid="uid://cfidra8l63jcf" path="res://blisscode/ui/menus/menu/menu.gd" id="1_bu2kg"]
+[ext_resource type="Script" uid="uid://dxu4gak2oeese" path="res://blisscode/ui/inventory/inventory_ui.gd" id="2_dux7x"]
+[ext_resource type="PackedScene" uid="uid://dw4lv5giixk0c" path="res://blisscode/ui/inventory/item_slot.tscn" id="7_g1pdu"]
+[ext_resource type="Script" uid="uid://d1v74357ynnao" path="res://blisscode/ui/inventory/weapon_belt_ui.gd" id="8_olh4s"]
+[ext_resource type="Script" uid="uid://cmyssf8qpthyf" path="res://blisscode/ui/inventory/equipment_ui.gd" id="10_wo1hd"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_dux7x"]
+
+[sub_resource type="Animation" id="Animation_83v66"]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Control/Panel:modulate:r")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Control/Panel:modulate:g")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Control/Panel:modulate:b")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Control/Panel:modulate:a")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+
+[sub_resource type="Animation" id="Animation_ew8a1"]
+resource_name = "transition_away_in"
+length = 0.5
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Control/Panel:modulate:r")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.5)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Control/Panel:modulate:g")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.5)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Control/Panel:modulate:b")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.5)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Control/Panel:modulate:a")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.5)
+}
+
+[sub_resource type="Animation" id="Animation_nvb2c"]
+resource_name = "transition_away_out"
+length = 0.5
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Control/Panel:modulate:r")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.5)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Control/Panel:modulate:g")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.5)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Control/Panel:modulate:b")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.5)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Control/Panel:modulate:a")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.5)
+}
+
+[sub_resource type="Animation" id="Animation_q5jky"]
+resource_name = "transition_in"
+length = 0.5
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Control/Panel:modulate:r")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.5)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Control/Panel:modulate:g")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.5)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Control/Panel:modulate:b")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.5)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Control/Panel:modulate:a")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.5)
+}
+
+[sub_resource type="Animation" id="Animation_lfual"]
+resource_name = "transition_out"
+length = 0.5
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Control/Panel:modulate:r")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.5)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Control/Panel:modulate:g")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.5)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Control/Panel:modulate:b")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.5)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Control/Panel:modulate:a")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.5)
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_e8wlj"]
+_data = {
+&"RESET": SubResource("Animation_83v66"),
+&"transition_away_in": SubResource("Animation_ew8a1"),
+&"transition_away_out": SubResource("Animation_nvb2c"),
+&"transition_in": SubResource("Animation_q5jky"),
+&"transition_out": SubResource("Animation_lfual")
+}
+
+[node name="InventoryMenu" type="CanvasLayer"]
+script = ExtResource("1_bu2kg")
+menu_name = "InventoryMenu"
+input_action = "inventory"
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="Control"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -134.0
+offset_top = -82.0
+offset_right = 116.0
+offset_bottom = 93.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Control/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 24
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 24
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/Panel/MarginContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control/Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="InventoryGridContainer" type="GridContainer" parent="Control/Panel/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+columns = 5
+script = ExtResource("2_dux7x")
+
+[node name="ItemSlot" parent="Control/Panel/MarginContainer/VBoxContainer/HBoxContainer/InventoryGridContainer" instance=ExtResource("7_g1pdu")]
+layout_mode = 2
+item_slot_type = 0
+can_drop_slot_type = 0
+equipment_slot = 0
+index = 0
+
+[node name="ItemSlot2" parent="Control/Panel/MarginContainer/VBoxContainer/HBoxContainer/InventoryGridContainer" instance=ExtResource("7_g1pdu")]
+layout_mode = 2
+item_slot_type = 0
+can_drop_slot_type = 0
+equipment_slot = 0
+index = 0
+
+[node name="ItemSlot3" parent="Control/Panel/MarginContainer/VBoxContainer/HBoxContainer/InventoryGridContainer" instance=ExtResource("7_g1pdu")]
+layout_mode = 2
+item_slot_type = 0
+can_drop_slot_type = 0
+equipment_slot = 0
+index = 0
+
+[node name="ItemSlot4" parent="Control/Panel/MarginContainer/VBoxContainer/HBoxContainer/InventoryGridContainer" instance=ExtResource("7_g1pdu")]
+layout_mode = 2
+item_slot_type = 0
+can_drop_slot_type = 0
+equipment_slot = 0
+index = 0
+
+[node name="ItemSlot5" parent="Control/Panel/MarginContainer/VBoxContainer/HBoxContainer/InventoryGridContainer" instance=ExtResource("7_g1pdu")]
+layout_mode = 2
+item_slot_type = 0
+can_drop_slot_type = 0
+equipment_slot = 0
+index = 0
+
+[node name="ItemSlot6" parent="Control/Panel/MarginContainer/VBoxContainer/HBoxContainer/InventoryGridContainer" instance=ExtResource("7_g1pdu")]
+layout_mode = 2
+item_slot_type = 0
+can_drop_slot_type = 0
+equipment_slot = 0
+index = 0
+
+[node name="ItemSlot7" parent="Control/Panel/MarginContainer/VBoxContainer/HBoxContainer/InventoryGridContainer" instance=ExtResource("7_g1pdu")]
+layout_mode = 2
+item_slot_type = 0
+can_drop_slot_type = 0
+equipment_slot = 0
+index = 0
+
+[node name="ItemSlot8" parent="Control/Panel/MarginContainer/VBoxContainer/HBoxContainer/InventoryGridContainer" instance=ExtResource("7_g1pdu")]
+layout_mode = 2
+item_slot_type = 0
+can_drop_slot_type = 0
+equipment_slot = 0
+index = 0
+
+[node name="ItemSlot9" parent="Control/Panel/MarginContainer/VBoxContainer/HBoxContainer/InventoryGridContainer" instance=ExtResource("7_g1pdu")]
+layout_mode = 2
+item_slot_type = 0
+can_drop_slot_type = 0
+equipment_slot = 0
+index = 0
+
+[node name="ItemSlot10" parent="Control/Panel/MarginContainer/VBoxContainer/HBoxContainer/InventoryGridContainer" instance=ExtResource("7_g1pdu")]
+layout_mode = 2
+item_slot_type = 0
+can_drop_slot_type = 0
+equipment_slot = 0
+index = 0
+
+[node name="ItemSlot11" parent="Control/Panel/MarginContainer/VBoxContainer/HBoxContainer/InventoryGridContainer" instance=ExtResource("7_g1pdu")]
+layout_mode = 2
+item_slot_type = 0
+can_drop_slot_type = 0
+equipment_slot = 0
+index = 0
+
+[node name="ItemSlot12" parent="Control/Panel/MarginContainer/VBoxContainer/HBoxContainer/InventoryGridContainer" instance=ExtResource("7_g1pdu")]
+layout_mode = 2
+item_slot_type = 0
+can_drop_slot_type = 0
+equipment_slot = 0
+index = 0
+
+[node name="ItemSlot13" parent="Control/Panel/MarginContainer/VBoxContainer/HBoxContainer/InventoryGridContainer" instance=ExtResource("7_g1pdu")]
+layout_mode = 2
+item_slot_type = 0
+can_drop_slot_type = 0
+equipment_slot = 0
+index = 0
+
+[node name="ItemSlot14" parent="Control/Panel/MarginContainer/VBoxContainer/HBoxContainer/InventoryGridContainer" instance=ExtResource("7_g1pdu")]
+layout_mode = 2
+item_slot_type = 0
+can_drop_slot_type = 0
+equipment_slot = 0
+index = 0
+
+[node name="ItemSlot15" parent="Control/Panel/MarginContainer/VBoxContainer/HBoxContainer/InventoryGridContainer" instance=ExtResource("7_g1pdu")]
+layout_mode = 2
+item_slot_type = 0
+can_drop_slot_type = 0
+equipment_slot = 0
+index = 0
+
+[node name="ItemSlot16" parent="Control/Panel/MarginContainer/VBoxContainer/HBoxContainer/InventoryGridContainer" instance=ExtResource("7_g1pdu")]
+layout_mode = 2
+item_slot_type = 0
+can_drop_slot_type = 0
+equipment_slot = 0
+index = 0
+
+[node name="ItemSlot17" parent="Control/Panel/MarginContainer/VBoxContainer/HBoxContainer/InventoryGridContainer" instance=ExtResource("7_g1pdu")]
+layout_mode = 2
+item_slot_type = 0
+can_drop_slot_type = 0
+equipment_slot = 0
+index = 0
+
+[node name="ItemSlot18" parent="Control/Panel/MarginContainer/VBoxContainer/HBoxContainer/InventoryGridContainer" instance=ExtResource("7_g1pdu")]
+layout_mode = 2
+item_slot_type = 0
+can_drop_slot_type = 0
+equipment_slot = 0
+index = 0
+
+[node name="ItemSlot19" parent="Control/Panel/MarginContainer/VBoxContainer/HBoxContainer/InventoryGridContainer" instance=ExtResource("7_g1pdu")]
+layout_mode = 2
+item_slot_type = 0
+can_drop_slot_type = 0
+equipment_slot = 0
+index = 0
+
+[node name="ItemSlot20" parent="Control/Panel/MarginContainer/VBoxContainer/HBoxContainer/InventoryGridContainer" instance=ExtResource("7_g1pdu")]
+layout_mode = 2
+item_slot_type = 0
+can_drop_slot_type = 0
+equipment_slot = 0
+index = 0
+
+[node name="ItemSlot21" parent="Control/Panel/MarginContainer/VBoxContainer/HBoxContainer/InventoryGridContainer" instance=ExtResource("7_g1pdu")]
+layout_mode = 2
+item_slot_type = 0
+can_drop_slot_type = 0
+equipment_slot = 0
+index = 0
+
+[node name="ItemSlot22" parent="Control/Panel/MarginContainer/VBoxContainer/HBoxContainer/InventoryGridContainer" instance=ExtResource("7_g1pdu")]
+layout_mode = 2
+item_slot_type = 0
+can_drop_slot_type = 0
+equipment_slot = 0
+index = 0
+
+[node name="ItemSlot23" parent="Control/Panel/MarginContainer/VBoxContainer/HBoxContainer/InventoryGridContainer" instance=ExtResource("7_g1pdu")]
+layout_mode = 2
+item_slot_type = 0
+can_drop_slot_type = 0
+equipment_slot = 0
+index = 0
+
+[node name="ItemSlot24" parent="Control/Panel/MarginContainer/VBoxContainer/HBoxContainer/InventoryGridContainer" instance=ExtResource("7_g1pdu")]
+layout_mode = 2
+item_slot_type = 0
+can_drop_slot_type = 0
+equipment_slot = 0
+index = 0
+
+[node name="ItemSlot25" parent="Control/Panel/MarginContainer/VBoxContainer/HBoxContainer/InventoryGridContainer" instance=ExtResource("7_g1pdu")]
+layout_mode = 2
+item_slot_type = 0
+can_drop_slot_type = 0
+equipment_slot = 0
+index = 0
+
+[node name="VSeparator" type="VSeparator" parent="Control/Panel/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="EquipmentPanel" type="Panel" parent="Control/Panel/MarginContainer/VBoxContainer/HBoxContainer" node_paths=PackedStringArray("helmet_slot", "neck_slot", "chest_slot", "waist_slot", "legs_slot", "feet_slot", "gloves_slot", "left_finger_slot", "right_finger_slot", "left_hand_slot", "right_hand_slot")]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxEmpty_dux7x")
+script = ExtResource("10_wo1hd")
+helmet_slot = NodePath("HelmetItemSlot")
+neck_slot = NodePath("NeckItemSlot")
+chest_slot = NodePath("ChestItemSlot")
+waist_slot = NodePath("WaistItemSlot")
+legs_slot = NodePath("LegsItemSlot")
+feet_slot = NodePath("BootsItemSlot")
+gloves_slot = NodePath("GlovesItemSlot")
+left_finger_slot = NodePath("LeftFingerItemSlot")
+right_finger_slot = NodePath("RightFingerItemSlot")
+left_hand_slot = NodePath("LeftHandItemSlot")
+right_hand_slot = NodePath("RightHandItemSlot")
+
+[node name="HelmetItemSlot" parent="Control/Panel/MarginContainer/VBoxContainer/HBoxContainer/EquipmentPanel" instance=ExtResource("7_g1pdu")]
+layout_mode = 1
+offset_left = 37.0
+offset_top = -1.0
+offset_right = 53.0
+offset_bottom = 15.0
+item_slot_type = 1
+can_drop_slot_type = 1
+equipment_slot = 1
+index = 0
+
+[node name="NeckItemSlot" parent="Control/Panel/MarginContainer/VBoxContainer/HBoxContainer/EquipmentPanel" instance=ExtResource("7_g1pdu")]
+layout_mode = 1
+offset_left = 56.0
+offset_top = -1.0
+offset_right = 72.0
+offset_bottom = 15.0
+item_slot_type = 1
+can_drop_slot_type = 1
+equipment_slot = 2
+index = 0
+
+[node name="ChestItemSlot" parent="Control/Panel/MarginContainer/VBoxContainer/HBoxContainer/EquipmentPanel" instance=ExtResource("7_g1pdu")]
+layout_mode = 1
+offset_left = 37.0
+offset_top = 19.0
+offset_right = 53.0
+offset_bottom = 35.0
+item_slot_type = 1
+can_drop_slot_type = 1
+equipment_slot = 3
+index = 0
+
+[node name="WaistItemSlot" parent="Control/Panel/MarginContainer/VBoxContainer/HBoxContainer/EquipmentPanel" instance=ExtResource("7_g1pdu")]
+layout_mode = 1
+offset_left = 37.0
+offset_top = 38.0
+offset_right = 53.0
+offset_bottom = 54.0
+item_slot_type = 1
+can_drop_slot_type = 1
+equipment_slot = 4
+index = 0
+
+[node name="LegsItemSlot" parent="Control/Panel/MarginContainer/VBoxContainer/HBoxContainer/EquipmentPanel" instance=ExtResource("7_g1pdu")]
+layout_mode = 1
+offset_left = 37.0
+offset_top = 57.5
+offset_right = 53.0
+offset_bottom = 73.5
+item_slot_type = 1
+can_drop_slot_type = 1
+equipment_slot = 5
+index = 0
+
+[node name="BootsItemSlot" parent="Control/Panel/MarginContainer/VBoxContainer/HBoxContainer/EquipmentPanel" instance=ExtResource("7_g1pdu")]
+layout_mode = 1
+offset_left = 57.0
+offset_top = 57.5
+offset_right = 73.0
+offset_bottom = 73.5
+item_slot_type = 1
+can_drop_slot_type = 1
+equipment_slot = 6
+index = 0
+
+[node name="GlovesItemSlot" parent="Control/Panel/MarginContainer/VBoxContainer/HBoxContainer/EquipmentPanel" instance=ExtResource("7_g1pdu")]
+layout_mode = 1
+offset_left = 17.0
+offset_top = 57.5
+offset_right = 33.0
+offset_bottom = 73.5
+item_slot_type = 1
+can_drop_slot_type = 1
+equipment_slot = 7
+index = 0
+
+[node name="LeftFingerItemSlot" parent="Control/Panel/MarginContainer/VBoxContainer/HBoxContainer/EquipmentPanel" instance=ExtResource("7_g1pdu")]
+layout_mode = 1
+offset_left = -2.0
+offset_top = 57.5
+offset_right = 14.0
+offset_bottom = 73.5
+item_slot_type = 1
+can_drop_slot_type = 1
+equipment_slot = 8
+index = 0
+
+[node name="RightFingerItemSlot" parent="Control/Panel/MarginContainer/VBoxContainer/HBoxContainer/EquipmentPanel" instance=ExtResource("7_g1pdu")]
+layout_mode = 1
+offset_left = 76.5
+offset_top = 57.5
+offset_right = 92.5
+offset_bottom = 73.5
+item_slot_type = 1
+can_drop_slot_type = 1
+equipment_slot = 9
+index = 0
+
+[node name="LeftHandItemSlot" parent="Control/Panel/MarginContainer/VBoxContainer/HBoxContainer/EquipmentPanel" instance=ExtResource("7_g1pdu")]
+layout_mode = 1
+offset_left = 17.0
+offset_top = 38.0
+offset_right = 33.0
+offset_bottom = 54.0
+item_slot_type = 1
+can_drop_slot_type = 1
+equipment_slot = 10
+index = 0
+
+[node name="RightHandItemSlot" parent="Control/Panel/MarginContainer/VBoxContainer/HBoxContainer/EquipmentPanel" instance=ExtResource("7_g1pdu")]
+layout_mode = 1
+offset_left = 57.0
+offset_top = 38.0
+offset_right = 73.0
+offset_bottom = 54.0
+item_slot_type = 1
+can_drop_slot_type = 1
+equipment_slot = 11
+index = 0
+
+[node name="HSeparator" type="HSeparator" parent="Control/Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="WeaponBeltGridContainer" type="GridContainer" parent="Control/Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+columns = 10
+script = ExtResource("8_olh4s")
+
+[node name="ItemSlot" parent="Control/Panel/MarginContainer/VBoxContainer/WeaponBeltGridContainer" instance=ExtResource("7_g1pdu")]
+layout_mode = 2
+item_slot_type = 2
+can_drop_slot_type = 2
+equipment_slot = 0
+index = 0
+
+[node name="ItemSlot2" parent="Control/Panel/MarginContainer/VBoxContainer/WeaponBeltGridContainer" instance=ExtResource("7_g1pdu")]
+layout_mode = 2
+item_slot_type = 2
+can_drop_slot_type = 2
+equipment_slot = 0
+index = 0
+
+[node name="ItemSlot3" parent="Control/Panel/MarginContainer/VBoxContainer/WeaponBeltGridContainer" instance=ExtResource("7_g1pdu")]
+layout_mode = 2
+item_slot_type = 2
+can_drop_slot_type = 2
+equipment_slot = 0
+index = 0
+
+[node name="ItemSlot4" parent="Control/Panel/MarginContainer/VBoxContainer/WeaponBeltGridContainer" instance=ExtResource("7_g1pdu")]
+layout_mode = 2
+item_slot_type = 2
+can_drop_slot_type = 2
+equipment_slot = 0
+index = 0
+
+[node name="ItemSlot5" parent="Control/Panel/MarginContainer/VBoxContainer/WeaponBeltGridContainer" instance=ExtResource("7_g1pdu")]
+layout_mode = 2
+item_slot_type = 2
+can_drop_slot_type = 2
+equipment_slot = 0
+index = 0
+
+[node name="ItemSlot6" parent="Control/Panel/MarginContainer/VBoxContainer/WeaponBeltGridContainer" instance=ExtResource("7_g1pdu")]
+layout_mode = 2
+item_slot_type = 2
+can_drop_slot_type = 2
+equipment_slot = 0
+index = 0
+
+[node name="ItemSlot7" parent="Control/Panel/MarginContainer/VBoxContainer/WeaponBeltGridContainer" instance=ExtResource("7_g1pdu")]
+layout_mode = 2
+item_slot_type = 2
+can_drop_slot_type = 2
+equipment_slot = 0
+index = 0
+
+[node name="ItemSlot8" parent="Control/Panel/MarginContainer/VBoxContainer/WeaponBeltGridContainer" instance=ExtResource("7_g1pdu")]
+layout_mode = 2
+item_slot_type = 2
+can_drop_slot_type = 2
+equipment_slot = 0
+index = 0
+
+[node name="ItemSlot9" parent="Control/Panel/MarginContainer/VBoxContainer/WeaponBeltGridContainer" instance=ExtResource("7_g1pdu")]
+layout_mode = 2
+item_slot_type = 2
+can_drop_slot_type = 2
+equipment_slot = 0
+index = 0
+
+[node name="ItemSlot10" parent="Control/Panel/MarginContainer/VBoxContainer/WeaponBeltGridContainer" instance=ExtResource("7_g1pdu")]
+layout_mode = 2
+item_slot_type = 2
+can_drop_slot_type = 2
+equipment_slot = 0
+index = 0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_e8wlj")
+}

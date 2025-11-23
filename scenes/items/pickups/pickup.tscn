@@ -1,0 +1,181 @@
+[gd_scene load_steps=15 format=3 uid="uid://c3sn1lvnaw1tp"]
+
+[ext_resource type="Shader" uid="uid://pe35f4j2sr10" path="res://blisscode/shaders/rarity.gdshader" id="1_a5use"]
+[ext_resource type="Texture2D" uid="uid://dg0r201xndfkx" path="res://assets/img/items/Coin-Sheet.png" id="2_4cg37"]
+[ext_resource type="Script" uid="uid://ucmcws1e11dk" path="res://blisscode/interaction/hotspot/hotspot.gd" id="2_d0157"]
+[ext_resource type="AudioStream" uid="uid://bwr2p1a5f5qfh" path="res://assets/audio/effects/pickupCoin.wav" id="5_d0157"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_d0157"]
+shader = ExtResource("1_a5use")
+shader_parameter/rarity = 0
+shader_parameter/intensity = 1.0
+shader_parameter/border_width = 2.0
+
+[sub_resource type="Shader" id="Shader_a5use"]
+code = "shader_type canvas_item;
+
+uniform int rarity : hint_range(0, 4) = 0; // 0=COMMON, 1=UNCOMMON, 2=RARE, 3=EPIC, 4=LEGENDARY
+uniform float intensity : hint_range(0.0, 2.0) = 1.0; // Controls the intensity of the color effect
+uniform float border_width : hint_range(0.0, 10.0) = 2.0; // Controls the width of the border
+
+void vertex() {
+	// Called for every vertex the material is visible on.
+}
+
+void fragment() {
+	// Get the original color
+	vec4 original_color = texture(TEXTURE, UV);
+	
+	// Define rarity colors (you can adjust these to match your game's theme)
+	vec3 rarity_colors[5];
+	rarity_colors[0] = vec3(0.7, 0.7, 0.7); // COMMON - Gray
+	rarity_colors[1] = vec3(0.2, 0.8, 0.2); // UNCOMMON - Green
+	rarity_colors[2] = vec3(0.2, 0.2, 0.8); // RARE - Blue
+	rarity_colors[3] = vec3(0.8, 0.2, 0.8); // EPIC - Purple
+	rarity_colors[4] = vec3(1.0, 0.8, 0.0); // LEGENDARY - Gold
+	
+	// Get the color for the current rarity
+	vec3 rarity_color = rarity_colors[rarity];
+	
+	// Calculate pixel size for border sampling
+	vec2 pixel_size = 1.0 / TEXTURE_PIXEL_SIZE;
+	vec2 border_offset = border_width / pixel_size;
+	
+	// Check if current pixel is transparent
+	bool is_transparent = original_color.a < 0.1;
+	
+	// If transparent, check if any nearby pixel has content (this creates the border)
+	float border_alpha = 0.0;
+	if (is_transparent) {
+		// Check in a small radius around this pixel
+		for (float x = -1.0; x <= 1.0; x += 1.0) {
+			for (float y = -1.0; y <= 1.0; y += 1.0) {
+				vec2 sample_uv = UV + vec2(x, y) * border_offset;
+				vec4 sample_color = texture(TEXTURE, sample_uv);
+				
+				if (sample_color.a > 0.1) {
+					border_alpha = 1.0;
+					break;
+				}
+			}
+			if (border_alpha > 0.0) break;
+		}
+	}
+	
+	// Blend the original color with the rarity color for non-border areas
+	vec3 final_color = mix(original_color.rgb, rarity_color, intensity * 0.5);
+	
+	// If this is a border pixel, use the rarity color
+	if (border_alpha > 0.0) {
+		final_color = rarity_color;
+		original_color.a = 1.0; // Make border fully opaque
+	}
+	
+	// Apply the final color
+	COLOR = vec4(final_color, original_color.a);
+}
+
+//void light() {
+//	// Called for every pixel for every light affecting the CanvasItem.
+//	// Uncomment to replace the default light processing function with this one.
+//}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_a5use"]
+resource_local_to_scene = true
+shader = SubResource("Shader_a5use")
+shader_parameter/rarity = 4
+shader_parameter/intensity = 0.0
+shader_parameter/border_width = 1.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4cg37"]
+atlas = ExtResource("2_4cg37")
+
+[sub_resource type="Animation" id="Animation_17rex"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_n5epu"]
+resource_name = "idle"
+length = 0.5
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.133333, 0.266667, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_p7gpd"]
+_data = {
+&"RESET": SubResource("Animation_17rex"),
+&"idle": SubResource("Animation_n5epu")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gg01l"]
+size = Vector2(10, 16)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_4cg37"]
+radius = 36.0139
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_d0157"]
+size = Vector2(14, 9)
+
+[node name="Pickup" type="Node2D"]
+material = SubResource("ShaderMaterial_d0157")
+script = ExtResource("2_d0157")
+create_random_item = true
+follow_target = true
+interaction_text = ""
+use_collision = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_a5use")
+texture = SubResource("AtlasTexture_4cg37")
+hframes = 4
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_p7gpd")
+}
+
+[node name="InteractArea2D" type="Area2D" parent="."]
+collision_layer = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractArea2D"]
+shape = SubResource("RectangleShape2D_gg01l")
+
+[node name="InRangeArea2D" type="Area2D" parent="."]
+collision_layer = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InRangeArea2D"]
+shape = SubResource("CircleShape2D_4cg37")
+
+[node name="CollisionArea2D" type="Area2D" parent="."]
+collision_layer = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CollisionArea2D"]
+position = Vector2(0, 1.5)
+shape = SubResource("RectangleShape2D_d0157")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_d0157")
+volume_db = -11.243
+bus = &"Effects"
