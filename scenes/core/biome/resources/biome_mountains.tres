@@ -5,16 +5,19 @@
 [resource]
 script = ExtResource("1_geqg1")
 biome_type = 6
-moisture_wave = 0.15
+altitude_max = 0.5
+temperature_min = 0.25
+temperature_max = 0.75
+moisture_wave = 0.0
 altitude_wave = 0.0
 temperature_wave = 0.0
 barometer_wave = 0.0
 wind_speed_wave = 0.25
-static_energy_wave = 0.0
-moisture = 0.771
-altitude = 1.0
-temperature = 0.196
-barometer = 0.17
+static_energy_wave = 0.25
+moisture = 0.25
+altitude = 0.5
+temperature = 0.5
+barometer = 0.15
 wind_speed = 0.175
 static_energy = 0.237
 metadata/_custom_type_script = "uid://dvp3xtdyi72pj"

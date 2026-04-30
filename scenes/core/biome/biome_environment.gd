@@ -330,3 +330,24 @@ func _apply_min_max_for_biome_type(t: BiomeType) -> void:
 			static_energy_max = 1.0
 		_:
 			pass
+
+func print_debug() -> void:
+	print("moisture_min: ", moisture_min)
+	print("moisture_max: ", moisture_max)
+	print("altitude_min: ", altitude_min)
+	print("altitude_max: ", altitude_max)
+	print("temperature_min: ", temperature_min)
+	print("temperature_max: ", temperature_max)
+	print("barometer_min: ", barometer_min)
+	print("barometer_max: ", barometer_max)
+	print("wind_speed_min: ", wind_speed_min)
+	print("wind_speed_max: ", wind_speed_max)
+	print("static_energy_min: ", static_energy_min)
+	print("static_energy_max: ", static_energy_max)
+	print("moisture: ", moisture)
+	print("altitude: ", altitude)
+	print("temperature: ", temperature)
+	print("barometer: ", barometer)
+	print("wind_speed: ", wind_speed)
+	print("weather_direction: ", weather_direction)
+	print("static_energy: ", static_energy)

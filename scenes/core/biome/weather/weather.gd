@@ -9,18 +9,28 @@ class_name Weather extends Node2D
 @export var audio_player: AudioStreamPlayer
 @export var time_to_fade: float = 10.0
 @export var audio_fade_duration: float = 1.0
+@export var audio_repeat_time: float = 0.0
 @export var sprite: Sprite2D
 
 var is_active: bool = false
 var _original_volume_db: float = 0.0
 var _audio_fade_tween: Tween = null
+var _audio_repeat_timer: Timer = null
+var _visual_fade_tween: Tween = null
+var _sprite_base_alpha: float = 1.0
+var _overlay_base_alpha: float = 1.0
 
 func _ready() -> void:
 	if particles:
 		particles.emitting = false
+	if sprite:
+		_sprite_base_alpha = sprite.modulate.a
+	if color_rect_overlay:
+		_overlay_base_alpha = color_rect_overlay.modulate.a
 	hide()
 	if audio_player:
 		_original_volume_db = audio_player.volume_db
+	_setup_audio_repeat_timer()
 
 
 func set_weather(current_biome_environment: BiomeEnvironment) -> void:
@@ -80,19 +90,17 @@ func set_weather(current_biome_environment: BiomeEnvironment) -> void:
 func start():
 	if is_active:
 		return
-	# print("start ", name)
 	is_active = true
 	start_audio()
+	_start_audio_repeat_timer()
+	_visual_fade_tween = _create_visual_fade_tween()
 	if particles:
 		particles.emitting = true
-	if color_rect_overlay:
-		color_rect_overlay.show()
-	if sprite:
-		sprite.show()
 	show()
 	modulate.a = 0.0
-	var tween = create_tween()
-	tween.tween_property(self , "modulate:a", 1.0, 1.0)
+	_fade_canvas_item(self, 1.0)
+	_fade_canvas_item(sprite, _sprite_base_alpha, true)
+	_fade_canvas_item(color_rect_overlay, _overlay_base_alpha, true)
 	
 
 func start_audio():
@@ -109,20 +117,39 @@ func start_audio():
 func stop():
 	if not is_active:
 		return
-	# print("stop ", name)
 	is_active = false
-	var tween = create_tween()
-	tween.tween_property(self , "modulate:a", 0.0, 1.0)
-	tween.tween_callback(func():
-		if particles:
-			particles.emitting = false
-		if sprite:
-			sprite.hide()
-		if color_rect_overlay:
-			color_rect_overlay.hide()
-		hide()
-	)
+	_stop_audio_repeat_timer()
+	_visual_fade_tween = _create_visual_fade_tween()
+	_fade_canvas_item(self, 0.0)
+	_fade_canvas_item(sprite, 0.0)
+	_fade_canvas_item(color_rect_overlay, 0.0)
+	_visual_fade_tween.tween_callback(_on_stop_visual_fade_finished)
 	stop_audio()
+
+func _create_visual_fade_tween() -> Tween:
+	if _visual_fade_tween:
+		_visual_fade_tween.kill()
+	return create_tween()
+
+func _fade_canvas_item(item: CanvasItem, target_alpha: float, reveal: bool = false) -> void:
+	if not item:
+		return
+	if reveal:
+		item.show()
+		item.modulate.a = 0.0
+	_visual_fade_tween.parallel().tween_property(item, "modulate:a", target_alpha, time_to_fade)
+
+func _on_stop_visual_fade_finished() -> void:
+	if particles:
+		particles.emitting = false
+	if sprite:
+		sprite.hide()
+		sprite.modulate.a = _sprite_base_alpha
+	if color_rect_overlay:
+		color_rect_overlay.hide()
+		color_rect_overlay.modulate.a = _overlay_base_alpha
+	hide()
+	_visual_fade_tween = null
 
 func stop_audio():
 	if audio_player and audio_player.playing:
@@ -135,6 +162,32 @@ func stop_audio():
 			audio_player.stop()
 			audio_player.volume_db = _original_volume_db
 		)
+
+func _setup_audio_repeat_timer() -> void:
+	_audio_repeat_timer = Timer.new()
+	_audio_repeat_timer.one_shot = false
+	_audio_repeat_timer.autostart = false
+	_audio_repeat_timer.timeout.connect(_on_audio_repeat_timeout)
+	add_child(_audio_repeat_timer)
+
+func _start_audio_repeat_timer() -> void:
+	if not _audio_repeat_timer:
+		return
+	if audio_repeat_time > 0.0:
+		_audio_repeat_timer.wait_time = audio_repeat_time
+		_audio_repeat_timer.start()
+	else:
+		_audio_repeat_timer.stop()
+
+func _stop_audio_repeat_timer() -> void:
+	if _audio_repeat_timer:
+		_audio_repeat_timer.stop()
+
+func _on_audio_repeat_timeout() -> void:
+	if not is_active or audio_repeat_time <= 0.0:
+		return
+	if audio_player and not audio_player.playing:
+		start_audio()
 		
 func toggle():
 	if particles:

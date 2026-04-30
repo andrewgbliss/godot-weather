@@ -13,6 +13,7 @@ extends Control
 @onready var static_energy_slider: HSlider = %StaticEnergy
 @onready var wind_direction_left_button: Button = %WindDirectionLeft
 @onready var wind_direction_right_button: Button = %WindDirectionRight
+@onready var weather_enabled_checkbox: CheckBox = %WeatherEnabled
 
 var _is_syncing_ui: bool = false
 var _controls_visible: bool = true
@@ -45,8 +46,18 @@ func _connect_value_signals() -> void:
 	]
 	for control in controls:
 		control.value_changed.connect(_on_current_value_changed)
+	weather_enabled_checkbox.toggled.connect(_on_weather_enabled_toggled)
 	wind_direction_left_button.pressed.connect(_on_wind_direction_left_pressed)
 	wind_direction_right_button.pressed.connect(_on_wind_direction_right_pressed)
+	biome.weather_toggled.connect(_on_weather_toggled)
+
+func _on_weather_enabled_toggled(is_enabled: bool) -> void:
+	if _is_syncing_ui:
+		return
+	if not biome:
+		return
+	biome.weather_enabled = is_enabled
+
 
 func _on_current_value_changed(_value: float) -> void:
 	if _is_syncing_ui:
@@ -80,6 +91,8 @@ func _set_wind_direction(direction_x: float) -> void:
 func _sync_from_environment(biome_environment: BiomeEnvironment) -> void:
 	_is_syncing_ui = true
 	biome_label.text = _biome_type_to_string(biome_environment.biome_type)
+	if biome:
+		weather_enabled_checkbox.button_pressed = biome.weather_enabled
 	moisture_slider.value = biome_environment.get_moisture()
 	altitude_slider.value = biome_environment.get_altitude()
 	temperature_slider.value = biome_environment.get_temperature()
@@ -94,3 +107,6 @@ func _sync_from_environment(biome_environment: BiomeEnvironment) -> void:
 func _biome_type_to_string(type: BiomeEnvironment.BiomeType) -> String:
 	var raw_name: String = BiomeEnvironment.BiomeType.keys()[type]
 	return raw_name.capitalize()
+
+func _on_weather_toggled(is_enabled: bool) -> void:
+	weather_enabled_checkbox.button_pressed = is_enabled

@@ -68,6 +68,20 @@ theme_override_font_sizes/font_size = 16
 text = "Grass"
 horizontal_alignment = 2
 
+[node name="WeatherEnabledRow" type="HBoxContainer" parent="WeatherPanel/MarginContainer/VBoxContainer" unique_id=2013344001]
+layout_mode = 2
+
+[node name="WeatherEnabledLabel" type="Label" parent="WeatherPanel/MarginContainer/VBoxContainer/WeatherEnabledRow" unique_id=1230399111]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 16
+text = "Weather"
+
+[node name="WeatherEnabled" type="CheckBox" parent="WeatherPanel/MarginContainer/VBoxContainer/WeatherEnabledRow" unique_id=1178814203]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+
 [node name="MoistureRow" type="HBoxContainer" parent="WeatherPanel/MarginContainer/VBoxContainer" unique_id=1141121722]
 layout_mode = 2
 

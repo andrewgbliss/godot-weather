@@ -6,13 +6,8 @@
 script = ExtResource("1_ucbg7")
 biome_type = 11
 moisture_min = 0.5
+altitude_min = 0.5
 temperature_max = 0.25
 barometer_max = 0.25
-moisture_wave = null
-altitude_wave = null
-temperature_wave = null
-barometer_wave = null
-wind_speed_wave = null
-static_energy_wave = null
 moisture = 0.75
 metadata/_custom_type_script = "uid://dvp3xtdyi72pj"

@@ -1,8 +1,6 @@
 class_name Biome extends Node2D
 
 @export var biome_environment: BiomeEnvironment
-@export var world_environment: WorldEnvironment
-@export var day_night_cycle: CanvasModulate
 @export var weather_pattern_noise: FastNoiseLite
 @export var weather_enabled: bool = false
 
@@ -14,24 +12,33 @@ var _wind_direction_x: float = -1.0
 var _next_wind_direction_change_at: float = 0.0
 
 signal weather_updated(biome_environment: BiomeEnvironment)
+signal weather_toggled(val: bool)
 
 func _ready() -> void:
 	_cache_weather_nodes()
-	_initialize_random_walk_state()
 	call_deferred("_after_ready")
 	
 func _after_ready():
 	_update_weather(0.0)
 
 func _cache_weather_nodes() -> void:
-	_weather_nodes = get_tree().get_nodes_in_group("weather")
+	_weather_nodes = get_nodes_in_group_under_self("weather")
+
+func get_nodes_in_group_under_self(group_name: String) -> Array[Node]:
+		var nodes_in_group = get_tree().get_nodes_in_group(group_name)
+		var result: Array[Node] = []
+		
+		for node in nodes_in_group:
+				if is_ancestor_of(node):
+						result.append(node)
+						
+		return result
 
 func _stop_weather() -> void:
-	if weather_enabled:
-		_update_timer = 0.0
-		for w in _weather_nodes:
-			if w != null and is_instance_valid(w) and w is Weather and w.is_active:
-				w.stop()
+	_update_timer = 0.0
+	for w in _weather_nodes:
+		if w != null and is_instance_valid(w) and w is Weather and w.is_active:
+			w.stop()
 
 func _process(delta: float) -> void:
 	if weather_enabled:
@@ -96,15 +103,6 @@ func _update_weather(delta: float) -> void:
 
 	weather_updated.emit(biome_environment)
 
-func _initialize_random_walk_state() -> void:
-	var keys: Array[String] = ["moisture", "altitude", "temperature", "barometer", "wind_speed", "static_energy"]
-	var now: float = WorldTimeService.time_elapsed
-	for key in keys:
-		_value_directions[key] = -1.0 if randf() < 0.5 else 1.0
-		_next_direction_change_at[key] = now + randf_range(1.0, 5.0)
-	_wind_direction_x = -1.0 if randf() < 0.5 else 1.0
-	_next_wind_direction_change_at = now + randf_range(2.0, 7.0)
-
 func _get_random_walk_value(key: String, current_value: float, range_min: float, range_max: float, wave: float, delta: float) -> float:
 	var lo: float = minf(range_min, range_max)
 	var hi: float = maxf(range_min, range_max)
@@ -166,3 +164,57 @@ func _apply_wind_speed() -> void:
 				speed_offset = 0.0
 			if canvas_item.material is ShaderMaterial:
 				(canvas_item.material as ShaderMaterial).set_shader_parameter("speed", speed_offset)
+
+func update_values_from_environment(next_biome_environment: BiomeEnvironment) -> void:
+	if biome_environment and next_biome_environment:
+		if next_biome_environment.moisture_min > 0:
+			biome_environment.moisture_min = next_biome_environment.moisture_min
+		if next_biome_environment.moisture_max > 0:
+			biome_environment.moisture_max = next_biome_environment.moisture_max
+		if next_biome_environment.altitude_min > 0:
+			biome_environment.altitude_min = next_biome_environment.altitude_min
+		if next_biome_environment.altitude_max > 0:
+			biome_environment.altitude_max = next_biome_environment.altitude_max
+		if next_biome_environment.temperature_min > 0:
+			biome_environment.temperature_min = next_biome_environment.temperature_min
+		if next_biome_environment.temperature_max > 0:
+			biome_environment.temperature_max = next_biome_environment.temperature_max
+		if next_biome_environment.barometer_min > 0:
+			biome_environment.barometer_min = next_biome_environment.barometer_min
+		if next_biome_environment.barometer_max > 0:
+			biome_environment.barometer_max = next_biome_environment.barometer_max
+		if next_biome_environment.wind_speed_min > 0:
+			biome_environment.wind_speed_min = next_biome_environment.wind_speed_min
+		if next_biome_environment.wind_speed_max > 0:
+			biome_environment.wind_speed_max = next_biome_environment.wind_speed_max
+		if next_biome_environment.static_energy_min > 0:
+			biome_environment.static_energy_min = next_biome_environment.static_energy_min
+		if next_biome_environment.static_energy_max > 0:
+			biome_environment.static_energy_max = next_biome_environment.static_energy_max
+		if next_biome_environment.weather_direction != Vector2.ZERO:
+			biome_environment.weather_direction = next_biome_environment.weather_direction
+		if next_biome_environment.moisture_wave > 0:
+			biome_environment.moisture_wave = next_biome_environment.moisture_wave
+		if next_biome_environment.altitude_wave > 0:
+			biome_environment.altitude_wave = next_biome_environment.altitude_wave
+		if next_biome_environment.temperature_wave > 0:
+			biome_environment.temperature_wave = next_biome_environment.temperature_wave
+		if next_biome_environment.barometer_wave > 0:
+			biome_environment.barometer_wave = next_biome_environment.barometer_wave
+		if next_biome_environment.wind_speed_wave > 0:
+			biome_environment.wind_speed_wave = next_biome_environment.wind_speed_wave
+		if next_biome_environment.static_energy_wave > 0:
+			biome_environment.static_energy_wave = next_biome_environment.static_energy_wave
+		if next_biome_environment.get_moisture() > 0:
+			biome_environment.set_moisture(next_biome_environment.get_moisture())
+		if next_biome_environment.get_temperature() > 0:
+			biome_environment.set_temperature(next_biome_environment.get_temperature())
+		if next_biome_environment.get_barometer() > 0:
+			biome_environment.set_barometer(next_biome_environment.get_barometer())
+		if next_biome_environment.get_wind_speed() > 0:
+			biome_environment.set_wind_speed(next_biome_environment.get_wind_speed())
+		if next_biome_environment.get_static_energy() > 0:
+			biome_environment.set_static_energy(next_biome_environment.get_static_energy())
+		if next_biome_environment.get_weather_direction() != Vector2.ZERO:
+			biome_environment.set_weather_direction(next_biome_environment.get_weather_direction())
+		weather_updated.emit(biome_environment)

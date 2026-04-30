@@ -25,6 +25,7 @@ gradient = SubResource("Gradient_ee0jb")
 script = ExtResource("1_ee0jb")
 biome_environment = ExtResource("2_ee0jb")
 audio_player = NodePath("AudioStreamPlayer")
+audio_repeat_time = 10.0
 sprite = NodePath("Sprite2D")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1741995910]

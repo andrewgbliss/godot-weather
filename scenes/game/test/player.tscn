@@ -1,0 +1,39 @@
+[gd_scene format=3 uid="uid://d1jm4weu0r3bv"]
+
+[sub_resource type="GDScript" id="GDScript_d7a1d"]
+script/source = "extends CharacterBody2D
+
+const SPEED = 300.0
+
+func _physics_process(_delta: float) -> void:
+	# Get the input direction and handle the movement/deceleration.
+	# As good practice, you should replace UI actions with custom gameplay actions.
+	var direction := Input.get_axis(\"ui_left\", \"ui_right\")
+	if direction:
+		velocity.x = direction * SPEED
+	else:
+		velocity.x = move_toward(velocity.x, 0, SPEED)
+
+	move_and_slide()
+"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_d7a1d"]
+
+[sub_resource type="Gradient" id="Gradient_g2woj"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_si225"]
+gradient = SubResource("Gradient_g2woj")
+
+[node name="Player" type="CharacterBody2D" unique_id=1902409870]
+collision_mask = 2
+motion_mode = 1
+script = SubResource("GDScript_d7a1d")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1739271690]
+shape = SubResource("RectangleShape2D_d7a1d")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=2128220423]
+position = Vector2(-3.8146973e-06, 0)
+scale = Vector2(0.078124985, 20)
+texture = SubResource("GradientTexture1D_si225")
