@@ -556,6 +556,7 @@ offset_bottom = 234.0
 biome = NodePath("../../Area1/Biome")
 
 [node name="Player" parent="." unique_id=1902409870 instance=ExtResource("20_sqlpd")]
+visible = false
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="Player" unique_id=391399743]
 remote_path = NodePath("../../Camera2D")

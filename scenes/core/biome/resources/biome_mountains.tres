@@ -6,7 +6,6 @@
 script = ExtResource("1_geqg1")
 biome_type = 6
 altitude_max = 0.5
-temperature_min = 0.25
 temperature_max = 0.75
 moisture_wave = 0.0
 altitude_wave = 0.0
