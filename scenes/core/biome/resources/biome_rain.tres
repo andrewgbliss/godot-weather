@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="BiomeEnvironment" format=3 uid="uid://c630554dlcaka"]
+
+[ext_resource type="Script" uid="uid://dvp3xtdyi72pj" path="res://scenes/core/biome/biome_environment.gd" id="1_bep0w"]
+
+[resource]
+script = ExtResource("1_bep0w")
+biome_type = 10
+moisture_min = 0.5
+temperature_min = 0.25
+barometer_max = 0.25
+moisture_wave = null
+altitude_wave = null
+temperature_wave = null
+barometer_wave = null
+wind_speed_wave = null
+static_energy_wave = null
+moisture = 0.78
+temperature = 0.32
+barometer = 0.25
+wind_speed = 0.45
+metadata/_custom_type_script = "uid://dvp3xtdyi72pj"

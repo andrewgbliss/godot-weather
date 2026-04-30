@@ -25,16 +25,7 @@ jobs:
           archive_output: true
           use_preset_export_path: true
           export_debug: false
-          presets_to_export: win,linux,web
-
-      - name: Upload web build to itch
-        uses: KikimoraGames/itch-publish@v0.0.3
-        with:
-          butlerApiKey: ${{ secrets.BUTLER_KEY }}
-          gameData: ./build/web/web.zip
-          itchUsername: ${{ secrets.ITCH_USER_NAME }}
-          itchGameId: ${{ secrets.ITCH_GAME_ID }}
-          buildChannel: html5
+          presets_to_export: win,linux
 
       - name: Upload windows build to itch
         uses: KikimoraGames/itch-publish@v0.0.3

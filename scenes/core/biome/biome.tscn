@@ -1,0 +1,29 @@
+[gd_scene format=3 uid="uid://cbcy42rfraa12"]
+
+[ext_resource type="Script" uid="uid://bkditkbriy5j" path="res://scenes/core/biome/biome.gd" id="1_0jsp5"]
+[ext_resource type="Resource" uid="uid://cjq8ui3sgklan" path="res://scenes/core/biome/resources/biome_mountains.tres" id="2_fhqxy"]
+[ext_resource type="PackedScene" uid="uid://bjfgpmnl3mc2p" path="res://scenes/core/biome/weather/scenes/lightning/lightning.tscn" id="7_3hnmn"]
+[ext_resource type="PackedScene" uid="uid://be4te6c4xng8j" path="res://scenes/core/biome/weather/scenes/rain/rain.tscn" id="10_je82k"]
+[ext_resource type="PackedScene" uid="uid://btuvb7awynuxo" path="res://scenes/core/biome/weather/scenes/snow/snow.tscn" id="11_vc0di"]
+[ext_resource type="PackedScene" uid="uid://vxcwho7jr11g" path="res://scenes/core/biome/weather/scenes/wind/wind_trails.tscn" id="12_eqwqf"]
+[ext_resource type="PackedScene" uid="uid://ls0vian2ts0" path="res://scenes/core/biome/weather/scenes/fog/fog_overlay.tscn" id="13_kh7wf"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_0jsp5"]
+
+[node name="Biome" type="Node2D" unique_id=1401637302]
+script = ExtResource("1_0jsp5")
+biome_environment = ExtResource("2_fhqxy")
+weather_pattern_noise = SubResource("FastNoiseLite_0jsp5")
+
+[node name="Rain" parent="." unique_id=240547441 instance=ExtResource("10_je82k")]
+
+[node name="Snow" parent="." unique_id=870805469 instance=ExtResource("11_vc0di")]
+position = Vector2(-544, -256)
+
+[node name="WindTrails" parent="." unique_id=788383398 instance=ExtResource("12_eqwqf")]
+position = Vector2(-520, -168)
+
+[node name="FogOverlay" parent="." unique_id=973680530 instance=ExtResource("13_kh7wf")]
+
+[node name="Lightning" parent="." unique_id=514349697 instance=ExtResource("7_3hnmn")]
+position = Vector2(231, 247)

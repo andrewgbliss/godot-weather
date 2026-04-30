@@ -8,36 +8,25 @@
 
 config_version=5
 
+[animation]
+
+compatibility/default_parent_skeleton_in_mesh_instance_3d=true
+
 [application]
 
-config/name="Weather Wizard"
+config/name="Godot Weather"
 run/main_scene="uid://dith8x76u5q2u"
-config/features=PackedStringArray("4.5", "Mobile")
+config/features=PackedStringArray("4.6", "Mobile")
 boot_splash/bg_color=Color(0, 0, 0, 1)
-boot_splash/image="uid://5yytbw2yrv5q"
-config/icon="uid://cy6uvrtu635v"
-config/windows_native_icon="res://assets/img/icons/icon-1024.ico"
+boot_splash/image="uid://cexb4qmpnjy5b"
 
 [audio]
 
-buses/default_bus_layout="res://blisscode/core/audio/default_bus_layout.tres"
+buses/default_bus_layout=""
 
 [autoload]
 
-DataStore="*res://blisscode/core/data/data_store.gd"
-ResourceStore="*res://blisscode/core/data/resource_store.gd"
-UserDataStore="*res://blisscode/core/data/user_data_store.tscn"
-EventBus="*res://blisscode/core/bus/event_bus.gd"
-GameManager="*res://blisscode/core/game/game_manager.tscn"
-SceneManager="*res://blisscode/core/scene/scene_manager.tscn"
-ScreenShake="*res://blisscode/core/camera/screen_shake/screen_shake.gd"
-GameUi="*res://blisscode/ui/game/game_ui.tscn"
-SpawnManager="*res://scenes/spawning/spawn_manager.tscn"
-RewindManager="*res://blisscode/core/data/rewind_manager.gd"
-NotifcationsToast="*res://blisscode/ui/notifications/notifcations_toast.tscn"
-DialogManager="*res://blisscode/dialog/dialog_manager.tscn"
-WorldTimeService="*res://blisscode/world_time/world_time_service.tscn"
-WeatherService="*res://blisscode/weather/weather_service.tscn"
+WorldTimeService="*res://scenes/core/biome/world_time/world_time_service.tscn"
 
 [display]
 
@@ -50,15 +39,12 @@ window/stretch/mode="viewport"
 window/stretch/aspect="expand"
 window/stretch/scale_mode="integer"
 
-[editor_plugins]
-
-enabled=PackedStringArray("res://addons/AsepriteWizard/plugin.cfg")
-
 [global_group]
 
 player=""
 persist=""
 npc=""
+weather=""
 
 [gui]
 

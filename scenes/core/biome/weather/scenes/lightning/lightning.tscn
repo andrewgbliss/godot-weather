@@ -1,0 +1,38 @@
+[gd_scene format=3 uid="uid://bjfgpmnl3mc2p"]
+
+[ext_resource type="Script" uid="uid://gxm47gdn6yae" path="res://scenes/core/biome/weather/weather.gd" id="1_ee0jb"]
+[ext_resource type="Resource" uid="uid://sci7bvjbaqxh" path="res://scenes/core/biome/resources/biome_lightning.tres" id="2_ee0jb"]
+[ext_resource type="Shader" uid="uid://cdjhf3evp8cp4" path="res://shaders/lightning.gdshader" id="3_ee0jb"]
+[ext_resource type="AudioStream" uid="uid://c1o4crsik38ha" path="res://assets/audio/weather/Thunder1.wav" id="4_uagda"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_uagda"]
+shader = ExtResource("3_ee0jb")
+shader_parameter/effect_color = Color(0.5810318, 0.8325797, 1.8247963, 1)
+shader_parameter/octave_count = 10
+shader_parameter/amp_start = 0.5
+shader_parameter/amp_coeff = 0.5
+shader_parameter/freq_coeff = 2.0
+shader_parameter/speed = 0.5
+shader_parameter/flicker_on_time = 0.10000000312006
+shader_parameter/flicker_off_time = 5.00000023424012
+
+[sub_resource type="Gradient" id="Gradient_ee0jb"]
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_uagda"]
+gradient = SubResource("Gradient_ee0jb")
+
+[node name="Lightning" type="Node2D" unique_id=514349697 node_paths=PackedStringArray("audio_player", "sprite") groups=["weather"]]
+script = ExtResource("1_ee0jb")
+biome_environment = ExtResource("2_ee0jb")
+audio_player = NodePath("AudioStreamPlayer")
+sprite = NodePath("Sprite2D")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1741995910]
+z_index = -10
+material = SubResource("ShaderMaterial_uagda")
+position = Vector2(0, 8.499999)
+scale = Vector2(0.375, 110.99999)
+texture = SubResource("GradientTexture1D_uagda")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1629060650]
+stream = ExtResource("4_uagda")

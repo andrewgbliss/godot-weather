@@ -1,0 +1,194 @@
+[gd_scene format=3 uid="uid://bhpsq05kcybdr"]
+
+[ext_resource type="Script" uid="uid://u8bq8tnenxa3" path="res://scenes/core/biome/weather/ui/current_weather_label.gd" id="1_1"]
+
+[node name="CurrentWeatherLabel" type="Control" unique_id=1865225550]
+layout_mode = 3
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -236.0
+offset_bottom = 222.0
+grow_horizontal = 0
+script = ExtResource("1_1")
+
+[node name="ShowHideToggle" type="LinkButton" parent="." unique_id=1789042123]
+unique_name_in_owner = true
+z_index = 1
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -22.0
+offset_top = -18.0
+offset_right = 36.0
+offset_bottom = 2.0
+grow_horizontal = 0
+focus_mode = 0
+theme_override_colors/font_color = Color(0.82, 0.88, 0.98, 1)
+theme_override_colors/font_pressed_color = Color(0.65, 0.75, 0.95, 1)
+theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 16
+text = "Hide"
+
+[node name="WeatherPanel" type="PanelContainer" parent="." unique_id=884921001]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -156.0
+offset_bottom = 180.0
+grow_horizontal = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="WeatherPanel" unique_id=2065823223]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="WeatherPanel/MarginContainer" unique_id=1092983240]
+layout_mode = 2
+theme_override_constants/separation = 4
+
+[node name="BiomeRow" type="HBoxContainer" parent="WeatherPanel/MarginContainer/VBoxContainer" unique_id=2023746481]
+layout_mode = 2
+
+[node name="BiomeLabel" type="Label" parent="WeatherPanel/MarginContainer/VBoxContainer/BiomeRow" unique_id=2047171084]
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+text = "Biome:"
+
+[node name="BiomeValue" type="Label" parent="WeatherPanel/MarginContainer/VBoxContainer/BiomeRow" unique_id=1036945175]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 16
+text = "Grass"
+horizontal_alignment = 2
+
+[node name="MoistureRow" type="HBoxContainer" parent="WeatherPanel/MarginContainer/VBoxContainer" unique_id=1141121722]
+layout_mode = 2
+
+[node name="MoistureLabel" type="Label" parent="WeatherPanel/MarginContainer/VBoxContainer/MoistureRow" unique_id=1891133337]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 16
+text = "Moisture"
+
+[node name="Moisture" type="HSlider" parent="WeatherPanel/MarginContainer/VBoxContainer/MoistureRow" unique_id=2023413439]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(90, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+max_value = 1.0
+step = 0.01
+
+[node name="AltitudeRow" type="HBoxContainer" parent="WeatherPanel/MarginContainer/VBoxContainer" unique_id=1900917057]
+layout_mode = 2
+
+[node name="AltitudeLabel" type="Label" parent="WeatherPanel/MarginContainer/VBoxContainer/AltitudeRow" unique_id=1315683733]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 16
+text = "Altitude"
+
+[node name="Altitude" type="HSlider" parent="WeatherPanel/MarginContainer/VBoxContainer/AltitudeRow" unique_id=813515861]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(90, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+max_value = 1.0
+step = 0.01
+
+[node name="TemperatureRow" type="HBoxContainer" parent="WeatherPanel/MarginContainer/VBoxContainer" unique_id=943378239]
+layout_mode = 2
+
+[node name="TemperatureLabel" type="Label" parent="WeatherPanel/MarginContainer/VBoxContainer/TemperatureRow" unique_id=1309279058]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 16
+text = "Temperature"
+
+[node name="Temperature" type="HSlider" parent="WeatherPanel/MarginContainer/VBoxContainer/TemperatureRow" unique_id=1624950059]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(90, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+max_value = 1.0
+step = 0.01
+
+[node name="BarometerRow" type="HBoxContainer" parent="WeatherPanel/MarginContainer/VBoxContainer" unique_id=187625293]
+layout_mode = 2
+
+[node name="BarometerLabel" type="Label" parent="WeatherPanel/MarginContainer/VBoxContainer/BarometerRow" unique_id=1573640138]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 16
+text = "Barometer"
+
+[node name="Barometer" type="HSlider" parent="WeatherPanel/MarginContainer/VBoxContainer/BarometerRow" unique_id=367181273]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(90, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+max_value = 1.0
+step = 0.01
+
+[node name="WindSpeedRow" type="HBoxContainer" parent="WeatherPanel/MarginContainer/VBoxContainer" unique_id=1902289334]
+layout_mode = 2
+
+[node name="WindSpeedLabel" type="Label" parent="WeatherPanel/MarginContainer/VBoxContainer/WindSpeedRow" unique_id=686605947]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 16
+text = "Wind Speed"
+
+[node name="WindSpeed" type="HSlider" parent="WeatherPanel/MarginContainer/VBoxContainer/WindSpeedRow" unique_id=596397741]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(90, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+max_value = 1.0
+step = 0.01
+
+[node name="StaticEnergyRow" type="HBoxContainer" parent="WeatherPanel/MarginContainer/VBoxContainer" unique_id=867225258]
+layout_mode = 2
+
+[node name="StaticEnergyLabel" type="Label" parent="WeatherPanel/MarginContainer/VBoxContainer/StaticEnergyRow" unique_id=1052810571]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 16
+text = "Static Energy"
+
+[node name="StaticEnergy" type="HSlider" parent="WeatherPanel/MarginContainer/VBoxContainer/StaticEnergyRow" unique_id=2137556446]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(90, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+max_value = 1.0
+step = 0.01
+
+[node name="WindDirectionRow" type="HBoxContainer" parent="WeatherPanel/MarginContainer/VBoxContainer" unique_id=711070451]
+layout_mode = 2
+
+[node name="WindDirectionLabel" type="Label" parent="WeatherPanel/MarginContainer/VBoxContainer/WindDirectionRow" unique_id=1259848347]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 16
+text = "Direction"
+
+[node name="WindDirectionLeft" type="Button" parent="WeatherPanel/MarginContainer/VBoxContainer/WindDirectionRow" unique_id=1428162802]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+toggle_mode = true
+text = "-1"
+
+[node name="WindDirectionRight" type="Button" parent="WeatherPanel/MarginContainer/VBoxContainer/WindDirectionRow" unique_id=709621537]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+toggle_mode = true
+text = "1"
